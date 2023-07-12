@@ -4,7 +4,7 @@
   "description": "",
   "main": "arrayFilter.js",
   "scripts": {
-    "dev": "nodemon src/object/inheritanceBasedObjectModeling/contructorFunctions.js"
+    "dev": "nodemon src/object/checkKeyInObject/index.js"
   },
   "author": "",
   "license": "ISC",
