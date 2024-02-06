@@ -4,7 +4,7 @@
   "description": "",
   "main": "arrayFilter.js",
   "scripts": {
-    "dev": "nodemon src/object/checkKeyInObject/index.js"
+    "dev": "nodemon src/string/methods/split.js"
   },
   "author": "",
   "license": "ISC",

@@ -1,0 +1,9 @@
+- slice -
+- replace
+- match
+- includes
+- indexOf
+- lastIndexOf
+- startsWith
+- endsWith
+- repeat
