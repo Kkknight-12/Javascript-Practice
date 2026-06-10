@@ -79,3 +79,20 @@ src/pattern/ -> src/advanced/design-patterns/
 - Write a story, sprint checklist, and review list before implementation.
 - Start with low-risk hygiene and documentation before restructuring folders.
 - Generated dependencies, OS files, and IDE files should stay ignored. They were removed from Git tracking during Sprint 1 with `git rm --cached`.
+
+## Sprint 4 Docs Foundation
+
+Created a VitePress-ready `docs/` scaffold without installing VitePress yet. The dependency and `package.json` docs scripts should be added in a separate sprint that can run `npm install`/`npm run docs:dev` with network access.
+
+Docs source mapping:
+
+```text
+src/fundamentals/ -> docs/fundamentals/
+src/functions/ -> docs/functions/
+src/array/ -> docs/arrays/
+src/object/ -> docs/objects/
+src/string/ -> docs/strings/
+src/async/ -> docs/async/
+src/collections/ -> docs/collections/
+src/advanced/ -> docs/advanced/
+```

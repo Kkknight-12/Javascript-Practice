@@ -87,7 +87,7 @@ Verification Notes:
 
 ### Sprint 3: Topic Folder Restructure
 
-Status: review
+Status: completed
 
 Checklist:
 
@@ -120,15 +120,38 @@ Verification Notes:
 
 ### Sprint 4: Website Foundation Decision
 
-Status: pending
+Status: review
 
 Checklist:
 
-- [ ] Decide whether to create `docs/`.
-- [ ] Decide whether to initialize VitePress now or later.
-- [ ] Draft initial docs navigation from the cleaned topic tree.
+- [x] Decide whether to create `docs/`.
+- [x] Decide whether to initialize VitePress now or later.
+- [x] Draft initial docs navigation from the cleaned topic tree.
+- [x] Create VitePress-ready docs scaffold without installing dependencies.
 
 Review List:
 
-- [ ] Confirm the source/practice tree remains usable.
-- [ ] Confirm the docs tree does not duplicate unstable content too early.
+- [x] Confirm the source/practice tree remains usable.
+- [x] Confirm the docs tree does not duplicate unstable content too early.
+- [ ] Confirm the docs navigation order feels right.
+- [ ] Decide whether the next sprint should install VitePress or start migrating one topic page.
+
+Files:
+
+- [x] `docs/.vitepress/config.mts`
+- [x] `docs/index.md`
+- [x] `docs/fundamentals/index.md`
+- [x] `docs/functions/index.md`
+- [x] `docs/arrays/index.md`
+- [x] `docs/objects/index.md`
+- [x] `docs/strings/index.md`
+- [x] `docs/async/index.md`
+- [x] `docs/collections/index.md`
+- [x] `docs/advanced/index.md`
+- [x] `docs/playground/index.md`
+- [x] `docs/reference/content-migration.md`
+
+Verification Notes:
+
+- The docs scaffold is static Markdown plus a VitePress config.
+- VitePress is intentionally not added to `package.json` yet because dependency installation should be a separate sprint.

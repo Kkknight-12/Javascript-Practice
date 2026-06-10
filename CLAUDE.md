@@ -29,8 +29,10 @@ See `WEBSITE_PROJECT_PLAN.md` for the full plan. Key decisions:
 - **Stack**: VitePress (static site generator, markdown-centric, Vue-based)
 - **Goal**: Transform this content into an interactive educational site
 - **Phases**: Foundation → Content Migration → Interactive Features → Enhanced Content → Polish → Launch
+- **Current docs layer**: `docs/` contains a VitePress-ready scaffold and navigation map. The VitePress dependency is not installed yet.
 
 ## Development Notes
 - Node.js project with `nodemon` for running JS files during practice
 - Content is a mix of `.js` practice files and `.md` notes
 - Interview questions are included in the content inventory
+- Keep runnable source examples in `src/`; migrate learner-facing explanation and navigation into `docs/`.
