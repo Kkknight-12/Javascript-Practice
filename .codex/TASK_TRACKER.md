@@ -1,0 +1,98 @@
+# Task Tracker
+
+## Current Story
+
+### JS-STRUCTURE-001: Prepare JavaScript Practice Repo Structure
+
+As the repo owner, I want the JavaScript practice project to have a clear topic structure, local Codex memory, and sprint checklist so future cleanup and website migration work can happen safely.
+
+## Acceptance Criteria
+
+- `.codex/` exists with start, memory, structure review, and task tracker docs.
+- The current folder review is captured in repo-local memory.
+- Event loop, hoisting, map, pattern, and scope placement decisions are recorded.
+- Sprint work is split into small reviewable steps.
+- Sprint 1 starts with safe hygiene work, not mass file movement.
+
+## Sprint Plan
+
+### Sprint 1: Planning And Git Hygiene
+
+Status: review
+
+Checklist:
+
+- [x] Create `.codex/` folder.
+- [x] Add `START_HERE.md`.
+- [x] Add `PROJECT_MEMORY.md`.
+- [x] Add `STRUCTURE_REVIEW.md`.
+- [x] Add this task tracker.
+- [x] Expand `.gitignore` for dependencies, OS files, editor files, and logs.
+- [x] Untrack already-tracked `node_modules`, `.DS_Store`, and `.idea` files while keeping them on disk.
+- [x] Move `del1.js` and `src/del.js` into `src/playground/`.
+- [x] Update `npm run dev` to use `src/playground/del.js`.
+
+Review List:
+
+- [ ] Confirm the target folder mapping feels right.
+- [x] Confirm whether `.idea` should be fully ignored or partially kept.
+- [x] Confirm whether tracked `node_modules` should be removed from Git index with `git rm --cached`.
+- [x] Confirm whether the next sprint should rename folders or move scratch files first.
+- [ ] Review the staged index cleanup before commit.
+- [ ] Decide whether Sprint 2 should begin with typo renames or topic folder moves.
+
+Verification Notes:
+
+- `git ls-files node_modules .idea .DS_Store src/.DS_Store src/object/.DS_Store` returned no tracked files.
+- `node --check src/playground/del.js` completed successfully.
+- `git status --short` now shows many staged `D` entries for previously tracked generated/editor files. That is expected after `git rm --cached`; the files remain on disk and are now ignored.
+
+### Sprint 2: Safe Naming Cleanup
+
+Status: pending
+
+Checklist:
+
+- [ ] Rename obvious typo files after review.
+- [ ] Normalize folder names to lowercase kebab-case.
+- [ ] Keep compatibility notes for old names if needed.
+- [ ] Verify Git status after each group of renames.
+
+Review List:
+
+- [ ] Check that no learning content disappeared.
+- [ ] Check that renamed topics still match the docs plan.
+- [ ] Check that file names are readable for a future site nav.
+
+### Sprint 3: Topic Folder Restructure
+
+Status: pending
+
+Checklist:
+
+- [ ] Move `EventLoop` to `async/event-loop`.
+- [ ] Move `hoisting` and `scope` to `fundamentals`.
+- [ ] Move JavaScript `Map` content to `collections/map`.
+- [ ] Move design pattern content to `advanced/design-patterns`.
+- [ ] Move scratch work into `playground`.
+
+Review List:
+
+- [ ] Review each move before committing.
+- [ ] Check for broken local scripts.
+- [ ] Update `CLAUDE.md` after the new tree is accepted.
+
+### Sprint 4: Website Foundation Decision
+
+Status: pending
+
+Checklist:
+
+- [ ] Decide whether to create `docs/`.
+- [ ] Decide whether to initialize VitePress now or later.
+- [ ] Draft initial docs navigation from the cleaned topic tree.
+
+Review List:
+
+- [ ] Confirm the source/practice tree remains usable.
+- [ ] Confirm the docs tree does not duplicate unstable content too early.

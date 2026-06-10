@@ -1,2 +1,14 @@
-# ignore node_modules
-node_modules
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+
+# Editor/project-local files
+.idea/
+.vscode/
+
+# Logs and temporary output
+*.log
+tmp/
+temp/
