@@ -149,7 +149,7 @@ Files:
 - [x] `docs/collections/index.md`
 - [x] `docs/advanced/index.md`
 - [x] `docs/playground/index.md`
-- [x] `docs/reference/content-migration.md`
+- [x] `docs/reference/content-authoring.md`
 
 Verification Notes:
 

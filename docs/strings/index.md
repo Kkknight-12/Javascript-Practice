@@ -6,7 +6,7 @@ Source content:
 src/string/
 ```
 
-Recommended migration order:
+Recommended publishing order:
 
 1. String basics.
 2. Instance methods.

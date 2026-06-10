@@ -6,7 +6,7 @@ Source content:
 src/array/
 ```
 
-Recommended migration order:
+Recommended publishing order:
 
 1. Array basics and creation shortcuts.
 2. Loops and iteration.

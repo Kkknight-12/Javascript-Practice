@@ -2,7 +2,7 @@
 
 ## Project Shape
 
-This repository is currently a JavaScript practice and revision workspace. The long-term direction recorded in `CLAUDE.md` and `WEBSITE_PROJECT_PLAN.md` is to evolve it into a public educational website, likely using VitePress.
+This repository is currently a JavaScript practice and revision workspace. The long-term direction recorded in `WEBSITE_PROJECT_PLAN.md`, `.codex/`, and `docs/` is to evolve it into a public educational website, likely using VitePress.
 
 ## Structure Decisions
 
@@ -83,6 +83,8 @@ src/pattern/ -> src/advanced/design-patterns/
 ## Sprint 4 Docs Foundation
 
 Created a VitePress-ready `docs/` scaffold without installing VitePress yet. The dependency and `package.json` docs scripts should be added in a separate sprint that can run `npm install`/`npm run docs:dev` with network access.
+
+The source topics are not being moved into `docs/`. Keep runnable examples in `src/`; use `docs/` for learner-facing explanations, ordering, navigation, and eventually polished pages that reference or adapt those examples.
 
 Docs source mapping:
 

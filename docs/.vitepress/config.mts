@@ -16,7 +16,7 @@ export default {
         text: 'Start',
         items: [
           { text: 'Overview', link: '/' },
-          { text: 'Content Migration', link: '/reference/content-migration' },
+          { text: 'Content Authoring', link: '/reference/content-authoring' },
         ],
       },
       {

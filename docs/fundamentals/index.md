@@ -7,7 +7,7 @@ src/fundamentals/hoisting/
 src/fundamentals/scope/
 ```
 
-Recommended migration order:
+Recommended publishing order:
 
 1. Scope and lexical environments.
 2. `var`, `let`, and `const` behavior.

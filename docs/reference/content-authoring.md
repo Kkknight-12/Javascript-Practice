@@ -1,6 +1,8 @@
-# Content Migration
+# Content Authoring
 
-Use this checklist when turning a source example into a docs page.
+Use this checklist when turning a source example into a learner-facing docs page.
+
+This does not mean moving topic source files out of `src/`. Keep source examples runnable in `src/`; write polished explanations and navigation in `docs/`.
 
 ## Page Shape
 

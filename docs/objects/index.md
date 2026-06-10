@@ -6,7 +6,7 @@ Source content:
 src/object/
 ```
 
-Recommended migration order:
+Recommended publishing order:
 
 1. Object basics and key checks.
 2. Looping through objects.

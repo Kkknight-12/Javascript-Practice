@@ -6,7 +6,7 @@ Source content:
 src/functions/
 ```
 
-Recommended migration order:
+Recommended publishing order:
 
 1. Callback functions.
 2. Higher-order functions.

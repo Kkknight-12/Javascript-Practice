@@ -2,7 +2,7 @@
 
 This docs folder is the first website-ready layer over the existing JavaScript practice source files.
 
-The source examples remain in `src/`. The docs pages should gradually become the learner-facing explanations, navigation, and migration map for those examples.
+The source examples remain in `src/`. The docs pages should gradually become the learner-facing explanations, navigation, and publishing map for those examples.
 
 ## Learning Paths
 
@@ -33,6 +33,6 @@ src/
   string/
 ```
 
-## Migration Rule
+## Docs Rule
 
 Keep source examples runnable in `src/`. Add learner-facing explanation, ordering, and navigation in `docs/`.

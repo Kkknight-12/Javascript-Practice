@@ -6,7 +6,7 @@ Source content:
 src/advanced/design-patterns/
 ```
 
-Recommended migration order:
+Recommended publishing order:
 
 1. Design pattern motivation.
 2. Singleton pattern.

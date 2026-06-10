@@ -107,9 +107,9 @@ Home
 - [ ] Create base layout and navigation
 - [ ] Implement syntax highlighting
 
-### Phase 2: Content Migration (Week 3-4)
-- [ ] Convert existing markdown files to VitePress format
-- [ ] Organize code examples into structured format
+### Phase 2: Content Authoring (Week 3-4)
+- [ ] Adapt existing markdown notes into learner-facing docs pages
+- [ ] Reference or adapt code examples into structured docs examples
 - [ ] Add frontmatter metadata to all pages
 - [ ] Create table of contents for each section
 - [ ] Add navigation between related topics

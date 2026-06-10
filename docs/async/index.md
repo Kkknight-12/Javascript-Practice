@@ -6,7 +6,7 @@ Source content:
 src/async/event-loop/
 ```
 
-Recommended migration order:
+Recommended publishing order:
 
 1. Call stack and callback queue.
 2. Event loop mental model.

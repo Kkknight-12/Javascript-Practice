@@ -6,7 +6,7 @@ Source content:
 src/collections/map/
 ```
 
-Recommended migration order:
+Recommended publishing order:
 
 1. JavaScript `Map` basics.
 2. Iterating over `Map`.
