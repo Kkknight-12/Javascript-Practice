@@ -15,13 +15,20 @@
  * MDN reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
  *  */
 
+/*
+ * This method can create an array from:
+ * -> array-like objects - The objects that have length
+ *    property and have indexed elements like String.
+ * -> Iterable objects like Map or Set.
+ */
+
 // Array from a String
-const str1 = "foo";
+const str1 = 'foo';
 console.log(Array.from(str1));
 // expected output: Array ["f", "o", "o"]
 
 // Array from a Set
-const set1 = new Set(["foo", "bar", "baz", "foo"]);
+const set1 = new Set(['foo', 'bar', 'baz', 'foo']);
 console.log(Array.from(set1));
 // expected output: Array ["foo", "bar", "baz"]
 
@@ -40,7 +47,10 @@ function f() {
 } // [1, 2, 3]
 console.log(f(1, 2, 3));
 
-// Using arrow functions and Array.from()
+/*
+ * Array.from(obj, mapFunc, thisArg) is equivalent to
+ * Array.from(obj).map(mapFunc, thisArg).
+ */
 const a = Array.from([1, 2, 3], (x) => x + x);
 console.log(a);
 // [2, 4, 6]
@@ -80,3 +90,46 @@ console.log(arr);
  * just a length property. Therefore, there are no values for v to represent,
  *  and it remains undefined.
  */
+
+const aaaaa = Array.from({ length: 5 }, () => 0);
+console.log(aaaaa);
+const result = aaaaa.map((_, row) => row);
+console.log(result);
+
+const rows = 3;
+const columns = 4;
+
+Array.from({ length: rows }, () => 0).map((_, row) =>
+  Array.from({ length: columns }, () => 0).map((_, col) =>
+    col % 2 === 0
+      ? console.log('divisible ', rows * col + (row + 1))
+      : console.log('not divisibe ', rows * (col + 1) - row)
+  )
+);
+
+// 3 * 0 + ( 0 + 1) => 1
+// 3 * ( 1 + 1 ) - 0 => 6
+// 3 * 2 + ( 0 + 1 ) => 7
+// 3 * ( 3 + 1 ) - 0 => 12
+// console.log(0 % 2);
+
+// Range calculation approach - systematic derivation
+function calculateColumnRanges(rows, columns) {
+  // Har column mein kitni values hain? = rows
+  // Har column ka starting point kahan hai?
+
+  for (let col = 0; col < columns; col++) {
+    const startValue = rows * col + 1;
+    const endValue = rows * (col + 1);
+
+    console.log(`Column ${col}: Range ${startValue} to ${endValue}`);
+
+    // Example output for 3 rows:
+    // Column 0: Range 1 to 3
+    // Column 1: Range 4 to 6
+    // Column 2: Range 7 to 9
+    // Column 3: Range 10 to 12
+  }
+}
+
+console.log('calculateColumnRanges ', calculateColumnRanges(3, 4));

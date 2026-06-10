@@ -1,9 +1,5 @@
-- slice -
-- replace
-- match
-- includes
-- indexOf
-- lastIndexOf
 - startsWith
 - endsWith
+- replace
 - repeat
+- search
