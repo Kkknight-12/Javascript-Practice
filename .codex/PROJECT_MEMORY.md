@@ -6,29 +6,29 @@ This repository is currently a JavaScript practice and revision workspace. The l
 
 ## Structure Decisions
 
-Use topic-first organization for learning content:
+Use topic-first organization for learning content. The current source tree keeps the older singular folder names for arrays, objects, and strings, while the newer cross-cutting topics now live under clearer parent folders:
 
 ```text
 src/
+  advanced/
+    design-patterns/
+  array/
+  async/
+    event-loop/
+  classes/
+  collections/
+    map/
   fundamentals/
     scope/
     hoisting/
-    execution-context/
-  arrays/
-  objects/
-  strings/
   functions/
-  async/
-    event-loop/
-  collections/
-    map/
-  oop/
-  advanced/
-    design-patterns/
+  miscellaneous/
+  object/
   playground/
+  string/
 ```
 
-Specific mappings from the current tree:
+Completed Sprint 3 mappings:
 
 ```text
 src/EventLoop/  -> src/async/event-loop/
@@ -42,7 +42,6 @@ If a file is about `Array.prototype.map`, keep it under array methods instead of
 
 ## Current Risks
 
-- `EventLoop` is still intentionally unchanged until the topic-folder restructure sprint.
 - Larger topic moves should stay reviewable and happen in a separate sprint.
 - Some older camelCase method filenames still exist, but the most obvious typo/punctuation names were cleaned in Sprint 2.
 - Scratch files were moved into `src/playground/` during Sprint 1.
@@ -60,6 +59,18 @@ src/functions/HOF.js -> src/functions/higher-order-functions.js
 src/map/loop,-map.js -> src/map/loop-map.js
 src/object/loopthroughObject/ -> src/object/loop-through-object/
 src/string/methods/instance-methods/subString.js -> src/string/methods/instance-methods/substring.js
+```
+
+## Sprint 3 Topic Folder Restructure
+
+Completed topic-folder moves:
+
+```text
+src/EventLoop/ -> src/async/event-loop/
+src/hoisting/ -> src/fundamentals/hoisting/
+src/scope/ -> src/fundamentals/scope/
+src/map/ -> src/collections/map/
+src/pattern/ -> src/advanced/design-patterns/
 ```
 
 ## Workflow

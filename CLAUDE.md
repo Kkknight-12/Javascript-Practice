@@ -6,17 +6,22 @@ This repo started as a personal JavaScript revision resource and is evolving int
 ## Repo Structure
 ```
 src/
-├── array/          # Array methods, loops (for-of, for-await-of), static methods
-├── classes/        # OOP, class syntax
-├── EventLoop/      # Event loop concepts
-├── functions/      # Arrow functions, closures, advanced patterns
-├── hoisting/       # Hoisting behavior
-├── map/            # Map data structure
-├── miscellaneous/  # Mixed JS topics
-├── object/         # Object methods, prototypes, hasOwn, property descriptors
-├── pattern/        # Design patterns
-├── scope/          # Scope and closures
-└── string/         # String instance and static methods
+├── advanced/
+│   └── design-patterns/  # Design patterns
+├── array/                # Array methods, loops, static methods, questions
+├── async/
+│   └── event-loop/       # Event loop concepts
+├── classes/              # OOP, class syntax
+├── collections/
+│   └── map/              # JavaScript Map data structure
+├── fundamentals/
+│   ├── hoisting/         # Hoisting behavior
+│   └── scope/            # Scope and closures
+├── functions/            # Callbacks, HOFs, function patterns
+├── miscellaneous/        # Mixed JS topics
+├── object/               # Object methods, prototypes, hasOwn, descriptors
+├── playground/           # Scratch or temporary experiments
+└── string/               # String instance and static methods
 ```
 
 ## Website Plan

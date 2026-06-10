@@ -49,7 +49,7 @@ Verification Notes:
 
 ### Sprint 2: Safe Naming Cleanup
 
-Status: review
+Status: completed
 
 Checklist:
 
@@ -87,21 +87,36 @@ Verification Notes:
 
 ### Sprint 3: Topic Folder Restructure
 
-Status: pending
+Status: review
 
 Checklist:
 
-- [ ] Move `EventLoop` to `async/event-loop`.
-- [ ] Move `hoisting` and `scope` to `fundamentals`.
-- [ ] Move JavaScript `Map` content to `collections/map`.
-- [ ] Move design pattern content to `advanced/design-patterns`.
-- [ ] Move scratch work into `playground`.
+- [x] Move `EventLoop` to `async/event-loop`.
+- [x] Move `hoisting` and `scope` to `fundamentals`.
+- [x] Move JavaScript `Map` content to `collections/map`.
+- [x] Move design pattern content to `advanced/design-patterns`.
+- [x] Keep scratch work in `playground`.
 
 Review List:
 
-- [ ] Review each move before committing.
-- [ ] Check for broken local scripts.
-- [ ] Update `CLAUDE.md` after the new tree is accepted.
+- [x] Review each move before committing.
+- [x] Check for broken local scripts.
+- [x] Update `CLAUDE.md` after the new tree is accepted.
+- [ ] Confirm the new top-level source structure reads well.
+- [ ] Decide whether to commit Sprint 3 before starting website/docs foundation.
+
+Moves:
+
+- [x] `src/EventLoop/` -> `src/async/event-loop/`
+- [x] `src/hoisting/` -> `src/fundamentals/hoisting/`
+- [x] `src/scope/` -> `src/fundamentals/scope/`
+- [x] `src/map/` -> `src/collections/map/`
+- [x] `src/pattern/` -> `src/advanced/design-patterns/`
+
+Verification Notes:
+
+- `find src -maxdepth 3 -type d -print | sort` shows the new parent folders.
+- Old folder-name references remain only as historical mapping notes in `.codex`.
 
 ### Sprint 4: Website Foundation Decision
 
