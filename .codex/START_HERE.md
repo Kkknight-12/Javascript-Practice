@@ -4,7 +4,7 @@ Use this folder as the working memory for the JavaScript practice repo.
 
 ## Current Direction
 
-This repo is a JavaScript learning/practice collection that may later become a public educational site. Keep the current practice content usable while gradually improving structure and naming.
+This repo is a public JavaScript learning/practice collection. Keep it terminal-first and focused on runnable examples plus nearby notes.
 
 ## Read Order
 
@@ -14,7 +14,7 @@ This repo is a JavaScript learning/practice collection that may later become a p
 
 ## Current Story
 
-`JS-STRUCTURE-001`: clean up the project structure so topic folders can support both local practice and a future docs site.
+`JS-STRUCTURE-001`: keep the project structure clear for terminal-first JavaScript practice.
 
 ## Working Rules
 
@@ -23,3 +23,4 @@ This repo is a JavaScript learning/practice collection that may later become a p
 - Stop after each sprint for review.
 - Do not commit, push, merge, or delete tracked content without confirmation.
 - Avoid mass file moves while the worktree has unrelated uncommitted changes.
+- Do not add site-generation or browser-preview work unless the user explicitly changes the repo direction.

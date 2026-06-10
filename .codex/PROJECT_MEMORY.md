@@ -2,7 +2,7 @@
 
 ## Project Shape
 
-This repository is currently a JavaScript practice and revision workspace. The long-term direction recorded in `WEBSITE_PROJECT_PLAN.md`, `.codex/`, and `docs/` is to evolve it into a public educational website, likely using VitePress.
+This repository is a public JavaScript practice and revision workspace. It should stay terminal-first: runnable `.js` examples in `src/`, with explanations as nearby `.md` notes when useful.
 
 ## Structure Decisions
 
@@ -45,6 +45,7 @@ If a file is about `Array.prototype.map`, keep it under array methods instead of
 - Larger topic moves should stay reviewable and happen in a separate sprint.
 - Some older camelCase method filenames still exist, but the most obvious typo/punctuation names were cleaned in Sprint 2.
 - Scratch files were moved into `src/playground/` during Sprint 1.
+- Site-generation or browser-preview work does not belong in this repo unless the user explicitly changes direction.
 
 ## Sprint 2 Naming Cleanup
 
@@ -80,21 +81,39 @@ src/pattern/ -> src/advanced/design-patterns/
 - Start with low-risk hygiene and documentation before restructuring folders.
 - Generated dependencies, OS files, and IDE files should stay ignored. They were removed from Git tracking during Sprint 1 with `git rm --cached`.
 
-## Sprint 4 Docs Foundation
+## Collaboration Rules From DSA Visual Learning
 
-Created a VitePress-ready `docs/` scaffold without installing VitePress yet. The dependency and `package.json` docs scripts should be added in a separate sprint that can run `npm install`/`npm run docs:dev` with network access.
+These rules are adapted from the user's `dsa-visual-learning` workflow and apply
+to future work in this repo:
 
-The source topics are not being moved into `docs/`. Keep runnable examples in `src/`; use `docs/` for learner-facing explanations, ordering, navigation, and eventually polished pages that reference or adapt those examples.
+- Discuss first, then act. For non-trivial work, brainstorm the direction with
+  the user before editing files.
+- Do not continue just because the next step seems obvious. Wait for the user
+  to explicitly say to continue.
+- Before coding or restructuring, inspect the existing repo state and explain
+  the current situation in plain terms.
+- For meaningful work, create or update a small story/sprint/checklist before
+  implementation.
+- Keep each sprint small and reviewable. Finish one slice, verify it, then stop
+  for user review.
+- Do not commit, push, merge, rewrite history, or remove public files unless the
+  user explicitly asks.
+- Do not revert unrelated dirty files.
+- For this repo, preserve the terminal-first practice workflow unless the user
+  explicitly chooses another direction. Keep `npm run dev` focused on running a
+  JavaScript file with `nodemon`.
+- Do not add site-generation or browser-preview work without explicit approval.
 
-Docs source mapping:
+## Public Repo Scope Correction
+
+The earlier site scaffold and plan were removed from the current repo view because this repo is public and the user does not want that direction here.
+
+Keep explanations next to source examples instead:
 
 ```text
-src/fundamentals/ -> docs/fundamentals/
-src/functions/ -> docs/functions/
-src/array/ -> docs/arrays/
-src/object/ -> docs/objects/
-src/string/ -> docs/strings/
-src/async/ -> docs/async/
-src/collections/ -> docs/collections/
-src/advanced/ -> docs/advanced/
+src/array/methods/reduce.js
+src/array/methods/reduce.md
+
+src/fundamentals/scope/var.js
+src/fundamentals/scope/var.md
 ```

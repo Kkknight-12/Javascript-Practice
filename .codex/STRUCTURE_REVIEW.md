@@ -2,7 +2,7 @@
 
 ## Verdict
 
-The current structure is good enough for personal JavaScript practice, but it needs cleanup before becoming a public learning site.
+The current structure is intended for public, terminal-first JavaScript practice.
 
 ## What Is Good
 
@@ -16,7 +16,7 @@ The current structure is good enough for personal JavaScript practice, but it ne
 - Separate scratch/playground files from durable learning content.
 - Keep JavaScript `Map` separate from `Array.prototype.map`.
 - Clean Git hygiene around `node_modules`, `.DS_Store`, and IDE metadata.
-- Add a future docs layer only after the source content is stable.
+- Keep explanations close to runnable source files. Prefer `.md` notes beside the related `.js` examples.
 
 ## Target Topic Placement
 
@@ -36,18 +36,14 @@ advanced/
   design-patterns/
 ```
 
-## Future Website Shape
+## Explanation Shape
 
-When VitePress starts, mirror the learning topics into `docs/` instead of forcing the current practice files to become docs immediately:
+Use adjacent notes:
 
 ```text
-docs/
-  index.md
-  fundamentals/
-  arrays/
-  objects/
-  strings/
-  async/
-  collections/
-  advanced/
+src/array/methods/reduce.js
+src/array/methods/reduce.md
+
+src/fundamentals/scope/var.js
+src/fundamentals/scope/var.md
 ```

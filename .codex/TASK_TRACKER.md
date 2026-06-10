@@ -4,7 +4,7 @@
 
 ### JS-STRUCTURE-001: Prepare JavaScript Practice Repo Structure
 
-As the repo owner, I want the JavaScript practice project to have a clear topic structure, local Codex memory, and sprint checklist so future cleanup and website migration work can happen safely.
+As the repo owner, I want the public JavaScript practice project to have a clear topic structure, local Codex memory, and sprint checklist so terminal-first practice work can happen safely.
 
 ## Acceptance Criteria
 
@@ -77,7 +77,7 @@ Renames:
 Review List:
 
 - [x] Check that no learning content disappeared.
-- [ ] Check that renamed topics still match the docs plan.
+- [ ] Check that renamed topics still match the terminal-practice plan.
 - [ ] Check that file names are readable for a future site nav.
 
 Verification Notes:
@@ -103,7 +103,7 @@ Review List:
 - [x] Check for broken local scripts.
 - [x] Update `CLAUDE.md` after the new tree is accepted.
 - [ ] Confirm the new top-level source structure reads well.
-- [ ] Decide whether to commit Sprint 3 before starting website/docs foundation.
+- [ ] Decide whether to commit Sprint 3 before the next scope cleanup.
 
 Moves:
 
@@ -118,40 +118,18 @@ Verification Notes:
 - `find src -maxdepth 3 -type d -print | sort` shows the new parent folders.
 - Old folder-name references remain only as historical mapping notes in `.codex`.
 
-### Sprint 4: Website Foundation Decision
+### Sprint 4: Public Repo Scope Cleanup
 
 Status: review
 
 Checklist:
 
-- [x] Decide whether to create `docs/`.
-- [x] Decide whether to initialize VitePress now or later.
-- [x] Draft initial docs navigation from the cleaned topic tree.
-- [x] Create VitePress-ready docs scaffold without installing dependencies.
+- [x] Remove site scaffold from the current public repo view.
+- [x] Remove site project plan from the current public repo view.
+- [x] Update `.codex` memory so future work stays terminal-first.
+- [x] Preserve `npm run dev` as the nodemon-based terminal workflow.
 
 Review List:
 
-- [x] Confirm the source/practice tree remains usable.
-- [x] Confirm the docs tree does not duplicate unstable content too early.
-- [ ] Confirm the docs navigation order feels right.
-- [ ] Decide whether the next sprint should install VitePress or start migrating one topic page.
-
-Files:
-
-- [x] `docs/.vitepress/config.mts`
-- [x] `docs/index.md`
-- [x] `docs/fundamentals/index.md`
-- [x] `docs/functions/index.md`
-- [x] `docs/arrays/index.md`
-- [x] `docs/objects/index.md`
-- [x] `docs/strings/index.md`
-- [x] `docs/async/index.md`
-- [x] `docs/collections/index.md`
-- [x] `docs/advanced/index.md`
-- [x] `docs/playground/index.md`
-- [x] `docs/reference/content-authoring.md`
-
-Verification Notes:
-
-- The docs scaffold is static Markdown plus a VitePress config.
-- VitePress is intentionally not added to `package.json` yet because dependency installation should be a separate sprint.
+- [ ] Confirm the public repo scope now reads as JavaScript practice only.
+- [ ] Confirm whether this cleanup commit should be pushed.
