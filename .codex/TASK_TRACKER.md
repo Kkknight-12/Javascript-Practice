@@ -49,20 +49,41 @@ Verification Notes:
 
 ### Sprint 2: Safe Naming Cleanup
 
-Status: pending
+Status: review
 
 Checklist:
 
-- [ ] Rename obvious typo files after review.
-- [ ] Normalize folder names to lowercase kebab-case.
-- [ ] Keep compatibility notes for old names if needed.
-- [ ] Verify Git status after each group of renames.
+- [x] Rename obvious typo files after review.
+- [x] Normalize obvious file names to lowercase kebab-case where the meaning is unchanged.
+- [x] Keep compatibility notes for old names if needed.
+- [x] Verify Git status after each group of renames.
+
+Scope Notes:
+
+- This sprint is limited to typo/casing/punctuation cleanup.
+- Topic folder moves such as `EventLoop` -> `async/event-loop` stay in Sprint 3.
+
+Renames:
+
+- [x] `src/array/methods/array.proptotype.js` -> `src/array/methods/array.prototype.js`
+- [x] `src/array/methods/mapFIlter.js` -> `src/array/methods/map-filter.js`
+- [x] `src/classes/BasicSyntax1.js` -> `src/classes/basic-syntax-1.js`
+- [x] `src/classes/PrivateClass.js` -> `src/classes/private-class.js`
+- [x] `src/functions/HOF.js` -> `src/functions/higher-order-functions.js`
+- [x] `src/map/loop,-map.js` -> `src/map/loop-map.js`
+- [x] `src/object/loopthroughObject/` -> `src/object/loop-through-object/`
+- [x] `src/string/methods/instance-methods/subString.js` -> `src/string/methods/instance-methods/substring.js`
 
 Review List:
 
-- [ ] Check that no learning content disappeared.
+- [x] Check that no learning content disappeared.
 - [ ] Check that renamed topics still match the docs plan.
 - [ ] Check that file names are readable for a future site nav.
+
+Verification Notes:
+
+- `git diff --cached --name-status` shows rename-only entries for the lesson files.
+- `node --check` passed for each renamed JavaScript file.
 
 ### Sprint 3: Topic Folder Restructure
 

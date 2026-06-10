@@ -42,10 +42,25 @@ If a file is about `Array.prototype.map`, keep it under array methods instead of
 
 ## Current Risks
 
-- `node_modules`, `.DS_Store`, and `.idea` files are currently tracked or visible in Git status.
-- There are many uncommitted changes and deleted paths, so large file moves should wait for review.
-- Some names are inconsistent or misspelled, for example `EventLoop`, `loopthroughObject`, `mapFIlter.js`, `array.proptotype.js`, and `subString.js`.
+- `EventLoop` is still intentionally unchanged until the topic-folder restructure sprint.
+- Larger topic moves should stay reviewable and happen in a separate sprint.
+- Some older camelCase method filenames still exist, but the most obvious typo/punctuation names were cleaned in Sprint 2.
 - Scratch files were moved into `src/playground/` during Sprint 1.
+
+## Sprint 2 Naming Cleanup
+
+Completed typo/casing/punctuation renames:
+
+```text
+src/array/methods/array.proptotype.js -> src/array/methods/array.prototype.js
+src/array/methods/mapFIlter.js -> src/array/methods/map-filter.js
+src/classes/BasicSyntax1.js -> src/classes/basic-syntax-1.js
+src/classes/PrivateClass.js -> src/classes/private-class.js
+src/functions/HOF.js -> src/functions/higher-order-functions.js
+src/map/loop,-map.js -> src/map/loop-map.js
+src/object/loopthroughObject/ -> src/object/loop-through-object/
+src/string/methods/instance-methods/subString.js -> src/string/methods/instance-methods/substring.js
+```
 
 ## Workflow
 
