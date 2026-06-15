@@ -41,8 +41,8 @@ advanced/
 Use adjacent notes:
 
 ```text
-src/array/methods/reduce.js
-src/array/methods/reduce.md
+src/array/methods/instance/reduce.js
+src/array/methods/instance/reduce.md
 
 src/fundamentals/scope/var.js
 src/fundamentals/scope/var.md

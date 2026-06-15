@@ -40,6 +40,32 @@ src/pattern/    -> src/advanced/design-patterns/
 
 If a file is about `Array.prototype.map`, keep it under array methods instead of `collections/map`.
 
+## Array Method Buckets
+
+Array method practice should be grouped by where the API lives:
+
+```text
+src/array/methods/
+  constructor/
+    constructor.js
+  instance/
+    concat.js
+    map-filter.js
+    reduce.js
+    ...
+  static/
+    array.from.js
+    Array.fromAsync/
+    Array.isArray/
+```
+
+- Instance methods are called on array values, for example `arr.map()` or
+  `arr.includes()`, so they belong in `src/array/methods/instance/`.
+- Static methods are called on `Array`, for example `Array.from()` or
+  `Array.isArray()`, so they belong in `src/array/methods/static/`.
+- `constructor.js` is about `new Array(...)` / `Array(...)`, so keep it under
+  `src/array/methods/constructor/` instead of forcing it into instance/static.
+
 ## Current Risks
 
 - Larger topic moves should stay reviewable and happen in a separate sprint.
@@ -52,8 +78,8 @@ If a file is about `Array.prototype.map`, keep it under array methods instead of
 Completed typo/casing/punctuation renames:
 
 ```text
-src/array/methods/array.proptotype.js -> src/array/methods/array.prototype.js
-src/array/methods/mapFIlter.js -> src/array/methods/map-filter.js
+src/array/methods/array.proptotype.js -> src/array/methods/instance/array.prototype.js
+src/array/methods/mapFIlter.js -> src/array/methods/instance/map-filter.js
 src/classes/BasicSyntax1.js -> src/classes/basic-syntax-1.js
 src/classes/PrivateClass.js -> src/classes/private-class.js
 src/functions/HOF.js -> src/functions/higher-order-functions.js
@@ -135,8 +161,8 @@ The earlier site scaffold and plan were removed from the current repo view becau
 Keep explanations next to source examples instead:
 
 ```text
-src/array/methods/reduce.js
-src/array/methods/reduce.md
+src/array/methods/instance/reduce.js
+src/array/methods/instance/reduce.md
 
 src/fundamentals/scope/var.js
 src/fundamentals/scope/var.md

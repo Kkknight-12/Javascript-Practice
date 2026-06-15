@@ -65,8 +65,8 @@ Scope Notes:
 
 Renames:
 
-- [x] `src/array/methods/array.proptotype.js` -> `src/array/methods/array.prototype.js`
-- [x] `src/array/methods/mapFIlter.js` -> `src/array/methods/map-filter.js`
+- [x] `src/array/methods/array.proptotype.js` -> `src/array/methods/instance/array.prototype.js`
+- [x] `src/array/methods/mapFIlter.js` -> `src/array/methods/instance/map-filter.js`
 - [x] `src/classes/BasicSyntax1.js` -> `src/classes/basic-syntax-1.js`
 - [x] `src/classes/PrivateClass.js` -> `src/classes/private-class.js`
 - [x] `src/functions/HOF.js` -> `src/functions/higher-order-functions.js`

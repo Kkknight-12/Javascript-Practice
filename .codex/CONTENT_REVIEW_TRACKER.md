@@ -100,24 +100,24 @@ Suggested order:
 - [ ] `src/array/loop/for-await-of/notes.md`
 - [ ] `src/array/loop/for-of/for_of.js`
 - [ ] `src/array/loop/for-of/notes.md`
-- [ ] `src/array/methods/array.prototype.js`
-- [ ] `src/array/methods/concat.js`
-- [ ] `src/array/methods/constructor.js`
-- [ ] `src/array/methods/entries-find.js`
-- [ ] `src/array/methods/every.js`
-- [ ] `src/array/methods/fill.js`
-- [ ] `src/array/methods/find-some.js`
-- [ ] `src/array/methods/findIndex-indexOf.js`
-- [ ] `src/array/methods/flat.js`
-- [ ] `src/array/methods/flatMap.js`
-- [ ] `src/array/methods/includes.js`
+- [ ] `src/array/methods/constructor/constructor.js`
+- [ ] `src/array/methods/instance/array.prototype.js`
+- [ ] `src/array/methods/instance/concat.js`
+- [ ] `src/array/methods/instance/entries-find.js`
+- [ ] `src/array/methods/instance/every.js`
+- [ ] `src/array/methods/instance/fill.js`
+- [ ] `src/array/methods/instance/find-some.js`
+- [ ] `src/array/methods/instance/findIndex-indexOf.js`
+- [ ] `src/array/methods/instance/flat.js`
+- [ ] `src/array/methods/instance/flatMap.js`
+- [ ] `src/array/methods/instance/includes.js`
 - [ ] `src/array/methods/instance/Symbol.iterator.js`
-- [ ] `src/array/methods/map-filter.js`
-- [ ] `src/array/methods/reduce.js`
-- [ ] `src/array/methods/reverse.js`
-- [ ] `src/array/methods/slice.js`
-- [ ] `src/array/methods/sort.js`
-- [ ] `src/array/methods/splice.js`
+- [ ] `src/array/methods/instance/map-filter.js`
+- [ ] `src/array/methods/instance/reduce.js`
+- [ ] `src/array/methods/instance/reverse.js`
+- [ ] `src/array/methods/instance/slice.js`
+- [ ] `src/array/methods/instance/sort.js`
+- [ ] `src/array/methods/instance/splice.js`
 - [ ] `src/array/methods/static/Array.fromAsync/Array.fromAsync.js`
 - [ ] `src/array/methods/static/Array.fromAsync/notes.md`
 - [ ] `src/array/methods/static/Array.isArray/Array.isArray.js`
@@ -246,7 +246,7 @@ Review List:
 
 ### Sprint 3: Review Array.from Static Method Pair
 
-Status: review
+Status: complete
 
 Checklist:
 
@@ -269,4 +269,44 @@ Review List:
 - [x] File pair belongs under `src/array/methods/static/`.
 - [x] Terminal output has readable labels.
 - [x] Explanation is useful as terminal-first repo content.
+- [x] Committed as `81d6652 docs: polish array from study notes`.
+
+### Sprint 4: Review Array.isArray Static Method Pair
+
+Status: active
+
+Checklist:
+
+- [x] Chosen as the next array page after `Array.from()`.
+- [x] Confirmed current files exist.
+- [x] Confirmed both files are currently empty.
+- [x] Cross-check key behavior against MDN.
+- [ ] Compare teaching flow against the MongoDB notes style.
+- [ ] Create or polish `notes.md`.
+- [ ] Create or polish `Array.isArray.js`.
+- [ ] Run the `.js` example with Node.
+- [ ] Update file tracker after review.
+
+Review List:
+
+- [ ] Confirm the concept explanation feels easy to understand.
+- [ ] Confirm the runnable example has clear terminal labels.
+- [ ] Confirm common mistakes are covered.
+- [ ] Confirm the file pair belongs under `src/array/methods/static/Array.isArray/`.
 - [ ] Decide whether to commit this sprint.
+
+### Structure Note: Array Method Buckets
+
+Status: complete
+
+Checklist:
+
+- [x] Checked loose files under `src/array/methods/`.
+- [x] Moved Array instance method practice files into
+  `src/array/methods/instance/`.
+- [x] Kept existing static method practice files under
+  `src/array/methods/static/`.
+- [x] Moved Array constructor practice into
+  `src/array/methods/constructor/constructor.js` because it is not an instance
+  method.
+- [x] Updated this tracker with the new paths.
