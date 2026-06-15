@@ -118,8 +118,8 @@ Suggested order:
 - [ ] `src/array/methods/instance/slice.js`
 - [ ] `src/array/methods/instance/sort.js`
 - [ ] `src/array/methods/instance/splice.js`
-- [ ] `src/array/methods/static/Array.fromAsync/Array.fromAsync.js`
-- [ ] `src/array/methods/static/Array.fromAsync/notes.md`
+- [x] `src/array/methods/static/Array.fromAsync/Array.fromAsync.js`
+- [x] `src/array/methods/static/Array.fromAsync/notes.md`
 - [x] `src/array/methods/static/Array.isArray/Array.isArray.js`
 - [x] `src/array/methods/static/Array.isArray/notes.md`
 - [x] `src/array/methods/static/Array.from/array.from.js`
@@ -273,7 +273,7 @@ Review List:
 
 ### Sprint 4: Review Array.isArray Static Method Pair
 
-Status: review
+Status: complete
 
 Checklist:
 
@@ -295,6 +295,31 @@ Review List:
 - [x] Confirm the runnable example has clear terminal labels.
 - [x] Confirm common mistakes are covered.
 - [x] File pair belongs under `src/array/methods/static/Array.isArray/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Committed as `082a2bf docs: add array isarray study pair`.
+
+### Sprint 5: Review Array.fromAsync Static Method Pair
+
+Status: review
+
+Checklist:
+
+- [x] Chosen as the next static array page after `Array.isArray()`.
+- [x] Reviewed existing `notes.md`.
+- [x] Reviewed existing `Array.fromAsync.js`.
+- [x] Cross-checked key behavior against MDN.
+- [x] Compared teaching flow against the MongoDB notes style.
+- [x] Rewrote `notes.md` using the repo study-note teaching pattern.
+- [x] Rewrote `Array.fromAsync.js` using the runnable JS teaching pattern.
+- [x] Covered async iterables, sync iterables, array-like promises, `mapFn`,
+  `thisArg`, Promise return value, and `Promise.all()` comparison.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/static/Array.fromAsync/`.
 - [x] Terminal output has readable labels.
 - [x] Explanation is useful as terminal-first repo content.
 - [ ] Decide whether to commit this sprint.

@@ -2,16 +2,16 @@
 
 ## Active Story
 
-### JS-CONTENT-001C: Create Array.isArray Static Method Pair
+### JS-CONTENT-001D: Review Array.fromAsync Static Method Pair
 
-As the repo owner, I want the `Array.isArray()` explanation and runnable example
-to be clear, beginner-friendly, and useful for terminal practice in this repo.
-Future website reuse is secondary and not part of the current sprint.
+As the repo owner, I want the `Array.fromAsync()` explanation and runnable
+example to be clear, beginner-friendly, and useful for terminal practice in this
+repo. Future website reuse is secondary and not part of the current sprint.
 
 ## Current Folder
 
 ```text
-src/array/methods/static/Array.isArray/
+src/array/methods/static/Array.fromAsync/
 ```
 
 ## Current Files
@@ -19,71 +19,56 @@ src/array/methods/static/Array.isArray/
 Primary explanation:
 
 ```text
-src/array/methods/static/Array.isArray/notes.md
+src/array/methods/static/Array.fromAsync/notes.md
 ```
 
 Paired runnable example:
 
 ```text
-src/array/methods/static/Array.isArray/Array.isArray.js
+src/array/methods/static/Array.fromAsync/Array.fromAsync.js
 ```
 
-## Current Starting Point
+## Starting Point
 
-- Both files already exist.
-- Both files are currently empty.
-- `visual_notes/` exists locally in this folder, but PNGs and `visual_notes/`
-  are ignored and should not be pushed to GitHub.
-- Before writing this page, loose files under `src/array/methods/` were checked:
-  instance methods were moved to `instance/`, static methods stayed in
-  `static/`, and the Array constructor lesson moved to `constructor/`.
-- Loose tracked files directly under `src/array/` were also checked and moved
-  into `creation/`, `loop/`, or `methods/instance/` so the array root stays
-  clean.
+- Both files already existed.
+- Both files had starter content, but not in the final repo teaching style.
+- This topic is more advanced than `Array.from()` because it involves async
+  iterables, promises, `await`, and sequential consumption.
 
 ## Reference Findings
 
 Source checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync
 ```
 
 Key points to teach:
 
-- `Array.isArray(value)` is a static method.
-- It returns `true` when `value` is an actual array.
-- It returns `false` for non-arrays such as strings, objects, numbers, `null`,
-  `undefined`, booleans, and typed arrays.
-- `Array.isArray(new Array(5))` is `true`.
-- `Array.isArray(new Int16Array([15, 33]))` is `false`.
-- It is preferred over `instanceof Array` for array checks because it is more
-  reliable across realms such as iframes.
-- A tricky edge case: `Array.isArray(Array.prototype)` returns `true`.
+- `Array.fromAsync(items)` is a static method.
+- It creates a new shallow-copied array from an async iterable, iterable, or
+  array-like object.
+- It returns a `Promise` whose fulfilled value is a new array.
+- It can use `mapFn` and `thisArg`.
+- For sync iterable and array-like inputs, values are awaited before they enter
+  the final array.
+- If `mapFn` returns a Promise, the mapped output is awaited.
+- It consumes values sequentially/lazily, unlike `Promise.all()` which retrieves
+  all values first and awaits them concurrently.
 
-## Why This File Next
-
-- It is the next static array method after `Array.from()`.
-- It has the same paired `.md` plus runnable `.js` shape.
-- It is small enough to use as the second page in the new teaching pattern.
-- It helps reinforce the difference between static and instance methods.
-
-## Sprint 1: Create Array.isArray Pair
+## Sprint 1: Review Array.fromAsync Pair
 
 Status: review
 
 Checklist:
 
 - [x] Confirm current Git status is clean before starting.
-- [x] Confirm the previous `Array.from()` sprint is committed.
-- [x] Confirm the `Array.isArray()` files exist.
-- [x] Confirm the files are currently empty.
 - [x] Cross-check key behavior against MDN.
-- [x] Check and normalize array method folder placement.
-- [x] Check and normalize loose array root files.
 - [x] Compare teaching flow against the MongoDB notes style.
-- [x] Create the `.md` explanation if needed.
-- [x] Create the runnable `.js` example if needed.
+- [x] Rewrite `notes.md` using the repo study-note teaching pattern.
+- [x] Rewrite `Array.fromAsync.js` using the runnable JS teaching pattern.
+- [x] Include common mistakes and gotchas: forgetting `await`, confusing it
+  with `Array.from()`, and using it where `Promise.all()` may be clearer.
 - [x] Run the `.js` example with Node.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md` after review.
 
@@ -92,7 +77,7 @@ Review List:
 - [x] Confirm the concept explanation feels easy to understand.
 - [x] Confirm the runnable example has clear terminal labels.
 - [x] Confirm common mistakes are covered.
-- [x] Confirm the file pair belongs under `src/array/methods/static/Array.isArray/`.
+- [x] Confirm the file pair belongs under `src/array/methods/static/Array.fromAsync/`.
 - [ ] Decide whether to commit this sprint.
 
 ## Stop Point
