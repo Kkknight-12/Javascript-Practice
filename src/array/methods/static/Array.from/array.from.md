@@ -332,7 +332,7 @@ Object.values({ name: 'Amit' }) // ["Amit"]
 Run the paired JavaScript file from the repo root:
 
 ```bash
-node src/array/methods/static/array.from.js
+node src/array/methods/static/Array.from/array.from.js
 ```
 
 That file contains commented examples, clear terminal labels, and expected

@@ -80,7 +80,9 @@ src/array/methods/
     reduce.js
     ...
   static/
-    array.from.js
+    Array.from/
+      array.from.js
+      array.from.md
     Array.fromAsync/
     Array.isArray/
 ```
@@ -139,7 +141,7 @@ When reviewing or polishing runnable `.js` files, keep the file useful for a
 first-time learner who opens it directly in the editor or runs it in the
 terminal.
 
-Use the `src/array/methods/static/array.from.js` review as the current pattern:
+Use the `src/array/methods/static/Array.from/array.from.js` review as the current pattern:
 
 - Keep focused examples only; remove unrelated scratch experiments.
 - Keep learner-facing comments before meaningful examples.
@@ -155,7 +157,34 @@ When a `.md` explanation has a paired runnable `.js` file, add a short
 `Runnable Practice File` section that shows the exact `node ...` command from
 the repo root and explains that the `.js` file contains commented examples,
 terminal labels, and expected output comments. Use
-`src/array/methods/static/array.from.md` as the current pattern.
+`src/array/methods/static/Array.from/array.from.md` as the current pattern.
+
+## Markdown Study Note Teaching Pattern
+
+When reviewing or creating a method/topic `.md` file, use
+`src/array/methods/static/Array.from/array.from.md` as the current teaching
+pattern.
+
+Preferred flow:
+
+1. Start with `What Problem Does It Solve?`
+2. Add a `Quick Definition`.
+3. Add a simple `Mental Model`.
+4. Show `Syntax`.
+5. Explain `Parameters`.
+6. Explain `Return Value`.
+7. Teach examples in small sections.
+8. After each important example, explain what happened in simple words.
+9. Add `Important Notes`.
+10. Add `When To Use It`.
+11. Add `Common Mistakes`.
+12. Add `Runnable Practice File` with the exact repo-root `node ...` command.
+13. Add the trusted reference link, usually MDN.
+
+Before writing or polishing a page, cross-check behavior against MDN or another
+trusted reference. Keep the note learner-first, not a compressed reference
+sheet: define the method, say what it does, show the smallest useful examples,
+then add gotchas and deeper details.
 
 ## Collaboration Rules From DSA Visual Learning
 

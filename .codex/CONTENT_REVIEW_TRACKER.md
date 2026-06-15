@@ -122,8 +122,8 @@ Suggested order:
 - [ ] `src/array/methods/static/Array.fromAsync/notes.md`
 - [ ] `src/array/methods/static/Array.isArray/Array.isArray.js`
 - [ ] `src/array/methods/static/Array.isArray/notes.md`
-- [x] `src/array/methods/static/array.from.js`
-- [x] `src/array/methods/static/array.from.md`
+- [x] `src/array/methods/static/Array.from/array.from.js`
+- [x] `src/array/methods/static/Array.from/array.from.md`
 - [ ] `src/array/questions/flatten.js`
 
 ### `src/object/`
