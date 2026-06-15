@@ -81,6 +81,30 @@ src/pattern/ -> src/advanced/design-patterns/
 - Start with low-risk hygiene and documentation before restructuring folders.
 - Generated dependencies, OS files, and IDE files should stay ignored. They were removed from Git tracking during Sprint 1 with `git rm --cached`.
 
+## Runnable JavaScript Teaching Pattern
+
+When reviewing or polishing runnable `.js` files, keep the file useful for a
+first-time learner who opens it directly in the editor or runs it in the
+terminal.
+
+Use the `src/array/methods/static/array.from.js` review as the current pattern:
+
+- Keep focused examples only; remove unrelated scratch experiments.
+- Keep learner-facing comments before meaningful examples.
+- Explain why the example works, not only what it prints.
+- Include expected output comments near each `console.log`.
+- Use clear terminal labels in `console.log` output.
+- Keep the `.js` file independently understandable even when a nearby `.md`
+  file also exists.
+- Do not over-clean runnable files into bare code; the repo is for learning and
+  revision, so useful explanation inside `.js` is part of the content.
+
+When a `.md` explanation has a paired runnable `.js` file, add a short
+`Runnable Practice File` section that shows the exact `node ...` command from
+the repo root and explains that the `.js` file contains commented examples,
+terminal labels, and expected output comments. Use
+`src/array/methods/static/array.from.md` as the current pattern.
+
 ## Collaboration Rules From DSA Visual Learning
 
 These rules are adapted from the user's `dsa-visual-learning` workflow and apply

@@ -6,7 +6,9 @@
 
 As the repo owner, I want to review each source folder and each learning file so
 the public practice repo stays accurate, readable, runnable, and useful as a
-future source for `javascript-study-site`.
+terminal-first JavaScript learning repo.
+
+Future website reuse is allowed later, but it is not the current sprint scope.
 
 ## Current Scope
 
@@ -24,9 +26,14 @@ future source for `javascript-study-site`.
 - [ ] Is the filename/folder placement correct?
 - [ ] Does the example run in Node when it should?
 - [ ] Are comments useful and not misleading?
+- [ ] For runnable `.js` files, do comments explain why the example works and
+  show expected output?
+- [ ] If a `.md` file has a paired runnable `.js` file, does it include a
+  `Runnable Practice File` section with the exact `node ...` command?
 - [ ] Should a nearby `.md` explanation be added or improved?
 - [ ] Is anything outdated, duplicated, or confusing?
-- [ ] Is this content useful for the future `javascript-study-site`?
+- [ ] Is this content clear enough to reuse later if needed, without making
+  website work part of this sprint?
 
 ## Sprint Rules
 
@@ -115,8 +122,8 @@ Suggested order:
 - [ ] `src/array/methods/static/Array.fromAsync/notes.md`
 - [ ] `src/array/methods/static/Array.isArray/Array.isArray.js`
 - [ ] `src/array/methods/static/Array.isArray/notes.md`
-- [ ] `src/array/methods/static/array.from.js`
-- [ ] `src/array/methods/static/array.from.md`
+- [x] `src/array/methods/static/array.from.js`
+- [x] `src/array/methods/static/array.from.md`
 - [ ] `src/array/questions/flatten.js`
 
 ### `src/object/`
@@ -236,3 +243,30 @@ Review List:
 - [x] File pair belongs under `src/fundamentals/method-types/`.
 - [x] Format is a good first pattern for `.md` explanation plus runnable `.js`.
 - [ ] Decide whether to commit this sprint together with the tracker.
+
+### Sprint 3: Review Array.from Static Method Pair
+
+Status: review
+
+Checklist:
+
+- [x] Switched active review direction to `src/array/` by user request.
+- [x] Reviewed `array.from.md`.
+- [x] Reviewed `array.from.js`.
+- [x] Ran the example with Node before editing.
+- [x] Cross-checked key behavior against MDN.
+- [x] Compared teaching quality against the MongoDB notes style.
+- [x] Removed scratch-style grid/range output from the runnable example.
+- [x] Restored learner-facing comments and expected output in the runnable
+  example after review feedback.
+- [x] Polished the explanation around static method usage, iterables,
+  array-like values, `mapFn`, `thisArg`, common mistakes, sequences, and shallow
+  copy.
+- [x] Ran the example with Node after editing.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/static/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [ ] Decide whether to commit this sprint.

@@ -12,3 +12,8 @@ node_modules/
 *.log
 tmp/
 temp/
+
+# Local visual notes and screenshots
+*.png
+visual_notes/
+**/visual_notes/
