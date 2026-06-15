@@ -70,7 +70,7 @@ Key points to teach:
 
 ## Sprint 1: Create Array.isArray Pair
 
-Status: active
+Status: review
 
 Checklist:
 
@@ -81,21 +81,21 @@ Checklist:
 - [x] Cross-check key behavior against MDN.
 - [x] Check and normalize array method folder placement.
 - [x] Check and normalize loose array root files.
-- [ ] Compare teaching flow against the MongoDB notes style.
-- [ ] Create the `.md` explanation if needed.
-- [ ] Create the runnable `.js` example if needed.
-- [ ] Run the `.js` example with Node.
-- [ ] Update `.codex/CONTENT_REVIEW_TRACKER.md` after review.
+- [x] Compare teaching flow against the MongoDB notes style.
+- [x] Create the `.md` explanation if needed.
+- [x] Create the runnable `.js` example if needed.
+- [x] Run the `.js` example with Node.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md` after review.
 
 Review List:
 
-- [ ] Confirm the concept explanation feels easy to understand.
-- [ ] Confirm the runnable example has clear terminal labels.
-- [ ] Confirm common mistakes are covered.
-- [ ] Confirm the file pair belongs under `src/array/methods/static/Array.isArray/`.
+- [x] Confirm the concept explanation feels easy to understand.
+- [x] Confirm the runnable example has clear terminal labels.
+- [x] Confirm common mistakes are covered.
+- [x] Confirm the file pair belongs under `src/array/methods/static/Array.isArray/`.
 - [ ] Decide whether to commit this sprint.
 
 ## Stop Point
 
-After setting up the next page and reviewing the source files, stop before
-writing the actual `Array.isArray()` content unless the user says to proceed.
+After creating and reviewing this pair, stop and ask before committing or moving
+to the next array file.

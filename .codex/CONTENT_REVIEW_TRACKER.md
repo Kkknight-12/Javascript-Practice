@@ -120,8 +120,8 @@ Suggested order:
 - [ ] `src/array/methods/instance/splice.js`
 - [ ] `src/array/methods/static/Array.fromAsync/Array.fromAsync.js`
 - [ ] `src/array/methods/static/Array.fromAsync/notes.md`
-- [ ] `src/array/methods/static/Array.isArray/Array.isArray.js`
-- [ ] `src/array/methods/static/Array.isArray/notes.md`
+- [x] `src/array/methods/static/Array.isArray/Array.isArray.js`
+- [x] `src/array/methods/static/Array.isArray/notes.md`
 - [x] `src/array/methods/static/Array.from/array.from.js`
 - [x] `src/array/methods/static/Array.from/array.from.md`
 - [ ] `src/array/questions/flatten.js`
@@ -273,7 +273,7 @@ Review List:
 
 ### Sprint 4: Review Array.isArray Static Method Pair
 
-Status: active
+Status: review
 
 Checklist:
 
@@ -281,18 +281,22 @@ Checklist:
 - [x] Confirmed current files exist.
 - [x] Confirmed both files are currently empty.
 - [x] Cross-check key behavior against MDN.
-- [ ] Compare teaching flow against the MongoDB notes style.
-- [ ] Create or polish `notes.md`.
-- [ ] Create or polish `Array.isArray.js`.
-- [ ] Run the `.js` example with Node.
-- [ ] Update file tracker after review.
+- [x] Compare teaching flow against the MongoDB notes style.
+- [x] Create or polish `notes.md`.
+- [x] Create or polish `Array.isArray.js`.
+- [x] Include common mistakes and gotchas: static call, array-like objects,
+  typed arrays, `instanceof Array`, cross-realm arrays, and `Array.prototype`.
+- [x] Run the `.js` example with Node.
+- [x] Update file tracker after review.
 
 Review List:
 
-- [ ] Confirm the concept explanation feels easy to understand.
-- [ ] Confirm the runnable example has clear terminal labels.
-- [ ] Confirm common mistakes are covered.
-- [ ] Confirm the file pair belongs under `src/array/methods/static/Array.isArray/`.
+- [x] Confirm the concept explanation feels easy to understand.
+- [x] Confirm the runnable example has clear terminal labels.
+- [x] Confirm common mistakes are covered.
+- [x] File pair belongs under `src/array/methods/static/Array.isArray/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
 - [ ] Decide whether to commit this sprint.
 
 ### Structure Note: Array Method Buckets
