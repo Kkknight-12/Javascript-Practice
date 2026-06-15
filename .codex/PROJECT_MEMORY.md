@@ -40,6 +40,32 @@ src/pattern/    -> src/advanced/design-patterns/
 
 If a file is about `Array.prototype.map`, keep it under array methods instead of `collections/map`.
 
+## Array Topic Buckets
+
+Keep `src/array/` root free of loose tracked `.js` learning files. Route files
+into a topic bucket:
+
+```text
+src/array/
+  creation/
+    create-array-shortcuts.js
+  loop/
+    basic-loop.js
+    for-of/
+    for-await-of/
+  methods/
+    constructor/
+    instance/
+    static/
+  questions/
+```
+
+- Array creation basics, such as spread, `Array.of()`, `Array.from()`,
+  `new Array()`, and `fill()` combinations, belong in `src/array/creation/`.
+- General array loop examples belong in `src/array/loop/`.
+- Method-specific examples belong under `src/array/methods/`.
+- Practice questions belong under `src/array/questions/`.
+
 ## Array Method Buckets
 
 Array method practice should be grouped by where the API lives:

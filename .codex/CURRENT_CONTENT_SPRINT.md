@@ -37,6 +37,9 @@ src/array/methods/static/Array.isArray/Array.isArray.js
 - Before writing this page, loose files under `src/array/methods/` were checked:
   instance methods were moved to `instance/`, static methods stayed in
   `static/`, and the Array constructor lesson moved to `constructor/`.
+- Loose tracked files directly under `src/array/` were also checked and moved
+  into `creation/`, `loop/`, or `methods/instance/` so the array root stays
+  clean.
 
 ## Reference Findings
 
@@ -77,6 +80,7 @@ Checklist:
 - [x] Confirm the files are currently empty.
 - [x] Cross-check key behavior against MDN.
 - [x] Check and normalize array method folder placement.
+- [x] Check and normalize loose array root files.
 - [ ] Compare teaching flow against the MongoDB notes style.
 - [ ] Create the `.md` explanation if needed.
 - [ ] Create the runnable `.js` example if needed.

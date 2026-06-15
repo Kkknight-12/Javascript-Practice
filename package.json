@@ -2,7 +2,7 @@
   "name": "practice",
   "version": "1.0.0",
   "description": "",
-  "main": "arrayFilter.js",
+  "main": "src/array/methods/instance/filter.js",
   "scripts": {
     "dev": "nodemon src/playground/del.js"
   },

@@ -93,9 +93,8 @@ Suggested order:
 
 ### `src/array/`
 
-- [ ] `src/array/arrayFilter.js`
-- [ ] `src/array/createArrayShortcut.js`
-- [ ] `src/array/loop-array.js`
+- [ ] `src/array/creation/create-array-shortcuts.js`
+- [ ] `src/array/loop/basic-loop.js`
 - [ ] `src/array/loop/for-await-of/for-await-of.js`
 - [ ] `src/array/loop/for-await-of/notes.md`
 - [ ] `src/array/loop/for-of/for_of.js`
@@ -106,6 +105,7 @@ Suggested order:
 - [ ] `src/array/methods/instance/entries-find.js`
 - [ ] `src/array/methods/instance/every.js`
 - [ ] `src/array/methods/instance/fill.js`
+- [ ] `src/array/methods/instance/filter.js`
 - [ ] `src/array/methods/instance/find-some.js`
 - [ ] `src/array/methods/instance/findIndex-indexOf.js`
 - [ ] `src/array/methods/instance/flat.js`
@@ -309,4 +309,17 @@ Checklist:
 - [x] Moved Array constructor practice into
   `src/array/methods/constructor/constructor.js` because it is not an instance
   method.
+- [x] Updated this tracker with the new paths.
+
+### Structure Note: Loose Array Root Files
+
+Status: complete
+
+Checklist:
+
+- [x] Checked loose tracked files directly under `src/array/`.
+- [x] Moved filter practice to `src/array/methods/instance/filter.js`.
+- [x] Moved array creation shortcut practice to
+  `src/array/creation/create-array-shortcuts.js`.
+- [x] Moved basic array loop practice to `src/array/loop/basic-loop.js`.
 - [x] Updated this tracker with the new paths.
