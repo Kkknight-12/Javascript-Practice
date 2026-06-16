@@ -101,7 +101,8 @@ Suggested order:
 - [x] `src/array/loop/for-await-of/notes.md`
 - [x] `src/array/loop/for-of/for-of.js`
 - [x] `src/array/loop/for-of/notes.md`
-- [ ] `src/array/methods/constructor/constructor.js`
+- [x] `src/array/methods/constructor/constructor.js`
+- [x] `src/array/methods/constructor/constructor.md`
 - [ ] `src/array/methods/instance/array.prototype.js`
 - [ ] `src/array/methods/instance/concat.js`
 - [ ] `src/array/methods/instance/entries-find.js`
@@ -435,6 +436,32 @@ Review List:
 - [x] Explanation is useful as terminal-first repo content.
 - [x] Decide whether to commit this sprint.
 - [x] Committed as `docs: polish for-of loop study pair`.
+
+### Sprint 10: Review Array Constructor Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after the loop pages.
+- [x] Reviewed existing `constructor.js`.
+- [x] Cross-checked key behavior against MDN for `Array()` constructor.
+- [x] Compared teaching flow against the MongoDB notes style.
+- [x] Rewrote `constructor.js` using the runnable JS teaching pattern.
+- [x] Created `constructor.md` using the repo study-note teaching pattern.
+- [x] Covered `Array()` with and without `new`, no arguments, single number,
+  empty slots, single non-number argument, multiple arguments, invalid length,
+  and safer everyday choices.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/constructor/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Decide whether to commit this sprint.
+- [x] Committed as `docs: add array constructor study pair`.
 
 ### Structure Note: Array Method Buckets
 
