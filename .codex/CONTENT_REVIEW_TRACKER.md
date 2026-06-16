@@ -95,7 +95,8 @@ Suggested order:
 
 - [x] `src/array/creation/create-array-shortcuts.js`
 - [x] `src/array/creation/create-array-shortcuts.md`
-- [ ] `src/array/loop/basic-loop.js`
+- [x] `src/array/loop/basic-loop.js`
+- [x] `src/array/loop/basic-loop.md`
 - [ ] `src/array/loop/for-await-of/for-await-of.js`
 - [ ] `src/array/loop/for-await-of/notes.md`
 - [ ] `src/array/loop/for-of/for_of.js`
@@ -351,6 +352,31 @@ Review List:
 - [x] Explanation is useful as terminal-first repo content.
 - [x] Decide whether to commit this sprint.
 - [x] Committed as `docs: add array creation shortcuts study pair`.
+
+### Sprint 7: Review Basic Array Loop Pair
+
+Status: review
+
+Checklist:
+
+- [x] Chosen as the next array page after array creation shortcuts.
+- [x] Reviewed existing `basic-loop.js`.
+- [x] Cross-checked key behavior against MDN pages for loops, `for`,
+  `for...of`, and `forEach()`.
+- [x] Compared teaching flow against the MongoDB notes style.
+- [x] Rewrote `basic-loop.js` using the runnable JS teaching pattern.
+- [x] Created `basic-loop.md` using the repo study-note teaching pattern.
+- [x] Covered `for`, `for...of`, `entries()`, `forEach()`, `break`,
+  `continue`, `for...in` on arrays, and `forEach()` async gotcha.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/loop/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Decide whether to commit this sprint.
 
 ### Structure Note: Array Method Buckets
 
