@@ -93,7 +93,8 @@ Suggested order:
 
 ### `src/array/`
 
-- [ ] `src/array/creation/create-array-shortcuts.js`
+- [x] `src/array/creation/create-array-shortcuts.js`
+- [x] `src/array/creation/create-array-shortcuts.md`
 - [ ] `src/array/loop/basic-loop.js`
 - [ ] `src/array/loop/for-await-of/for-await-of.js`
 - [ ] `src/array/loop/for-await-of/notes.md`
@@ -301,7 +302,7 @@ Review List:
 
 ### Sprint 5: Review Array.fromAsync Static Method Pair
 
-Status: review
+Status: complete
 
 Checklist:
 
@@ -322,7 +323,34 @@ Review List:
 - [x] File pair belongs under `src/array/methods/static/Array.fromAsync/`.
 - [x] Terminal output has readable labels.
 - [x] Explanation is useful as terminal-first repo content.
-- [ ] Decide whether to commit this sprint.
+- [x] Committed as `bea5534 docs: polish array fromasync study pair`.
+
+### Sprint 6: Review Array Creation Shortcuts Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after the reviewed static method pair.
+- [x] Reviewed existing `create-array-shortcuts.js`.
+- [x] Cross-checked key behavior against MDN pages for `Array()`,
+  `Array.of()`, `Array.from()`, `fill()`, and spread syntax.
+- [x] Compared teaching flow against the MongoDB notes style.
+- [x] Rewrote `create-array-shortcuts.js` using the runnable JS teaching pattern.
+- [x] Created `create-array-shortcuts.md` using the repo study-note teaching
+  pattern.
+- [x] Covered array literals, `Array()`, `new Array()`, `Array.of()`, spread,
+  `Array.from()`, `fill()`, empty slots, and shared object references.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/creation/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Decide whether to commit this sprint.
+- [x] Committed as `docs: add array creation shortcuts study pair`.
 
 ### Structure Note: Array Method Buckets
 

@@ -2,16 +2,16 @@
 
 ## Active Story
 
-### JS-CONTENT-001D: Review Array.fromAsync Static Method Pair
+### JS-CONTENT-001E: Review Array Creation Shortcuts Pair
 
-As the repo owner, I want the `Array.fromAsync()` explanation and runnable
+As the repo owner, I want the array creation shortcut explanation and runnable
 example to be clear, beginner-friendly, and useful for terminal practice in this
 repo. Future website reuse is secondary and not part of the current sprint.
 
 ## Current Folder
 
 ```text
-src/array/methods/static/Array.fromAsync/
+src/array/creation/
 ```
 
 ## Current Files
@@ -19,56 +19,60 @@ src/array/methods/static/Array.fromAsync/
 Primary explanation:
 
 ```text
-src/array/methods/static/Array.fromAsync/notes.md
+src/array/creation/create-array-shortcuts.md
 ```
 
 Paired runnable example:
 
 ```text
-src/array/methods/static/Array.fromAsync/Array.fromAsync.js
+src/array/creation/create-array-shortcuts.js
 ```
 
 ## Starting Point
 
-- Both files already existed.
-- Both files had starter content, but not in the final repo teaching style.
-- This topic is more advanced than `Array.from()` because it involves async
-  iterables, promises, `await`, and sequential consumption.
+- The `.js` file already existed.
+- The `.js` file had scratch-style examples and a blog link.
+- There was no paired `.md` study note.
+- This page is a topic page, not one single method page, because it compares
+  several ways to create arrays.
 
 ## Reference Findings
 
-Source checked:
+Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Array
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/of
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
 ```
 
 Key points to teach:
 
-- `Array.fromAsync(items)` is a static method.
-- It creates a new shallow-copied array from an async iterable, iterable, or
-  array-like object.
-- It returns a `Promise` whose fulfilled value is a new array.
-- It can use `mapFn` and `thisArg`.
-- For sync iterable and array-like inputs, values are awaited before they enter
-  the final array.
-- If `mapFn` returns a Promise, the mapped output is awaited.
-- It consumes values sequentially/lazily, unlike `Promise.all()` which retrieves
-  all values first and awaits them concurrently.
+- Array literals are the clearest choice when values are known.
+- `Array()` and `new Array()` both create arrays.
+- `new Array(number)` creates empty slots, not real `undefined` values.
+- `Array.of(number)` creates an array containing that number.
+- Spread can turn empty slots into actual `undefined` values.
+- `Array.from({ length }, mapFn)` is useful for ranges and calculated values.
+- `fill(primitive)` is useful, but `fill(object)` reuses the same object
+  reference in every position.
 
-## Sprint 1: Review Array.fromAsync Pair
+## Sprint 1: Review Array Creation Shortcuts Pair
 
-Status: review
+Status: complete
 
 Checklist:
 
 - [x] Confirm current Git status is clean before starting.
 - [x] Cross-check key behavior against MDN.
 - [x] Compare teaching flow against the MongoDB notes style.
-- [x] Rewrite `notes.md` using the repo study-note teaching pattern.
-- [x] Rewrite `Array.fromAsync.js` using the runnable JS teaching pattern.
-- [x] Include common mistakes and gotchas: forgetting `await`, confusing it
-  with `Array.from()`, and using it where `Promise.all()` may be clearer.
+- [x] Rewrite `create-array-shortcuts.js` using the runnable JS teaching pattern.
+- [x] Create `create-array-shortcuts.md` using the repo study-note teaching
+  pattern.
+- [x] Include common mistakes and gotchas: `Array(3)`, empty slots,
+  `Array.of(3)`, spread, `Array.from()`, and `fill(object)` references.
 - [x] Run the `.js` example with Node.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md` after review.
 
@@ -77,10 +81,13 @@ Review List:
 - [x] Confirm the concept explanation feels easy to understand.
 - [x] Confirm the runnable example has clear terminal labels.
 - [x] Confirm common mistakes are covered.
-- [x] Confirm the file pair belongs under `src/array/methods/static/Array.fromAsync/`.
-- [ ] Decide whether to commit this sprint.
+- [x] Confirm the file pair belongs under `src/array/creation/`.
+- [x] Decide whether to commit this sprint.
 
 ## Stop Point
 
-After creating and reviewing this pair, stop and ask before committing or moving
-to the next array file.
+This sprint is complete after commit. The next unchecked array page is:
+
+```text
+src/array/loop/basic-loop.js
+```
