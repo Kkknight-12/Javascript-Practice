@@ -95,10 +95,10 @@ Suggested order:
 
 - [x] `src/array/creation/create-array-shortcuts.js`
 - [x] `src/array/creation/create-array-shortcuts.md`
-- [x] `src/array/loop/basic-loop.js`
-- [x] `src/array/loop/basic-loop.md`
-- [ ] `src/array/loop/for-await-of/for-await-of.js`
-- [ ] `src/array/loop/for-await-of/notes.md`
+- [x] `src/array/loop/basic-loop/basic-loop.js`
+- [x] `src/array/loop/basic-loop/basic-loop.md`
+- [x] `src/array/loop/for-await-of/for-await-of.js`
+- [x] `src/array/loop/for-await-of/notes.md`
 - [ ] `src/array/loop/for-of/for_of.js`
 - [ ] `src/array/loop/for-of/notes.md`
 - [ ] `src/array/methods/constructor/constructor.js`
@@ -355,7 +355,7 @@ Review List:
 
 ### Sprint 7: Review Basic Array Loop Pair
 
-Status: review
+Status: complete
 
 Checklist:
 
@@ -377,6 +377,36 @@ Review List:
 - [x] Terminal output has readable labels.
 - [x] Explanation is useful as terminal-first repo content.
 - [x] Decide whether to commit this sprint.
+- [x] Committed as `docs: add basic array loop study pair`.
+
+### Sprint 8: Review For Await...Of Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after basic array loops.
+- [x] Reviewed existing `for-await-of.js`.
+- [x] Reviewed existing `notes.md`.
+- [x] Cross-checked key behavior against MDN pages for `for await...of`,
+  `Symbol.asyncIterator`, and `AsyncGenerator`.
+- [x] Compared teaching flow against the MongoDB notes style.
+- [x] Rewrote `for-await-of.js` using the runnable JS teaching pattern.
+- [x] Rewrote `notes.md` using the repo study-note teaching pattern.
+- [x] Removed live network `fetch` dependency from the runnable example.
+- [x] Covered async generators, sync iterables yielding promises, comparison
+  with `for...of`, cleanup on `break`, plain arrays, and `Promise.all()`
+  comparison.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/loop/for-await-of/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Decide whether to commit this sprint.
+- [x] Committed as `docs: polish array loop study pairs`.
 
 ### Structure Note: Array Method Buckets
 
@@ -404,5 +434,6 @@ Checklist:
 - [x] Moved filter practice to `src/array/methods/instance/filter.js`.
 - [x] Moved array creation shortcut practice to
   `src/array/creation/create-array-shortcuts.js`.
-- [x] Moved basic array loop practice to `src/array/loop/basic-loop.js`.
+- [x] Moved basic array loop practice to
+  `src/array/loop/basic-loop/basic-loop.js`.
 - [x] Updated this tracker with the new paths.

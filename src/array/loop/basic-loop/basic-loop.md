@@ -229,7 +229,7 @@ the next step starts, use `for...of` with `await` inside an async function.
 Run this file from the repo root:
 
 ```bash
-node src/array/loop/basic-loop.js
+node src/array/loop/basic-loop/basic-loop.js
 ```
 
 The runnable file includes comments, terminal labels, and expected output near

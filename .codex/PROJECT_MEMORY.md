@@ -50,7 +50,9 @@ src/array/
   creation/
     create-array-shortcuts.js
   loop/
-    basic-loop.js
+    basic-loop/
+      basic-loop.js
+      basic-loop.md
     for-of/
     for-await-of/
   methods/
