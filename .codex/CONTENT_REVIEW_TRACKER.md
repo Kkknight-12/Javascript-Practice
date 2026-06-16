@@ -99,8 +99,8 @@ Suggested order:
 - [x] `src/array/loop/basic-loop/basic-loop.md`
 - [x] `src/array/loop/for-await-of/for-await-of.js`
 - [x] `src/array/loop/for-await-of/notes.md`
-- [ ] `src/array/loop/for-of/for_of.js`
-- [ ] `src/array/loop/for-of/notes.md`
+- [x] `src/array/loop/for-of/for-of.js`
+- [x] `src/array/loop/for-of/notes.md`
 - [ ] `src/array/methods/constructor/constructor.js`
 - [ ] `src/array/methods/instance/array.prototype.js`
 - [ ] `src/array/methods/instance/concat.js`
@@ -407,6 +407,34 @@ Review List:
 - [x] Explanation is useful as terminal-first repo content.
 - [x] Decide whether to commit this sprint.
 - [x] Committed as `docs: polish array loop study pairs`.
+
+### Sprint 9: Review For...Of Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after `for await...of`.
+- [x] Reviewed existing `for_of.js`.
+- [x] Reviewed existing `notes.md`.
+- [x] Cross-checked key behavior against MDN pages for `for...of`,
+  `Symbol.iterator`, and iteration protocols.
+- [x] Renamed `for_of.js` to `for-of.js` using the repo naming pattern.
+- [x] Compared teaching flow against the MongoDB notes style.
+- [x] Rewrote `for-of.js` using the runnable JS teaching pattern.
+- [x] Rewrote `notes.md` using the repo study-note teaching pattern.
+- [x] Covered arrays, strings, maps, sets, plain object gotcha, custom
+  iterables, iterator cleanup, and `for...in` comparison.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/loop/for-of/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Decide whether to commit this sprint.
+- [x] Committed as `docs: polish for-of loop study pair`.
 
 ### Structure Note: Array Method Buckets
 

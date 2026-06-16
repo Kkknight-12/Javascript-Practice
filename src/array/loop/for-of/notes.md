@@ -1,225 +1,314 @@
-### **JavaScript `for...of` Loop**
+# `for...of`
 
-The `for...of` statement executes a loop that operates on values in sequential order sourced from an iterable object.
+## What Problem Does It Solve?
 
-#### **Iterable Objects**
-- **Built-in Instances**: Array, String, TypedArray, Map, Set, NodeList (and other DOM collections)
-- **Special Objects**: Arguments object, generators produced by generator functions, user-defined iterables
+`for...of` gives you a clean way to read values from iterable data.
 
-#### **Syntax**
+Examples:
+
+- array values
+- string characters
+- `Map` entries
+- `Set` values
+- generator values
+- custom iterable values
+
+## Quick Definition
+
+`for...of` loops over values from an iterable object.
+
 ```javascript
-for (variable of iterable)
+for (const value of iterable) {
+  console.log(value)
+}
+```
+
+## Mental Model
+
+```text
+iterable -> Symbol.iterator() -> iterator -> next() -> value
+```
+
+In simple words:
+
+`for...of` asks the iterable for the next value again and again until the
+iterator says it is done.
+
+## Syntax
+
+```javascript
+for (variable of iterable) {
   statement
+}
 ```
 
-**Note**: The `for...of` loop does not work with objects.
+## Iterable
 
----
+An iterable is a value that has a `Symbol.iterator` method.
 
-### **How `for...of` Works**
+Common iterable values:
 
-When a `for...of` loop iterates over an iterable:
-1. It first calls the iterable's `[Symbol.iterator]()` method, which returns an iterator.
-2. It then repeatedly calls the resulting iterator's `next()` method to produce the sequence of values to be assigned to the variable.
+- arrays
+- strings
+- maps
+- sets
+- typed arrays
+- arguments objects
+- generators
+- custom objects that implement `Symbol.iterator`
 
-#### **Simplified JavaScript Version**
+Plain objects are not iterable by default.
+
+## Array Example
+
 ```javascript
-function forOf(iterable) {
-  const iterator = iterable[Symbol.iterator]();
-  let result = iterator.next();
+const learners = ['Aman', 'Chaman', 'Baga']
 
-  while (!result.done) {
-    console.log(result.value);
-    result = iterator.next();
-  }
+for (const learner of learners) {
+  console.log(learner)
+}
+```
+
+Explanation:
+
+The loop gives you one array value at a time. You do not need to manage an
+index manually.
+
+## String Example
+
+```javascript
+for (const character of 'JS') {
+  console.log(character)
+}
+```
+
+Output:
+
+```text
+J
+S
+```
+
+Explanation:
+
+Strings are iterable, so `for...of` can read characters from a string.
+
+## Map Example
+
+```javascript
+const scores = new Map([
+  ['Aman', 10],
+  ['Chaman', 20],
+])
+
+for (const [name, score] of scores) {
+  console.log(name, score)
+}
+```
+
+Explanation:
+
+A `Map` gives `[key, value]` pairs. Destructuring lets you read the key and
+value separately.
+
+## Set Example
+
+```javascript
+const topics = new Set(['array', 'array', 'object'])
+
+for (const topic of topics) {
+  console.log(topic)
+}
+```
+
+Output:
+
+```text
+array
+object
+```
+
+Explanation:
+
+A `Set` stores unique values. `for...of` reads each unique value.
+
+## Plain Object Gotcha
+
+Plain objects are not iterable by default.
+
+```javascript
+const user = {
+  name: 'Aman',
+  role: 'admin',
 }
 
-const array = [1, 2, 3];
-forOf(array); // logs 1, 2, 3
-```
-
----
-
-### **Examples**
-
-#### **Iterating Over an Array**
-```javascript
-const array1 = ['a', 'b', 'c'];
-
-for (const element of array1) {
-  console.log(element);
+for (const value of user) {
+  console.log(value)
 }
-// Expected output: "a", "b", "c"
 ```
 
-#### **Iterating Over a String**
-```javascript
-const iterableString = 'boo';
+This throws a `TypeError`.
 
-for (const value of iterableString) {
-  console.log(value);
+Use `Object.entries()` when you want key-value pairs:
+
+```javascript
+for (const [key, value] of Object.entries(user)) {
+  console.log(key, value)
 }
-// Expected output: "b", "o", "o"
 ```
 
-#### **Iterating Over a TypedArray**
+## Custom Iterable
+
+You can make an object work with `for...of` by adding `Symbol.iterator`.
+
 ```javascript
-const iterableTypedArray = new Uint8Array([0x00, 0xff]);
-
-for (const value of iterableTypedArray) {
-  console.log(value);
-}
-// Expected output: 0, 255
-```
-
-#### **Iterating Over a Map**
-```javascript
-const iterable = new Map([
-  ['a', 1],
-  ['b', 2],
-  ['c', 3],
-]);
-
-for (const entry of iterable) {
-  console.log(entry);
-}
-// Expected output: ['a', 1], ['b', 2], ['c', 3]
-```
-
-#### **Iterating Over a Set**
-```javascript
-const iterableSet = new Set([1, 1, 2, 2, 3, 3]);
-
-for (const value of iterableSet) {
-  console.log(value);
-}
-// Expected output: 1, 2, 3
-```
-
-#### **Iterating Over the Arguments Object**
-```javascript
-function IterateArguments() {
-  for (const value of arguments) {
-    console.log(value);
-  }
-}
-
-IterateArguments(1, 2, 3);
-// Expected output: 1, 2, 3
-```
-
-Here are the additional notes based on the remaining code:
-
----
-
-### **Iterating Over a User-Defined Iterable**
-
-The `for...of` loop in JavaScript can iterate over any iterable object. An iterable object implements the iterable protocol, meaning it has a method whose key is `Symbol.iterator`. This method must return an iterator, which is an object with a `next` method.
-
-#### **Example: User-Defined Iterable**
-```javascript
-const userDefinedIterable = {
+const countdown = {
+  from: 3,
   [Symbol.iterator]() {
-    let i = 1;
+    let current = this.from
+
     return {
       next() {
-        if (i <= 3) {
-          return { value: i++, done: false };
+        if (current > 0) {
+          return { value: current--, done: false }
         }
-        return { value: undefined, done: true };
+
+        return { value: undefined, done: true }
       },
-    };
-  },
-};
-
-for (const value of userDefinedIterable) {
-  console.log('value: ', value);
-}
-// Expected output: 1, 2, 3
-```
-
----
-
-### **User-Defined Iterator**
-
-An object can be both an iterable and an iterator. It's an iterable because it has a `Symbol.iterator` method, and it's an iterator because it has a `next` method. The `Symbol.iterator` method returns `this`, making the object its own iterator.
-
-#### **Example: User-Defined Iterator**
-```javascript
-let i = 1;
-
-const userDefinediterator = {
-  next() {
-    if (i <= 3) {
-      return { value: i++, done: false };
     }
-    return { value: undefined, done: true };
   },
+}
+
+for (const number of countdown) {
+  console.log(number)
+}
+```
+
+Output:
+
+```text
+3
+2
+1
+```
+
+## Cleanup On `break`
+
+If a `for...of` loop exits early, JavaScript calls the iterator `return()`
+method when it exists.
+
+```javascript
+const iterable = {
   [Symbol.iterator]() {
-    return this;
+    return {
+      next() {
+        return { value: 1, done: false }
+      },
+      return() {
+        console.log('cleanup')
+        return { done: true }
+      },
+    }
   },
-};
-
-for (const value of userDefinediterator) {
-  console.log(value);
 }
-// Expected output: 1, 2, 3
+
+for (const value of iterable) {
+  break
+}
 ```
 
-### **Using `userDefinediterator` in a `for...of` Loop**
+Explanation:
 
-When you use `userDefinediterator` in a `for...of` loop:
-1. The loop automatically calls `userDefinediterator[Symbol.iterator]()` to get the iterator.
-2. Since `Symbol.iterator` returns `this`, the iterator is the `userDefinediterator` object itself.
-3. The loop then repeatedly calls the `next` method on the iterator (which is also `userDefinediterator`) to get the values to iterate over.
+This cleanup path is useful for iterators that need to close a resource or stop
+work early.
 
-#### **Key Points**
-- In this case, the `userDefinediterator` object is both the iterable (the object being iterated over) and the iterator (the object producing the values).
-- This is a common pattern for iterable objects that only need to be iterated over once.
----
+## Important Notes
 
-### **Iterating Over an Object with a `Symbol.iterator` Generator Method**
+1. `for...of` reads values, not property names.
+2. It works only with iterable values.
+3. Arrays, strings, maps, sets, and generators are iterable.
+4. Plain objects are not iterable by default.
+5. Use `Object.entries(object)` if you want object key-value pairs.
+6. Use `for...in` for enumerable property names, not array-style values.
+7. A `break` can trigger iterator cleanup through `return()`.
 
-An object can have a `Symbol.iterator` method that is a generator function. This allows the object to produce a sequence of values using the `yield` keyword.
+## When To Use It
 
-#### **Example: Generator Method**
+### You Need Values
+
 ```javascript
-const iterableGenerator = {
-  *[Symbol.iterator]() {
-    yield 11;
-    yield 12;
-    yield 13;
-  },
-};
-
-for (const value of iterableGenerator) {
-  console.log('Generator yield: ', value);
+for (const value of values) {
+  console.log(value)
 }
-// Expected output: 11, 12, 13
 ```
 
----
+### You Need Map Key-Value Pairs
 
-### **Iterating Over a Generator**
-
-A generator function can be used to create an iterator. The `for...of` loop can then iterate over the values produced by the generator.
-
-#### **Example: Generator Function**
 ```javascript
-function* source() {
-  yield 21;
-  yield 22;
-  yield 23;
+for (const [key, value] of map) {
+  console.log(key, value)
 }
-
-const generator = source();
-
-for (const value of generator) {
-  console.log(value);
-}
-// Expected output: 21, 22, 23
 ```
 
----
+### You Need `break` Or `continue`
 
-Feel free to ask if you need more details or further assistance!
+```javascript
+for (const value of values) {
+  if (value === 'skip') continue
+  if (value === 'stop') break
+}
+```
+
+## Common Mistakes
+
+### Mistake 1: Using `for...of` On A Plain Object
+
+```javascript
+for (const value of { name: 'Aman' }) {
+  console.log(value)
+}
+```
+
+Plain objects are not iterable by default. Use `Object.keys()`,
+`Object.values()`, or `Object.entries()`.
+
+### Mistake 2: Thinking `for...of` Gives Indexes
+
+```javascript
+for (const value of ['a', 'b']) {
+  console.log(value)
+}
+```
+
+This gives values: `'a'`, then `'b'`.
+
+Use `entries()` when you need index and value:
+
+```javascript
+for (const [index, value] of ['a', 'b'].entries()) {
+  console.log(index, value)
+}
+```
+
+### Mistake 3: Confusing `for...of` And `for...in`
+
+`for...of` reads iterable values.
+
+`for...in` reads enumerable property names.
+
+## Runnable Practice File
+
+Run this file from the repo root:
+
+```bash
+node src/array/loop/for-of/for-of.js
+```
+
+The runnable file includes comments, terminal labels, and expected output near
+the examples.
+
+## MDN References
+
+- [for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
+- [Symbol.iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator)
+- [Iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols)
