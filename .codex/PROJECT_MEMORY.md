@@ -79,6 +79,13 @@ src/array/methods/
   instance/
     concat.js
     map-filter.js
+    prototype/
+      concept/
+      practice/
+        custom-map/
+        custom-filter/
+        custom-sort/
+        custom-reduce/
     reduce.js
     ...
   static/
@@ -95,6 +102,10 @@ src/array/methods/
   `Array.isArray()`, so they belong in `src/array/methods/static/`.
 - `constructor.js` is about `new Array(...)` / `Array(...)`, so keep it under
   `src/array/methods/constructor/` instead of forcing it into instance/static.
+- `Array.prototype` concept and custom prototype exercises belong under
+  `src/array/methods/instance/prototype/`, split into `concept/` for lookup and
+  safety explanation and `practice/` for custom exercises. Keep custom
+  map/filter/sort/reduce practice in separate folders under `practice/`.
 
 ## Current Risks
 

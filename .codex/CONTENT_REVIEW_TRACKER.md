@@ -103,7 +103,16 @@ Suggested order:
 - [x] `src/array/loop/for-of/notes.md`
 - [x] `src/array/methods/constructor/constructor.js`
 - [x] `src/array/methods/constructor/constructor.md`
-- [ ] `src/array/methods/instance/array.prototype.js`
+- [x] `src/array/methods/instance/prototype/concept/array-prototype.js`
+- [x] `src/array/methods/instance/prototype/concept/array-prototype.md`
+- [x] `src/array/methods/instance/prototype/practice/custom-map/custom-map.js`
+- [x] `src/array/methods/instance/prototype/practice/custom-map/custom-map.md`
+- [x] `src/array/methods/instance/prototype/practice/custom-filter/custom-filter.js`
+- [x] `src/array/methods/instance/prototype/practice/custom-filter/custom-filter.md`
+- [x] `src/array/methods/instance/prototype/practice/custom-sort/custom-sort.js`
+- [x] `src/array/methods/instance/prototype/practice/custom-sort/custom-sort.md`
+- [x] `src/array/methods/instance/prototype/practice/custom-reduce/custom-reduce.js`
+- [x] `src/array/methods/instance/prototype/practice/custom-reduce/custom-reduce.md`
 - [ ] `src/array/methods/instance/concat.js`
 - [ ] `src/array/methods/instance/entries-find.js`
 - [ ] `src/array/methods/instance/every.js`
@@ -213,7 +222,7 @@ Suggested order:
 
 ### Sprint 1: Tracker Setup
 
-Status: review
+Status: complete
 
 Checklist:
 
@@ -462,6 +471,45 @@ Review List:
 - [x] Explanation is useful as terminal-first repo content.
 - [x] Decide whether to commit this sprint.
 - [x] Committed as `docs: add array constructor study pair`.
+
+### Sprint 11: Review Array Prototype Concept And Practice Split
+
+Status: review
+
+Checklist:
+
+- [x] Chosen as the next array page after the constructor page.
+- [x] Reviewed existing `array.prototype.js`.
+- [x] Confirmed the file mixed prototype concept notes with custom
+  map/filter/sort/reduce practice.
+- [x] Cross-checked key behavior against MDN and ECMAScript.
+- [x] Split the topic into `prototype/concept/` and `prototype/practice/`.
+- [x] Created `array-prototype.js` using the runnable JS teaching pattern.
+- [x] Created `array-prototype.md` using the repo study-note teaching pattern.
+- [x] Expanded the concept page to explain `Array.prototype`, the prototype
+  chain, core method categories, and monkey patching.
+- [x] Split the combined prototype practice page into custom map, filter, sort,
+  and reduce practice folders.
+- [x] Created paired `.js` and `.md` files for each custom practice page.
+- [x] Removed the combined `prototype-practice.js` and `prototype-practice.md`
+  after migration.
+- [x] Ran the concept page and all four practice examples with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] Concept page explains lookup, shared methods, own-property priority,
+  instance vs static methods, and prototype safety.
+- [x] Concept page groups methods into iteration, mutator, and accessor/copying
+  categories.
+- [x] Practice page keeps custom map/filter/sort/reduce work separate from the
+  concept explanation.
+- [x] Practice folder now keeps custom map, filter, sort, and reduce in separate
+  focused pages.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Decide whether to commit this sprint.
+- [x] Committed as `docs: add array prototype study section`.
 
 ### Structure Note: Array Method Buckets
 
