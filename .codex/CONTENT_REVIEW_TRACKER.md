@@ -113,7 +113,8 @@ Suggested order:
 - [x] `src/array/methods/instance/prototype/practice/custom-sort/custom-sort.md`
 - [x] `src/array/methods/instance/prototype/practice/custom-reduce/custom-reduce.js`
 - [x] `src/array/methods/instance/prototype/practice/custom-reduce/custom-reduce.md`
-- [ ] `src/array/methods/instance/concat.js`
+- [x] `src/array/methods/instance/concat/concat.js`
+- [x] `src/array/methods/instance/concat/concat.md`
 - [ ] `src/array/methods/instance/entries-find.js`
 - [ ] `src/array/methods/instance/every.js`
 - [ ] `src/array/methods/instance/fill.js`
@@ -240,7 +241,7 @@ Review List:
 
 ### Sprint 2: Review Method-Type Concept Pair
 
-Status: review
+Status: complete
 
 Checklist:
 
@@ -474,7 +475,7 @@ Review List:
 
 ### Sprint 11: Review Array Prototype Concept And Practice Split
 
-Status: review
+Status: complete
 
 Checklist:
 
@@ -510,6 +511,34 @@ Review List:
 - [x] Explanation is useful as terminal-first repo content.
 - [x] Decide whether to commit this sprint.
 - [x] Committed as `docs: add array prototype study section`.
+
+### Sprint 12: Review Array Concat Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after the prototype section.
+- [x] Reviewed existing `concat.js`.
+- [x] Confirmed the old file only covered basic merging and multiple arguments.
+- [x] Cross-checked key behavior against MDN.
+- [x] Rewrote `concat.js` using the runnable JS teaching pattern.
+- [x] Created `concat.md` using the repo study-note teaching pattern.
+- [x] Moved the reviewed pair into `src/array/methods/instance/concat/`.
+- [x] Covered non-mutation, shallow copy, nested arrays, sparse arrays,
+  `Symbol.isConcatSpreadable`, generic behavior, `push()` comparison, spread
+  syntax comparison, and common mistakes.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Decide whether to commit this sprint.
+- [x] Committed as `docs: polish array concat study pair`.
 
 ### Structure Note: Array Method Buckets
 

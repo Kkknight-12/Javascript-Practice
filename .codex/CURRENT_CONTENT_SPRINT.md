@@ -2,17 +2,17 @@
 
 ## Active Story
 
-### JS-CONTENT-001J: Review Array Prototype Concept And Practice Split
+### JS-CONTENT-001K: Review Array Concat Pair
 
-As the repo owner, I want the old `array.prototype.js` scratch file to become a
-clear prototype learning section with a concept page and a separate practice
-page. The content should stay terminal-first, beginner-friendly, and useful for
-future website reuse without making website work part of this sprint.
+As the repo owner, I want the `Array.prototype.concat()` explanation and
+runnable example to be clear, beginner-friendly, deterministic in the terminal,
+and useful as a high-quality JavaScript array-method page. Future website reuse
+is secondary and not part of the current sprint.
 
 ## Current Folder
 
 ```text
-src/array/methods/instance/prototype/
+src/array/methods/instance/
 ```
 
 ## Current Files
@@ -20,103 +20,77 @@ src/array/methods/instance/prototype/
 Primary explanation:
 
 ```text
-src/array/methods/instance/prototype/concept/array-prototype.md
-src/array/methods/instance/prototype/practice/custom-map/custom-map.md
-src/array/methods/instance/prototype/practice/custom-filter/custom-filter.md
-src/array/methods/instance/prototype/practice/custom-sort/custom-sort.md
-src/array/methods/instance/prototype/practice/custom-reduce/custom-reduce.md
+src/array/methods/instance/concat/concat.md
 ```
 
 Paired runnable example:
 
 ```text
-src/array/methods/instance/prototype/concept/array-prototype.js
-src/array/methods/instance/prototype/practice/custom-map/custom-map.js
-src/array/methods/instance/prototype/practice/custom-filter/custom-filter.js
-src/array/methods/instance/prototype/practice/custom-sort/custom-sort.js
-src/array/methods/instance/prototype/practice/custom-reduce/custom-reduce.js
+src/array/methods/instance/concat/concat.js
 ```
 
 ## Starting Point
 
-- The old `array.prototype.js` file mixed concept explanation with custom
-  `map`, `filter`, `sort`, and `reduce` practice.
-- Some of the custom practice is useful, but it should not be the main concept
-  explanation.
-- Several built-in methods already have or will have their own method pages.
-- The user approved splitting this topic into a prototype concept folder and a
-  prototype practice folder.
-- The user then approved splitting the prototype practice folder into separate
-  custom map, filter, sort, and reduce practice pages.
+- `concat.js` already existed directly under `src/array/methods/instance/`.
+- The old file showed a basic array merge and multiple arguments.
+- It did not explain shallow copy, nested arrays, sparse arrays,
+  `Symbol.isConcatSpreadable`, or common mistakes.
+- There was no paired `concat.md` study note.
+- The reviewed pair now lives in `src/array/methods/instance/concat/` so the
+  method has its own folder.
+- The user asked to keep content quality high and avoid the earlier prototype
+  quality compromise.
 
 ## Reference Findings
 
 Source checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
-https://tc39.es/ecma262/multipage/indexed-collections.html#sec-properties-of-the-array-prototype-object
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
 ```
 
 Key points to teach:
 
-- Normal arrays are linked to `Array.prototype`.
-- Shared array instance methods live on `Array.prototype`.
-- JavaScript checks own properties before prototype properties.
-- Static methods like `Array.from()` live on `Array`, not `Array.prototype`.
-- `Array.prototype` itself is an array exotic object with initial length `0`.
-- The normal array lookup chain is
-  `array -> Array.prototype -> Object.prototype -> null`.
-- Array methods can be grouped for learning as iteration methods, mutator
-  methods, and accessor/copying methods.
-- Custom map transforms existing items into a new array.
-- Custom filter keeps original items when the callback returns truthy.
-- Custom sort uses compare results to reorder values; the practice version
-  returns a sorted copy while built-in `sort()` mutates.
-- Custom reduce carries an accumulator and returns one final value.
-- Custom prototype methods are useful for learning, but built-in prototypes
-  should usually not be modified in production.
+- `concat()` is an Array instance method.
+- It merges arrays and/or values into a new array.
+- It does not mutate the source arrays.
+- Calling `concat()` with no arguments returns a shallow copy.
+- The returned array is a shallow copy, so nested objects/arrays are shared.
+- Array arguments are spread one level.
+- Nested arrays are not recursively flattened.
+- Empty slots in sparse arrays are preserved.
+- Array-like objects are not spread by default.
+- `Symbol.isConcatSpreadable` controls whether a value is spread.
+- `concat()` is generic, but normal everyday usage is on arrays.
+- `concat()` differs from `push()` because `push()` mutates and returns length.
 
-## Sprint 1: Review Array Prototype Concept And Practice Split
+## Sprint 1: Review Array Concat Pair
 
 Status: complete
 
 Checklist:
 
 - [x] Confirm current Git status is clean before starting.
-- [x] Cross-check key behavior against MDN and ECMAScript.
-- [x] Compare teaching flow against the MongoDB notes style.
-- [x] Replace the old single `array.prototype.js` file with
-  `prototype/concept/` and `prototype/practice/`.
-- [x] Create `array-prototype.js` using the runnable JS teaching pattern.
-- [x] Create `array-prototype.md` using the repo study-note teaching pattern.
-- [x] Polish the concept page around `Array.prototype`, prototype chain lookup,
-  method categories, and monkey patching.
-- [x] Create focused custom map, filter, sort, and reduce practice folders.
-- [x] Create paired `.js` and `.md` files for each custom practice page.
-- [x] Remove the combined `prototype-practice.js` and `prototype-practice.md`
-  after migration.
-- [x] Run all prototype concept and practice `.js` examples with Node.
+- [x] Refresh repo memory and local content-revision skill.
+- [x] Confirm the next unchecked array page is `concat.js`.
+- [x] Review existing `concat.js`.
+- [x] Cross-check key behavior against MDN.
+- [x] Rewrite `concat.js` using the runnable JS teaching pattern.
+- [x] Create `concat.md` using the repo study-note teaching pattern.
+- [x] Cover non-mutation, shallow copy, nested arrays, sparse arrays,
+  `Symbol.isConcatSpreadable`, generic behavior, `push()` comparison, spread
+  syntax comparison, and common mistakes.
+- [x] Run the `.js` example with Node.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md` after review.
 
 Review List:
 
 - [x] Confirm the concept explanation feels easy to understand.
-- [x] Confirm the concept page explains method categories: iteration, mutator,
-  and accessor/copying methods.
-- [x] Confirm the practice examples preserve the useful from-scratch learning
-  work.
-- [x] Confirm each focused practice page teaches one mental model: transform,
-  keep, compare/swap, or accumulate.
-- [x] Confirm all runnable examples have clear terminal labels.
-- [x] Confirm common mistakes are covered: `this`, arrow functions, cleanup, and
-  modifying built-in prototypes.
-- [x] Confirm the split belongs under `src/array/methods/instance/prototype/`.
+- [x] Confirm the runnable example has clear terminal labels and expected-output
+  comments.
+- [x] Confirm common mistakes are covered.
+- [x] Confirm the file pair belongs under `src/array/methods/instance/`.
+- [x] Confirm content quality is closer to the polished prototype standard.
 - [x] Decide whether to commit this sprint.
 
 ## Stop Point
@@ -124,5 +98,5 @@ Review List:
 This sprint is complete after commit. The next unchecked array page is:
 
 ```text
-src/array/methods/instance/concat.js
+src/array/methods/instance/entries-find.js
 ```

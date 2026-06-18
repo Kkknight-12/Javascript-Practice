@@ -77,7 +77,9 @@ src/array/methods/
   constructor/
     constructor.js
   instance/
-    concat.js
+    concat/
+      concat.js
+      concat.md
     map-filter.js
     prototype/
       concept/
