@@ -115,7 +115,8 @@ Suggested order:
 - [x] `src/array/methods/instance/prototype/practice/custom-reduce/custom-reduce.md`
 - [x] `src/array/methods/instance/concat/concat.js`
 - [x] `src/array/methods/instance/concat/concat.md`
-- [ ] `src/array/methods/instance/entries-find.js`
+- [x] `src/array/methods/instance/entries-find/entries-find.js`
+- [x] `src/array/methods/instance/entries-find/entries-find.md`
 - [ ] `src/array/methods/instance/every.js`
 - [ ] `src/array/methods/instance/fill.js`
 - [ ] `src/array/methods/instance/filter.js`
@@ -539,6 +540,39 @@ Review List:
 - [x] Content quality matches the stricter post-prototype bar.
 - [x] Decide whether to commit this sprint.
 - [x] Committed as `docs: polish array concat study pair`.
+
+### Sprint 13: Review Array Entries And Find Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after `concat()`.
+- [x] Reviewed existing `entries-find.js`.
+- [x] Checked related `find-some.js` and `findIndex-indexOf.js` files for
+  overlap.
+- [x] Cross-checked key behavior against MDN pages for `entries()` and `find()`.
+- [x] Moved the reviewed pair into
+  `src/array/methods/instance/entries-find/`.
+- [x] Rewrote `entries-find.js` using the runnable JS teaching pattern.
+- [x] Created `entries-find.md` using the repo study-note teaching pattern.
+- [x] Covered iterator behavior, `for...of` destructuring, sparse arrays,
+  `find()` stopping early, `0` as a valid found value, and `Object.entries()`
+  comparison.
+- [x] Reworked the page after review feedback so it teaches `entries()` first,
+  explains the `find()` return rule once, then combines both methods.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/entries-find/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] The `find()` return behavior is not repeated as a separate second lesson.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Decide whether to commit this sprint.
+- [x] Committed as `docs: add array entries-find study pair`.
 
 ### Structure Note: Array Method Buckets
 
