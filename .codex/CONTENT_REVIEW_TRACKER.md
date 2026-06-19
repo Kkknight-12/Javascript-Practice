@@ -117,7 +117,9 @@ Suggested order:
 - [x] `src/array/methods/instance/concat/concat.md`
 - [x] `src/array/methods/instance/entries-find/entries-find.js`
 - [x] `src/array/methods/instance/entries-find/entries-find.md`
-- [ ] `src/array/methods/instance/every.js`
+- [x] `src/array/methods/instance/every/every.js`
+- [x] `src/array/methods/instance/every/every.md`
+- [x] `src/array/methods/instance/every/doubt/doubt.md`
 - [ ] `src/array/methods/instance/fill.js`
 - [ ] `src/array/methods/instance/filter.js`
 - [ ] `src/array/methods/instance/find-some.js`
@@ -573,6 +575,36 @@ Review List:
 - [x] Content quality matches the stricter post-prototype bar.
 - [x] Decide whether to commit this sprint.
 - [x] Committed as `docs: add array entries-find study pair`.
+
+### Sprint 14: Review Array Every Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after `entries-find`.
+- [x] Reviewed existing `every.js`.
+- [x] Cross-checked key behavior against MDN.
+- [x] Moved the reviewed pair into `src/array/methods/instance/every/`.
+- [x] Rewrote `every.js` using the runnable JS teaching pattern.
+- [x] Created `every.md` using the repo study-note teaching pattern.
+- [x] Covered boolean return behavior, early stop, empty arrays, sparse arrays,
+  real `undefined`, callback arguments, `thisArg`, subset checks, generic
+  behavior, and async callback gotcha.
+- [x] Added topic-level doubt notes explaining why `results.every(Boolean)`
+  works after `Promise.all()` and why empty arrays return `true`.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/every/`.
+- [x] Doubt note belongs under `src/array/methods/instance/every/doubt/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Decide whether to commit this sprint.
+- [x] Committed as `docs: add array every study pair`.
 
 ### Structure Note: Array Method Buckets
 

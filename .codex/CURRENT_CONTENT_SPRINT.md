@@ -2,18 +2,17 @@
 
 ## Active Story
 
-### JS-CONTENT-001L: Review Array Entries And Find Pair
+### JS-CONTENT-001M: Review Array Every Pair
 
-As the repo owner, I want the `Array.prototype.entries()` plus
-`Array.prototype.find()` learning page to be clear, beginner-friendly,
-deterministic in the terminal, and useful as a high-quality JavaScript
-array-method page. Future website reuse is secondary and not part of the current
-sprint.
+As the repo owner, I want the `Array.prototype.every()` learning page to be
+clear, beginner-friendly, deterministic in the terminal, and useful as a
+high-quality JavaScript array-method page. Future website reuse is secondary and
+not part of the current sprint.
 
 ## Current Folder
 
 ```text
-src/array/methods/instance/entries-find/
+src/array/methods/instance/every/
 ```
 
 ## Current Files
@@ -21,49 +20,53 @@ src/array/methods/instance/entries-find/
 Primary explanation:
 
 ```text
-src/array/methods/instance/entries-find/entries-find.md
+src/array/methods/instance/every/every.md
 ```
 
 Paired runnable example:
 
 ```text
-src/array/methods/instance/entries-find/entries-find.js
+src/array/methods/instance/every/every.js
+```
+
+Topic doubt note:
+
+```text
+src/array/methods/instance/every/doubt/doubt.md
 ```
 
 ## Starting Point
 
-- `entries-find.js` already existed directly under `src/array/methods/instance/`.
-- The old file mixed `entries()`, `find()`, tic-tac-toe combo logic, and
-  `Object.entries()` notes.
-- It had useful raw examples, but the teaching flow was scratch-style.
-- There was no paired `entries-find.md` study note.
+- `every.js` already existed directly under `src/array/methods/instance/`.
+- The old file only showed two basic boolean examples.
+- There was no paired `every.md` study note.
+- The reviewed pair now lives in `src/array/methods/instance/every/` so the
+  method has its own folder.
 - `find-some.js` still exists for the later `find()` vs `some()` comparison, so
-  this page focuses on the `entries()` plus `find()` pattern.
+  this page keeps the `some()` comparison short and focused.
 
 ## Reference Findings
 
-Sources checked:
+Source checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/entries
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every
 ```
 
 Key points to teach:
 
-- `entries()` returns an iterator of `[index, value]` pairs.
-- `entries()` does not return a normal array.
-- `entries()` is commonly used with `for...of` and destructuring.
-- `entries()` visits empty slots as `undefined`.
-- `find()` returns the first value whose callback returns truthy.
-- `find()` returns `undefined` when nothing matches.
-- `find()` stops after the first match.
-- `find()` callback receives `value`, `index`, and `array`.
-- A found value can be `0`, `''`, or `false`, so truthy/falsy result checks can
-  be wrong.
-- `Object.entries()` is for plain objects; `array.entries()` is for arrays.
+- `every()` returns a boolean.
+- It returns `false` when it finds an element that does not satisfy the callback.
+- It returns `true` when all checked elements satisfy the callback.
+- It stops immediately after the first falsy callback result.
+- Empty arrays return `true`.
+- Empty slots in sparse arrays are skipped.
+- Real `undefined` values are still visited.
+- The callback receives `element`, `index`, and `array`.
+- `thisArg` can be passed as the second argument.
+- `every()` is generic and can work on array-like objects.
 
-## Sprint 1: Review Array Entries And Find Pair
+## Sprint 1: Review Array Every Pair
 
 Status: complete
 
@@ -71,19 +74,17 @@ Checklist:
 
 - [x] Confirm current Git status before starting and keep unrelated
   `src/playground/del.js` out of this sprint.
-- [x] Refresh repo memory and local content-revision skill.
-- [x] Confirm the next unchecked array page is `entries-find.js`.
-- [x] Review existing `entries-find.js`.
-- [x] Check nearby `find-some.js` and `findIndex-indexOf.js` overlap.
+- [x] Confirm the next unchecked array page is `every.js`.
+- [x] Review existing `every.js`.
 - [x] Cross-check key behavior against MDN.
-- [x] Move the reviewed pair into `src/array/methods/instance/entries-find/`.
-- [x] Rewrite `entries-find.js` using the runnable JS teaching pattern.
-- [x] Create `entries-find.md` using the repo study-note teaching pattern.
-- [x] Cover iterator behavior, `for...of` destructuring, sparse arrays,
-  `find()` stopping early, `0` as a valid found value, and `Object.entries()`
-  comparison.
-- [x] Rework the teaching order after review feedback: explain `entries()` first,
-  explain the `find()` return rule once, then combine both methods.
+- [x] Move the reviewed pair into `src/array/methods/instance/every/`.
+- [x] Rewrite `every.js` using the runnable JS teaching pattern.
+- [x] Create `every.md` using the repo study-note teaching pattern.
+- [x] Cover boolean return behavior, early stop, empty arrays, sparse arrays,
+  real `undefined`, callback arguments, `thisArg`, subset checks, generic
+  behavior, and async callback gotcha.
+- [x] Add topic-level doubt notes explaining why `results.every(Boolean)` works
+  after `Promise.all()` and why empty arrays return `true`.
 - [x] Run the `.js` example with Node.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md` after review.
 
@@ -93,10 +94,8 @@ Review List:
 - [x] Confirm the runnable example has clear terminal labels and expected-output
   comments.
 - [x] Confirm common mistakes are covered.
-- [x] Confirm the `find()` return explanation is not repeated as a separate
-  second lesson.
-- [x] Confirm the file pair belongs under
-  `src/array/methods/instance/entries-find/`.
+- [x] Confirm the file pair belongs under `src/array/methods/instance/every/`.
+- [x] Confirm the doubt note belongs beside the `every()` page.
 - [x] Confirm this page does not fully duplicate the later `find-some.js` page.
 - [x] Decide whether to commit this sprint.
 
@@ -105,5 +104,5 @@ Review List:
 This sprint is complete after commit. The next unchecked array page is:
 
 ```text
-src/array/methods/instance/every.js
+src/array/methods/instance/fill.js
 ```
