@@ -122,7 +122,8 @@ Suggested order:
 - [x] `src/array/methods/instance/every/doubt/doubt.md`
 - [x] `src/array/methods/instance/fill/fill.js`
 - [x] `src/array/methods/instance/fill/fill.md`
-- [ ] `src/array/methods/instance/filter.js`
+- [x] `src/array/methods/instance/filter/filter.js`
+- [x] `src/array/methods/instance/filter/filter.md`
 - [ ] `src/array/methods/instance/find-some.js`
 - [ ] `src/array/methods/instance/findIndex-indexOf.js`
 - [ ] `src/array/methods/instance/flat.js`
@@ -633,6 +634,35 @@ Review List:
 - [x] Content quality matches the stricter post-prototype bar.
 - [x] Decide whether to commit this sprint.
 - [x] Committed as `docs: add array fill study pair`.
+
+### Sprint 16: Review Array Filter Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after `fill()`.
+- [x] Reviewed existing `filter.js`.
+- [x] Checked related custom-filter practice and `map-filter.js` overlap.
+- [x] Cross-checked key behavior against MDN.
+- [x] Moved the reviewed pair into `src/array/methods/instance/filter/`.
+- [x] Rewrote `filter.js` using the runnable JS teaching pattern.
+- [x] Created `filter.md` using the repo study-note teaching pattern.
+- [x] Covered keep/skip behavior, return value, no mutation, shallow copy,
+  callback arguments, `thisArg`, sparse arrays, `filter()` vs `find()`,
+  `filter()` vs `map()`, generic behavior, and async callback gotcha.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/filter/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Page stays distinct from custom-filter practice and later `map-filter.js`.
+- [x] Decide whether to commit this sprint.
+- [x] Committed as `docs: add array filter study pair`.
 
 ### Structure Note: Array Method Buckets
 
