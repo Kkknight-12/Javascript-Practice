@@ -124,7 +124,8 @@ Suggested order:
 - [x] `src/array/methods/instance/fill/fill.md`
 - [x] `src/array/methods/instance/filter/filter.js`
 - [x] `src/array/methods/instance/filter/filter.md`
-- [ ] `src/array/methods/instance/find-some.js`
+- [x] `src/array/methods/instance/find-some/find-some.js`
+- [x] `src/array/methods/instance/find-some/find-some.md`
 - [ ] `src/array/methods/instance/findIndex-indexOf.js`
 - [ ] `src/array/methods/instance/flat.js`
 - [ ] `src/array/methods/instance/flatMap.js`
@@ -663,6 +664,36 @@ Review List:
 - [x] Page stays distinct from custom-filter practice and later `map-filter.js`.
 - [x] Decide whether to commit this sprint.
 - [x] Committed as `docs: add array filter study pair`.
+
+### Sprint 17: Review Array Find And Some Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after `filter()`.
+- [x] Reviewed existing `find-some.js`.
+- [x] Checked related `entries-find/` and `findIndex-indexOf.js` overlap.
+- [x] Cross-checked key behavior against MDN pages for `find()` and `some()`.
+- [x] Moved the reviewed pair into `src/array/methods/instance/find-some/`.
+- [x] Rewrote `find-some.js` using the runnable JS teaching pattern.
+- [x] Created `find-some.md` using the repo study-note teaching pattern.
+- [x] Covered return-value differences, early stop, object lookup, existence
+  checks, falsy found values, empty arrays, sparse-array behavior, callback
+  arguments, `thisArg`, and generic behavior.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/find-some/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Page stays distinct from earlier `entries-find/` and later
+  `findIndex-indexOf.js`.
+- [x] Decide whether to commit this sprint.
+- [x] Committed as `docs: add array find-some study pair`.
 
 ### Structure Note: Array Method Buckets
 
