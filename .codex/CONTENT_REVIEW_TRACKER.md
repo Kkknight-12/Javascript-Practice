@@ -120,7 +120,8 @@ Suggested order:
 - [x] `src/array/methods/instance/every/every.js`
 - [x] `src/array/methods/instance/every/every.md`
 - [x] `src/array/methods/instance/every/doubt/doubt.md`
-- [ ] `src/array/methods/instance/fill.js`
+- [x] `src/array/methods/instance/fill/fill.js`
+- [x] `src/array/methods/instance/fill/fill.md`
 - [ ] `src/array/methods/instance/filter.js`
 - [ ] `src/array/methods/instance/find-some.js`
 - [ ] `src/array/methods/instance/findIndex-indexOf.js`
@@ -605,6 +606,33 @@ Review List:
 - [x] Content quality matches the stricter post-prototype bar.
 - [x] Decide whether to commit this sprint.
 - [x] Committed as `docs: add array every study pair`.
+
+### Sprint 15: Review Array Fill Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after `every()`.
+- [x] Reviewed existing `fill.js`.
+- [x] Cross-checked key behavior against MDN.
+- [x] Moved the reviewed pair into `src/array/methods/instance/fill/`.
+- [x] Rewrote `fill.js` using the runnable JS teaching pattern.
+- [x] Created `fill.md` using the repo study-note teaching pattern.
+- [x] Covered mutation, same-array return, `start`, `end`, negative indexes,
+  no-op ranges, empty arrays, sparse arrays, object references, matrix rows, and
+  generic behavior.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/fill/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Decide whether to commit this sprint.
+- [x] Committed as `docs: add array fill study pair`.
 
 ### Structure Note: Array Method Buckets
 
