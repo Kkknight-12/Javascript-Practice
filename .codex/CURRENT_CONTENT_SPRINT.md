@@ -2,18 +2,17 @@
 
 ## Active Story
 
-### JS-CONTENT-001P: Review Array Find And Some Pair
+### JS-CONTENT-001R: Review Array Flat Pair
 
-As the repo owner, I want the `Array.prototype.find()` plus
-`Array.prototype.some()` comparison page to be clear, beginner-friendly,
-deterministic in the terminal, and useful as a high-quality JavaScript
-array-method page. Future website reuse is secondary and not part of the current
-sprint.
+As the repo owner, I want the `Array.prototype.flat()` page to be clear,
+beginner-friendly, deterministic in the terminal, and useful as a high-quality
+JavaScript array-method page. Future website reuse is secondary and not part of
+the current sprint.
 
 ## Current Folder
 
 ```text
-src/array/methods/instance/find-some/
+src/array/methods/instance/flat/
 ```
 
 ## Current Files
@@ -21,51 +20,55 @@ src/array/methods/instance/find-some/
 Primary explanation:
 
 ```text
-src/array/methods/instance/find-some/find-some.md
+src/array/methods/instance/flat/flat.md
 ```
 
 Paired runnable example:
 
 ```text
-src/array/methods/instance/find-some/find-some.js
+src/array/methods/instance/flat/flat.js
 ```
 
 ## Starting Point
 
-- `find-some.js` already existed directly under `src/array/methods/instance/`.
-- The old file mixed a basic `find()` example, mutation inside a callback, and a
-  basic `some()` example.
-- The old page did not clearly separate the return values: `find()` returns a
-  matching element, while `some()` returns a boolean.
-- `entries-find/` already teaches `entries()` plus `find()`, so this page focuses
-  on the `find()` vs `some()` comparison.
-- `findIndex-indexOf.js` still exists for the later index-focused comparison.
-- The reviewed pair now lives in `src/array/methods/instance/find-some/` so the
-  comparison page has its own folder.
+- `flat.js` already existed directly under `src/array/methods/instance/`.
+- The old file showed default depth, custom depth, `Infinity`, and one shallow
+  copy experiment.
+- The old file had useful examples, but the explanation was not organized into
+  the current learner-facing `.js` plus `.md` pattern.
+- The old file mixed `flat()` teaching with a general spread-copy example that
+  did not directly use `flat()`.
+- `concat/` already teaches joining arrays and shallow-copy behavior, so this
+  page compares with `concat()` only briefly.
+- `flatMap.js` still exists for the next page, so this page only introduces
+  `flatMap()` at a high level.
+- The reviewed pair now lives in `src/array/methods/instance/flat/` so the
+  method has its own folder.
 
 ## Reference Findings
 
-Sources checked:
+Source checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
 ```
 
 Key points to teach:
 
-- `find()` returns the first matching element.
-- `find()` returns `undefined` when nothing matches.
-- `some()` returns `true` when at least one element passes.
-- `some()` returns `false` when nothing passes.
-- Both methods stop after the first truthy callback result.
-- The callback receives `element`, `index`, and `array`.
-- Both methods support `thisArg`.
-- Both methods are generic and can work on array-like objects.
-- `find()` visits empty slots and treats them as `undefined`.
-- `some()` skips empty slots.
+- `flat()` creates a new array by concatenating sub-array elements recursively
+  up to the specified depth.
+- The default depth is `1`.
+- `flat(2)` opens two nested array levels.
+- `flat(Infinity)` opens all nested array levels.
+- `flat()` is a copying method and does not mutate the original array.
+- The returned array is a shallow copy, so object references are shared.
+- `flat()` removes empty slots at the root and at flattened levels.
+- Empty slots deeper than the chosen depth stay inside nested arrays that were
+  not opened yet.
+- `flat()` is generic and can be called on array-like objects.
+- `flat()` only flattens real arrays, not array-like objects stored as values.
 
-## Sprint 1: Review Array Find And Some Pair
+## Sprint 1: Review Array Flat Pair
 
 Status: complete
 
@@ -73,16 +76,17 @@ Checklist:
 
 - [x] Confirm current Git status before starting and keep unrelated
   `src/playground/del.js` out of this sprint.
-- [x] Confirm the next unchecked array page is `find-some.js`.
-- [x] Review existing `find-some.js`.
-- [x] Check nearby `entries-find/` and `findIndex-indexOf.js` overlap.
-- [x] Cross-check key behavior against MDN pages for `find()` and `some()`.
-- [x] Move the reviewed pair into `src/array/methods/instance/find-some/`.
-- [x] Rewrite `find-some.js` using the runnable JS teaching pattern.
-- [x] Create `find-some.md` using the repo study-note teaching pattern.
-- [x] Cover return-value differences, early stop, object lookup, existence
-  checks, falsy found values, empty arrays, sparse-array behavior, callback
-  arguments, `thisArg`, and generic behavior.
+- [x] Treat `findIndex-indexOf/` as approved after user review.
+- [x] Confirm the next unchecked array page is `flat.js`.
+- [x] Review existing `flat.js`.
+- [x] Check nearby `concat/` and `flatMap.js` pages for overlap.
+- [x] Cross-check key behavior against MDN for `flat()`.
+- [x] Move the reviewed pair into `src/array/methods/instance/flat/`.
+- [x] Rewrite `flat.js` using the runnable JS teaching pattern.
+- [x] Create `flat.md` using the repo study-note teaching pattern.
+- [x] Cover default depth, custom depth, `Infinity`, depth `0`, non-mutation,
+  shallow copy, sparse arrays, generic behavior, array-like values,
+  `concat()` comparison, and `flatMap()` boundary.
 - [x] Run the `.js` example with Node.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md` after review.
 
@@ -92,11 +96,9 @@ Review List:
 - [x] Confirm the runnable example has clear terminal labels and expected-output
   comments.
 - [x] Confirm common mistakes are covered.
-- [x] Confirm the file pair belongs under
-  `src/array/methods/instance/find-some/`.
-- [x] Confirm this page does not duplicate the earlier `entries-find/` page.
-- [x] Confirm this page does not fully duplicate the later
-  `findIndex-indexOf.js` page.
+- [x] Confirm the file pair belongs under `src/array/methods/instance/flat/`.
+- [x] Confirm this page stays distinct from earlier `concat/` and later
+  `flatMap.js`.
 - [x] Decide whether to commit this sprint.
 - [x] Commit and push this sprint after user approval.
 
@@ -105,5 +107,5 @@ Review List:
 This sprint is complete and approved. The next unchecked array page is:
 
 ```text
-src/array/methods/instance/findIndex-indexOf.js
+src/array/methods/instance/flatMap.js
 ```

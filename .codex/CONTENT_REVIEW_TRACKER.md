@@ -126,8 +126,10 @@ Suggested order:
 - [x] `src/array/methods/instance/filter/filter.md`
 - [x] `src/array/methods/instance/find-some/find-some.js`
 - [x] `src/array/methods/instance/find-some/find-some.md`
-- [ ] `src/array/methods/instance/findIndex-indexOf.js`
-- [ ] `src/array/methods/instance/flat.js`
+- [x] `src/array/methods/instance/findIndex-indexOf/findIndex-indexOf.js`
+- [x] `src/array/methods/instance/findIndex-indexOf/findIndex-indexOf.md`
+- [x] `src/array/methods/instance/flat/flat.js`
+- [x] `src/array/methods/instance/flat/flat.md`
 - [ ] `src/array/methods/instance/flatMap.js`
 - [ ] `src/array/methods/instance/includes.js`
 - [ ] `src/array/methods/instance/Symbol.iterator.js`
@@ -694,6 +696,69 @@ Review List:
   `findIndex-indexOf.js`.
 - [x] Decide whether to commit this sprint.
 - [x] Committed as `docs: add array find-some study pair`.
+
+### Sprint 18: Review Array FindIndex And IndexOf Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after `find-some/`.
+- [x] Reviewed existing `findIndex-indexOf.js`.
+- [x] Checked nearby `find-some/` and `filter/` pages for overlap.
+- [x] Cross-checked key behavior against MDN pages for `indexOf()` and
+  `findIndex()`.
+- [x] Moved the reviewed pair into
+  `src/array/methods/instance/findIndex-indexOf/`.
+- [x] Rewrote `findIndex-indexOf.js` using the runnable JS teaching pattern.
+- [x] Created `findIndex-indexOf.md` using the repo study-note teaching pattern.
+- [x] Covered exact-value search, condition-based index search, `fromIndex`,
+  `-1`, index `0`, strict equality, object references, `NaN`, early stop,
+  callback arguments, `thisArg`, sparse arrays, and generic behavior.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under
+  `src/array/methods/instance/findIndex-indexOf/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Page stays distinct from earlier `find-some/`.
+- [x] Decide whether to commit this sprint.
+- [x] User approved this sprint; commit was not requested at that boundary.
+- [x] Committed together with the `flat()` sprint as
+  `docs: add array index and flat study pairs`.
+
+### Sprint 19: Review Array Flat Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after `findIndex-indexOf/`.
+- [x] Reviewed existing `flat.js`.
+- [x] Checked nearby `concat/` and `flatMap.js` pages for overlap.
+- [x] Cross-checked key behavior against MDN for `flat()`.
+- [x] Moved the reviewed pair into `src/array/methods/instance/flat/`.
+- [x] Rewrote `flat.js` using the runnable JS teaching pattern.
+- [x] Created `flat.md` using the repo study-note teaching pattern.
+- [x] Covered default depth, custom depth, `Infinity`, depth `0`,
+  non-mutation, shallow copy, sparse arrays, generic behavior, array-like
+  values, `concat()` comparison, and `flatMap()` boundary.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/flat/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Page stays distinct from earlier `concat/` and later `flatMap.js`.
+- [x] Decide whether to commit this sprint.
+- [x] Committed as `docs: add array index and flat study pairs`.
 
 ### Structure Note: Array Method Buckets
 
