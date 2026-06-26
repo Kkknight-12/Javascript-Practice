@@ -25,19 +25,11 @@ numbers.some((number) => number > 10)
 
 ## Quick Definition
 
-Both are Array instance methods.
+Both are Array instance methods that search with a callback.
 
-```javascript
-array.find(callbackFn)
-array.find(callbackFn, thisArg)
+Use `find()` when you need the matching value.
 
-array.some(callbackFn)
-array.some(callbackFn, thisArg)
-```
-
-`find()` returns the first matching element.
-
-`some()` returns a boolean.
+Use `some()` when you only need a yes/no answer.
 
 ## Mental Model
 
@@ -51,11 +43,72 @@ some()
 
 Both methods stop early after the first match.
 
+## Syntax
+
+```javascript
+find(callbackFn)
+find(callbackFn, thisArg)
+
+some(callbackFn)
+some(callbackFn, thisArg)
+```
+
+## Parameters
+
+### `callbackFn`
+
+A function that runs while the method is searching.
+
+```javascript
+array.find((value, index, array) => {
+  return condition
+})
+
+array.some((value, index, array) => {
+  return condition
+})
+```
+
+Return a truthy value when the current element matches.
+
+Return a falsy value when the current element does not match.
+
+The callback result is only used as a test. It is not directly returned by
+`find()` or `some()`.
+
+The callback arguments are explained with examples below.
+
+### `thisArg`
+
+An optional value to use as `this` when `callbackFn` is called.
+
+```javascript
+array.find(callbackFn, thisArg)
+array.some(callbackFn, thisArg)
+```
+
+The `thisArg` behavior is explained with an example below.
+
+## Return Value
+
+`find()` returns the first matching element itself.
+
+If nothing matches, `find()` returns `undefined`.
+
+`some()` returns `true` when at least one element matches.
+
+If nothing matches, `some()` returns `false`.
+
+Short version:
+
+```text
+find() -> value or undefined
+some() -> true or false
+```
+
 ## `find()`
 
-`find()` searches from left to right.
-
-It returns the first element whose callback returns truthy.
+`find()` searches from left to right until the callback returns truthy.
 
 ```javascript
 const numbers = [5, 12, 8, 130, 44]
@@ -64,7 +117,7 @@ numbers.find((number) => number > 10)
 // 12
 ```
 
-If nothing matches, it returns `undefined`.
+When nothing matches:
 
 ```javascript
 numbers.find((number) => number > 200)
@@ -74,16 +127,13 @@ numbers.find((number) => number > 200)
 Important:
 
 ```text
-find() returns the element itself.
-It does not return true/false.
-It does not return the callback result.
+find() gives you the original matching element.
+It does not give you true/false or the callback result.
 ```
 
 ## `some()`
 
-`some()` searches from left to right.
-
-It returns `true` as soon as one element passes the callback test.
+`some()` searches from left to right until the callback returns truthy.
 
 ```javascript
 const numbers = [5, 12, 8, 130, 44]
@@ -92,7 +142,7 @@ numbers.some((number) => number > 10)
 // true
 ```
 
-If nothing matches, it returns `false`.
+When nothing matches:
 
 ```javascript
 numbers.some((number) => number > 200)
@@ -103,8 +153,7 @@ Important:
 
 ```text
 some() returns a boolean.
-It does not return the matching element.
-It does not return the callback result.
+It does not give you the matching element or the callback result.
 ```
 
 ## Same Callback, Different Result
@@ -424,6 +473,22 @@ Array.prototype.some.call(arrayLike, (value) => value.length > 5)
 // true
 ```
 
+## When To Use It
+
+Use `find()` when:
+
+1. You need the matching element itself.
+2. You only care about the first match.
+3. You want to read or reuse a matching object from the original array.
+
+Use `some()` when:
+
+1. You only need a yes/no answer.
+2. The matching value could be falsy, such as `0`, `''`, or `false`.
+3. You want the code to read like an existence check.
+
+Use `filter()` when you need all matching elements.
+
 ## Common Mistakes
 
 ### Mistake 1: Using `find()` When You Only Need Yes/No
@@ -516,3 +581,5 @@ the examples.
 
 - [MDN: Array.prototype.find()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
 - [MDN: Array.prototype.some()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
+- [ECMAScript Specification: Array.prototype.find](https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.find)
+- [ECMAScript Specification: Array.prototype.some](https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.some)

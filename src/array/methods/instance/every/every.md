@@ -30,23 +30,11 @@ Are all numbers positive?
 
 `every()` is an Array instance method.
 
-```javascript
-array.every(callbackFn)
-array.every(callbackFn, thisArg)
-```
+It checks each existing element with a callback.
 
-It returns a boolean:
+It answers whether every checked element passed the callback test.
 
-```text
-true  -> every checked element passed
-false -> at least one checked element failed
-```
-
-It does not return the passing elements.
-
-It does not return the failing element.
-
-It does not return a new array.
+It returns `true` or `false`.
 
 ## Mental Model
 
@@ -69,6 +57,52 @@ Short version:
 ```text
 every() looks for the first failure.
 ```
+
+## Syntax
+
+```javascript
+array.every(callbackFn)
+array.every(callbackFn, thisArg)
+```
+
+## Parameters
+
+`callbackFn` is the function that tests each existing element.
+
+```javascript
+array.every((value, index, array) => {
+  // return truthy when this element passes
+  // return falsy when this element fails
+})
+```
+
+The callback receives:
+
+```text
+value -> current element
+index -> current index
+array -> original array being checked
+```
+
+`thisArg` is optional.
+
+Use it when you deliberately want a normal function callback to receive a
+specific `this` value.
+
+## Return Value
+
+`every()` returns a boolean.
+
+```text
+true  -> every checked element passed
+false -> at least one checked element failed
+```
+
+It does not return the passing elements.
+
+It does not return the failing element.
+
+It does not return a new array.
 
 ## Basic Example
 
@@ -342,6 +376,37 @@ every() stops when it finds the first failure.
 some() stops when it finds the first success.
 ```
 
+## When To Use It
+
+Use `every()` when one failure should make the whole answer `false`.
+
+Good fits:
+
+```text
+all form fields are filled
+all scores are passing
+all required permissions are available
+all numbers follow a rule
+all selected items are valid
+```
+
+Use another method when the question is different:
+
+```text
+Need at least one passing item? -> some()
+Need the passing items?         -> filter()
+Need the first matching item?   -> find()
+Need the first matching index?  -> findIndex()
+Need transformed values?        -> map()
+```
+
+If an empty array should not pass your rule, combine `every()` with a length
+check.
+
+```javascript
+items.length > 0 && items.every((item) => item.isValid)
+```
+
 ## Does `every()` Mutate The Array?
 
 No.
@@ -498,3 +563,4 @@ the examples.
 ## References
 
 - [MDN: Array.prototype.every()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
+- [ECMAScript Specification: Array.prototype.every](https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.every)

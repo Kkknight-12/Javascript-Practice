@@ -30,11 +30,6 @@ search results that match a query
 
 `filter()` is an Array instance method.
 
-```javascript
-array.filter(callbackFn)
-array.filter(callbackFn, thisArg)
-```
-
 It returns a new array.
 
 It does not mutate the original array.
@@ -83,7 +78,46 @@ numbers
 // [5, 12, 8, 130, 44]
 ```
 
-## Return Rule
+## Syntax
+
+```javascript
+filter(callbackFn)
+filter(callbackFn, thisArg)
+```
+
+## Parameters
+
+### `callbackFn`
+
+A function that runs for each existing element in the array.
+
+```javascript
+array.filter((value, index, array) => {
+  return condition
+})
+```
+
+Return a truthy value to keep the current element.
+
+Return a falsy value to skip the current element.
+
+The callback result decides keep or skip.
+
+The callback result does not become the value in the new array.
+
+The callback arguments are explained with examples below.
+
+### `thisArg`
+
+An optional value to use as `this` when `callbackFn` is called.
+
+```javascript
+array.filter(callbackFn, thisArg)
+```
+
+The `thisArg` behavior is explained with an example below.
+
+## Return Value
 
 `filter()` returns a new array.
 
@@ -360,6 +394,21 @@ const checks = await Promise.all(items.map(asyncCheck))
 const filteredItems = items.filter((item, index) => checks[index])
 ```
 
+## When To Use It
+
+Use `filter()` when:
+
+1. You need all elements that match a condition.
+2. You want to remove unwanted items without changing the original array.
+3. You want to keep original values, not transform them.
+4. You expect zero, one, or many matches.
+
+Use `find()` when you only need the first matching element.
+
+Use `some()` when you only need a yes/no answer.
+
+Use `map()` when you want to transform every element.
+
 ## Common Mistakes
 
 ### Mistake 1: Expecting `filter()` To Transform Values
@@ -451,3 +500,4 @@ the examples.
 ## References
 
 - [MDN: Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+- [ECMAScript Specification: Array.prototype.filter](https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.filter)

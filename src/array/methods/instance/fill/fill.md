@@ -18,17 +18,13 @@ static value.
 
 `fill()` is an Array instance method.
 
-```javascript
-array.fill(value)
-array.fill(value, start)
-array.fill(value, start, end)
-```
-
-It changes the original array.
-
-It returns the modified same array.
+It writes one value into selected indexes of the original array.
 
 It does not create a new array.
+
+It returns the same array after changing it.
+
+It does not change the array length.
 
 ## Mental Model
 
@@ -63,7 +59,67 @@ numbers
 // [0, 0, 0, 0]
 ```
 
-## Return Rule
+## Syntax
+
+```javascript
+fill(value)
+fill(value, start)
+fill(value, start, end)
+```
+
+## Parameters
+
+### `value`
+
+The value that should be written into the selected indexes.
+
+```javascript
+['a', 'b', 'c'].fill('x')
+// ['x', 'x', 'x']
+```
+
+If the value is an object or array, each filled slot receives the same
+reference.
+
+### `start`
+
+The first index to fill.
+
+`start` is included.
+
+```javascript
+const scores = [10, 20, 30, 40, 50]
+
+scores.fill(100, 2)
+// [10, 20, 100, 100, 100]
+```
+
+If `start` is omitted, filling starts at index `0`.
+
+If `start` is negative, it counts backward from the end of the array.
+
+### `end`
+
+The index where filling should stop.
+
+`end` is excluded.
+
+```javascript
+const seats = ['open', 'open', 'open', 'open', 'open']
+
+seats.fill('booked', 1, 4)
+// ['open', 'booked', 'booked', 'booked', 'open']
+```
+
+Index `1`, `2`, and `3` changed.
+
+Index `4` did not change because `end` is not included.
+
+If `end` is omitted, filling continues to the end of the array.
+
+If `end` is negative, it counts backward from the end of the array.
+
+## Return Value
 
 `fill()` returns the same array reference after changing it.
 
@@ -82,55 +138,6 @@ result === letters
 ```
 
 This is different from non-mutating methods like `concat()` or `slice()`.
-
-## Syntax
-
-```javascript
-fill(value)
-fill(value, start)
-fill(value, start, end)
-```
-
-### `value`
-
-The value that should be written into the selected indexes.
-
-```javascript
-['a', 'b', 'c'].fill('x')
-// ['x', 'x', 'x']
-```
-
-### `start`
-
-The first index to fill.
-
-`start` is included.
-
-```javascript
-const scores = [10, 20, 30, 40, 50]
-
-scores.fill(100, 2)
-// [10, 20, 100, 100, 100]
-```
-
-If `start` is omitted, filling starts at index `0`.
-
-### `end`
-
-The index where filling should stop.
-
-`end` is excluded.
-
-```javascript
-const seats = ['open', 'open', 'open', 'open', 'open']
-
-seats.fill('booked', 1, 4)
-// ['open', 'booked', 'booked', 'booked', 'open']
-```
-
-Index `1`, `2`, and `3` changed.
-
-Index `4` did not change because `end` is not included.
 
 ## Negative Indexes
 
@@ -307,6 +314,21 @@ Array.prototype.fill.call(arrayLike, 'item')
 
 In everyday code, you will usually call `fill()` on arrays.
 
+`fill()` is not a good fit for strings even though strings are array-like,
+because strings are immutable.
+
+## When To Use It
+
+Use `fill()` when:
+
+1. You already have an array with a known length.
+2. You want to put the same primitive value into many positions.
+3. You want to reset a range of indexes in an existing array.
+4. You understand that object and array values will be shared by reference.
+
+For separate objects, separate rows, or computed values, prefer `Array.from()`
+with a mapping function.
+
 ## Common Mistakes
 
 ### Mistake 1: Expecting A New Array
@@ -370,15 +392,16 @@ Array.from({ length: 3 }, () => Array(2).fill(0))
 1. `fill()` is an Array instance method.
 2. It mutates the original array.
 3. It returns the modified same array.
-4. `start` is included.
-5. `end` is excluded.
-6. Negative indexes count backward from the end.
-7. If the selected range is empty, nothing changes.
-8. `fill()` cannot add length to an empty array.
-9. `fill()` fills empty slots in sparse arrays.
-10. Object values are shared by reference.
-11. Use `Array.from()` when each slot needs a fresh object or fresh row.
-12. `fill()` is generic and can work on array-like objects.
+4. It does not change the array length.
+5. `start` is included.
+6. `end` is excluded.
+7. Negative indexes count backward from the end.
+8. If the selected range is empty, nothing changes.
+9. `fill()` cannot add length to an empty array.
+10. `fill()` fills empty slots in sparse arrays.
+11. Object values are shared by reference.
+12. Use `Array.from()` when each slot needs a fresh object or fresh row.
+13. `fill()` is generic and can work on array-like objects.
 
 ## Runnable Practice File
 
@@ -394,3 +417,4 @@ the examples.
 ## References
 
 - [MDN: Array.prototype.fill()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill)
+- [ECMAScript Specification: Array.prototype.fill](https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.fill)

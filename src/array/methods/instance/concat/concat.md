@@ -59,7 +59,46 @@ concat(value1, value2)
 concat(value1, value2, valueN)
 ```
 
-Arguments can be arrays or normal values.
+## Parameters
+
+`value1`, `value2`, and later values are optional.
+
+They are the arrays or normal values that should be added to the new array.
+
+```javascript
+['a'].concat(['b', 'c'], 'd')
+// ['a', 'b', 'c', 'd']
+```
+
+Important:
+
+```text
+Array arguments are spread one level.
+Normal values are added as values.
+Array-like objects are added as values unless Symbol.isConcatSpreadable is true.
+```
+
+## Return Value
+
+`concat()` returns a new array.
+
+```javascript
+const letters = ['a', 'b']
+const result = letters.concat('c')
+
+result
+// ['a', 'b', 'c']
+
+result === letters
+// false
+```
+
+It does not mutate the array before the dot.
+
+It does not mutate the arrays passed as arguments.
+
+The returned array is shallow, so nested objects and nested arrays are still
+shared by reference.
 
 ## Basic Merge
 
@@ -258,6 +297,30 @@ values.push(3)
 
 values
 // [1, 2, 3]
+```
+
+## When To Use It
+
+Use `concat()` when you want a new merged array without mutating the source
+arrays.
+
+Good fits:
+
+```text
+joining two or more arrays
+adding a value while keeping the old array unchanged
+creating a shallow copy with array.concat()
+working in method-chain style
+using Symbol.isConcatSpreadable behavior intentionally
+```
+
+Use another tool when the question is different:
+
+```text
+Need to mutate the original array? -> push()
+Need deep flattening?              -> flat()
+Need shorter literal merge syntax? -> spread syntax
+Need deep cloning?                 -> structuredClone() or a custom clone strategy
 ```
 
 ## `concat()` Vs Spread Syntax

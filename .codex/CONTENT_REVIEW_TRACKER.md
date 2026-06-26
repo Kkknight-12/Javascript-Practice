@@ -130,8 +130,10 @@ Suggested order:
 - [x] `src/array/methods/instance/findIndex-indexOf/findIndex-indexOf.md`
 - [x] `src/array/methods/instance/flat/flat.js`
 - [x] `src/array/methods/instance/flat/flat.md`
-- [ ] `src/array/methods/instance/flatMap.js`
-- [ ] `src/array/methods/instance/includes.js`
+- [x] `src/array/methods/instance/flatMap/flatMap.js`
+- [x] `src/array/methods/instance/flatMap/flatMap.md`
+- [x] `src/array/methods/instance/includes/includes.js`
+- [x] `src/array/methods/instance/includes/includes.md`
 - [ ] `src/array/methods/instance/Symbol.iterator.js`
 - [ ] `src/array/methods/instance/map-filter.js`
 - [ ] `src/array/methods/instance/reduce.js`
@@ -759,6 +761,227 @@ Review List:
 - [x] Page stays distinct from earlier `concat/` and later `flatMap.js`.
 - [x] Decide whether to commit this sprint.
 - [x] Committed as `docs: add array index and flat study pairs`.
+
+### Sprint 20: Review Array FlatMap Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after `flat/`.
+- [x] Reviewed existing `flatMap.js`.
+- [x] Checked nearby `flat/`, `filter/`, and `map-filter.js` pages for overlap.
+- [x] Cross-checked key behavior against MDN for `flatMap()`.
+- [x] Moved the reviewed pair into `src/array/methods/instance/flatMap/`.
+- [x] Rewrote `flatMap.js` using the runnable JS teaching pattern.
+- [x] Created `flatMap.md` using the repo study-note teaching pattern.
+- [x] Covered `map().flat(1)`, one-level flattening, zero/one/many outputs,
+  non-array return values, splitting strings, callback arguments, `thisArg`,
+  sparse arrays, returned array-like objects, generic behavior, async callback
+  gotcha, and boundaries with `flat()` plus `filter().map()`.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/flatMap/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Page stays distinct from earlier `flat/` and later `map-filter.js`.
+- [x] Decide whether to commit this sprint.
+- [x] User approved moving to `includes.js`; commit was not requested at this
+  boundary.
+
+### Sprint 21: Review Array Includes Pair
+
+Status: review
+
+Checklist:
+
+- [x] Chosen as the next array page after `flatMap/`.
+- [x] Reviewed existing `includes.js`.
+- [x] Checked nearby `findIndex-indexOf/`, `find-some/`, and `flatMap/` pages
+  for overlap.
+- [x] Cross-checked key behavior against MDN and the ECMAScript spec for
+  `includes()`.
+- [x] Moved the reviewed pair into `src/array/methods/instance/includes/`.
+- [x] Rewrote `includes.js` using the runnable JS teaching pattern.
+- [x] Created `includes.md` using the repo study-note teaching pattern.
+- [x] Polished `includes.md` after review so it explicitly includes the
+  standard `Syntax`, `Parameters`, `Return Value`, `Important Notes`, and
+  `When To Use It` sections.
+- [x] Covered boolean return, exact value search, string-vs-array `includes()`,
+  no type coercion, `fromIndex`, negative `fromIndex`, `SameValueZero`, `NaN`,
+  `0`/`-0`, object references, `some()` comparison, empty arrays, sparse arrays,
+  and generic behavior.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+- [x] Added a Codex memory update to require a post-draft note-format check.
+- [x] Audited existing `.md` notes for the same heading-format gaps.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/includes/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Page stays distinct from earlier `findIndex-indexOf/` and `find-some/`.
+- [x] `includes.md` now follows the documented study-note format more closely
+  than the first draft.
+- [ ] Decide whether to commit this sprint.
+
+### Note Quality Cleanup: Array Concat
+
+Status: review
+
+Checklist:
+
+- [x] Rechecked `concat.md` against the topic, MDN, and the flexible
+  `Array.from` quality baseline.
+- [x] Confirmed the page content is already strong and does not need a rewrite.
+- [x] Added natural `Parameters`, `Return Value`, and `When To Use It` sections
+  because they improve scanability for this topic.
+- [x] Left `concat.js` unchanged because the runnable teaching file already
+  matches the current pattern.
+- [x] Ran `node src/array/methods/instance/concat/concat.js`.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] Polish improves clarity without forcing a rigid template.
+- [x] Existing examples and MDN-backed behavior are preserved.
+- [ ] Decide whether to commit this cleanup with the current content batch.
+
+### Note Quality Cleanup: Array Entries And Find
+
+Status: review
+
+Checklist:
+
+- [x] Rechecked `entries-find.md` against the combined topic, MDN pages for
+  `entries()` and `find()`, the paired runnable file, and the flexible
+  `Array.from` quality baseline.
+- [x] Confirmed the page should keep its combined flow: teach `entries()`,
+  teach `find()`, then combine them.
+- [x] Added natural `Quick Definition`, `Syntax`, `Parameters`, `Return Value`,
+  and `When To Use It` sections because they improve scanability for this
+  topic.
+- [x] Left `entries-find.js` unchanged because the runnable teaching file
+  already matches the current pattern.
+- [x] Ran `node src/array/methods/instance/entries-find/entries-find.js`.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] Polish improves clarity without forcing a rigid template.
+- [x] Existing examples and MDN-backed behavior are preserved.
+- [x] Page still keeps `find()` return behavior explained once before combining
+  it with `entries()`.
+- [ ] Decide whether to commit this cleanup with the current content batch.
+
+### Note Quality Cleanup: Array Every
+
+Status: review
+
+Checklist:
+
+- [x] Rechecked `every.md` against the topic, MDN, the ECMAScript spec, the
+  paired runnable file, and the flexible `Array.from` quality baseline.
+- [x] Confirmed the page content is already strong and does not need a rewrite.
+- [x] Added natural `Syntax`, `Parameters`, `Return Value`, and
+  `When To Use It` sections because they improve scanability for this topic.
+- [x] Added the ECMAScript spec reference beside MDN.
+- [x] Left `every.js` unchanged because the runnable teaching file already
+  matches the current pattern.
+- [x] Ran `node src/array/methods/instance/every/every.js`.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] Polish improves clarity without forcing a rigid template.
+- [x] Existing examples and MDN-backed behavior are preserved.
+- [x] Empty-array, sparse-array, and async callback gotchas remain clear.
+- [ ] Decide whether to commit this cleanup with the current content batch.
+
+### Note Quality Cleanup: Array Fill
+
+Status: review
+
+Checklist:
+
+- [x] Rechecked `fill.md` against the topic, MDN, the ECMAScript spec, the
+  paired runnable file, and the flexible `Array.from` quality baseline.
+- [x] Confirmed the page content is already strong and does not need a rewrite.
+- [x] Added natural `Parameters`, `Return Value`, and `When To Use It` sections
+  because they improve scanability for this topic.
+- [x] Added the ECMAScript spec reference beside MDN.
+- [x] Left `fill.js` unchanged because the runnable teaching file already
+  matches the current pattern.
+- [x] Ran `node src/array/methods/instance/fill/fill.js`.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] Polish improves clarity without forcing a rigid template.
+- [x] Existing examples and MDN-backed behavior are preserved.
+- [x] Mutation, range behavior, empty arrays, sparse arrays, shared references,
+  and matrix-row gotchas remain clear.
+- [ ] Decide whether to commit this cleanup with the current content batch.
+
+### Note Quality Cleanup: Array Filter
+
+Status: review
+
+Checklist:
+
+- [x] Rechecked `filter.md` against the topic, MDN, the ECMAScript spec, the
+  paired runnable file, and the flexible `Array.from` quality baseline.
+- [x] Confirmed the page content is already strong and does not need a rewrite.
+- [x] Added natural `Syntax`, `Parameters`, `Return Value`, and
+  `When To Use It` sections because they improve scanability for this topic.
+- [x] Added the ECMAScript spec reference beside MDN.
+- [x] Left `filter.js` unchanged because the runnable teaching file already
+  matches the current pattern.
+- [x] Ran `node src/array/methods/instance/filter/filter.js`.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] Polish improves clarity without forcing a rigid template.
+- [x] Existing examples and MDN-backed behavior are preserved.
+- [x] Keep/skip behavior, shallow-copy references, callback arguments,
+  sparse-array behavior, and async callback gotcha remain clear.
+- [ ] Decide whether to commit this cleanup with the current content batch.
+
+### Note Quality Cleanup: Array Find And Some
+
+Status: review
+
+Checklist:
+
+- [x] Rechecked `find-some.md` against the combined topic, MDN pages for
+  `find()` and `some()`, the ECMAScript spec entries, the paired runnable file,
+  and the flexible `Array.from` quality baseline.
+- [x] Confirmed the page should keep its comparison flow instead of splitting
+  the two methods apart.
+- [x] Added natural `Syntax`, `Parameters`, `Return Value`, and
+  `When To Use It` sections because they improve scanability for this topic.
+- [x] Tightened duplicate return wording so `find()` and `some()` return
+  behavior is summarized once, then reinforced through examples.
+- [x] Added ECMAScript spec references beside MDN.
+- [x] Left `find-some.js` unchanged because the runnable teaching file already
+  matches the current pattern.
+- [x] Ran `node src/array/methods/instance/find-some/find-some.js`.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] Polish improves clarity without forcing a rigid template.
+- [x] Existing examples and MDN/spec-backed behavior are preserved.
+- [x] Different return values, falsy found values, empty arrays, sparse-array
+  difference, callback arguments, and `thisArg` remain clear.
+- [ ] Decide whether to commit this cleanup with the current content batch.
 
 ### Structure Note: Array Method Buckets
 

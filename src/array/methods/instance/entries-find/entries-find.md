@@ -1,4 +1,4 @@
-# Array.entries() With find()
+# Array.prototype.entries() With Array.prototype.find()
 
 ## What Problem Does It Solve?
 
@@ -16,6 +16,24 @@ Use `find()` when you need the first element that matches a condition.
 Then combine them when you need to loop over one list and search inside each
 item.
 
+## Quick Definition
+
+`entries()` is an Array instance method.
+
+It returns an iterator that gives `[index, value]` pairs.
+
+`find()` is also an Array instance method.
+
+It returns the first element that passes a callback test.
+
+This page combines them because the pattern is useful when you need:
+
+```text
+the outer index
+the outer value
+the first matching item inside that value
+```
+
 ## Mental Model
 
 ```text
@@ -27,6 +45,76 @@ find()
 
 entries() + find()
   -> loop with index, then search inside each value
+```
+
+## Syntax
+
+```javascript
+array.entries()
+
+array.find(callbackFn)
+array.find(callbackFn, thisArg)
+```
+
+## Parameters
+
+`entries()` does not take parameters.
+
+```javascript
+array.entries()
+```
+
+`find()` takes a callback function.
+
+```javascript
+array.find((value, index, array) => {
+  // return truthy when this value should be selected
+})
+```
+
+The callback receives:
+
+```text
+value -> current element
+index -> current index
+array -> original array being searched
+```
+
+`thisArg` is optional.
+
+Use it only when you deliberately want a normal function callback to receive a
+specific `this` value.
+
+## Return Value
+
+`entries()` returns an array iterator object.
+
+```javascript
+const iterator = ['a', 'b'].entries()
+
+Array.isArray(iterator)
+// false
+```
+
+Each iterator value is an `[index, value]` pair.
+
+```javascript
+iterator.next().value
+// [0, 'a']
+```
+
+`find()` returns the matching element itself.
+
+```javascript
+[5, 12, 8].find((number) => number > 10)
+// 12
+```
+
+If nothing matches, `find()` returns `undefined`.
+
+```javascript
+[5, 12, 8].find((number) => number > 100)
+// undefined
 ```
 
 ## Part 1: `entries()`
@@ -319,6 +407,45 @@ const user = {
 
 Object.entries(user)
 // [['name', 'Mayank'], ['role', 'learner']]
+```
+
+## When To Use It
+
+Use `entries()` when you need index and value while looping.
+
+```javascript
+for (const [index, value] of array.entries()) {
+  // use index and value together
+}
+```
+
+Use `find()` when you need the first matching element.
+
+```javascript
+users.find((user) => user.id === 2)
+```
+
+Use them together when the outer loop needs an index, but each outer value also
+needs an inner search.
+
+Good fits:
+
+```text
+checking winning combinations
+scanning rows and finding the first matching cell
+looping sections and finding the first matching item inside each section
+building debug output that needs both the outer position and matching value
+```
+
+Use a different method when the question is different:
+
+```text
+Need only indexes from an array?       -> keys()
+Need only values from an array?        -> values() or normal iteration
+Need all matching inner values?        -> filter()
+Need only yes/no existence?            -> some()
+Need the matching index instead?       -> findIndex()
+Need object key/value pairs?           -> Object.entries()
 ```
 
 ## Common Mistakes
