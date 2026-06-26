@@ -261,3 +261,20 @@ Checklist:
 - [x] Avoid changing the runnable `.js` file.
 - [x] Run verification after the polish.
 - [ ] Decide whether to commit this cleanup with the current content batch.
+
+Current doubt note:
+
+```text
+src/array/methods/instance/includes/doubt/same-value-zero.md
+```
+
+Status: review
+
+Checklist:
+
+- [x] Keep the deeper SameValueZero explanation outside `includes.md`.
+- [x] Explain SameValueZero as an internal equality algorithm.
+- [x] Cover `NaN`, `0`/`-0`, no type coercion, object references,
+  `===`, and `Object.is()`.
+- [x] Add trusted references.
+- [ ] Decide whether to commit this doubt note.

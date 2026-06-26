@@ -134,6 +134,7 @@ Suggested order:
 - [x] `src/array/methods/instance/flatMap/flatMap.md`
 - [x] `src/array/methods/instance/includes/includes.js`
 - [x] `src/array/methods/instance/includes/includes.md`
+- [x] `src/array/methods/instance/includes/doubt/same-value-zero.md`
 - [ ] `src/array/methods/instance/Symbol.iterator.js`
 - [ ] `src/array/methods/instance/map-filter.js`
 - [ ] `src/array/methods/instance/reduce.js`
@@ -982,6 +983,26 @@ Review List:
 - [x] Different return values, falsy found values, empty arrays, sparse-array
   difference, callback arguments, and `thisArg` remain clear.
 - [ ] Decide whether to commit this cleanup with the current content batch.
+
+### Doubt Note: SameValueZero
+
+Status: review
+
+Checklist:
+
+- [x] Created `src/array/methods/instance/includes/doubt/same-value-zero.md`.
+- [x] Kept the deeper explanation outside `includes.md` as requested.
+- [x] Explained SameValueZero as an internal equality algorithm, not a callable
+  user-facing function.
+- [x] Covered `NaN`, `0`/`-0`, no type coercion, object reference matching,
+  comparison with `===`, and comparison with `Object.is()`.
+- [x] Added ECMAScript and MDN references.
+
+Review List:
+
+- [x] Note is close to the `includes()` topic without expanding `includes.md`.
+- [x] Explanation is beginner-friendly and algorithm-focused.
+- [ ] Decide whether to commit this doubt note.
 
 ### Structure Note: Array Method Buckets
 
