@@ -189,6 +189,260 @@ That is how one shared method can work on many different arrays.
 // this -> ['a', 'b']
 ```
 
+## `Array.prototype.method.call(this, callback)`
+
+`Array.prototype.method.call(this, callback)` means:
+
+```text
+Take an Array method from Array.prototype.
+Run it with this pointing to another value.
+Use callback as the test or transform function when that method needs one.
+```
+
+Here `this` does not mean a random variable name.
+
+It means:
+
+```text
+the value that the Array method should work on
+```
+
+For a real array, JavaScript sets `this` automatically.
+
+```javascript
+const numbers = [2, 4, 6]
+
+numbers.every((number) => number % 2 === 0)
+// true
+```
+
+Inside `every()`, `this` is `numbers`.
+
+So this direct call:
+
+```javascript
+numbers.every(callback)
+```
+
+is similar to this borrowed-method call:
+
+```javascript
+Array.prototype.every.call(numbers, callback)
+```
+
+In normal code, use the direct version for real arrays because it is cleaner.
+
+## Why Borrow With `.call()`?
+
+Use `.call()` when the value is array-like, but not a real array.
+
+An array-like value has:
+
+```text
+length
+numeric keys like 0, 1, 2
+```
+
+But it may not have Array methods like `.every()`, `.map()`, or `.filter()`.
+
+Common array-like values:
+
+```text
+arguments
+NodeList
+HTMLCollection
+custom objects with length and numeric keys
+strings
+```
+
+So this may not work:
+
+```javascript
+arrayLike.every(callback)
+```
+
+because `arrayLike` may not have its own `every()` method.
+
+Borrow the method instead:
+
+```javascript
+Array.prototype.every.call(arrayLike, callback)
+```
+
+Read it like:
+
+```text
+Use Array.prototype.every.
+But make it work on arrayLike.
+Use callback for the condition.
+```
+
+## When To Use Which?
+
+### Use The Direct Method For Real Arrays
+
+Use the direct method when you have a real array.
+
+Examples:
+
+```javascript
+const literalArray = [1, 2, 3]
+const constructedArray = new Array(1, 2, 3)
+const convertedArray = Array.from('abc')
+```
+
+Direct calls are the most common and recommended style:
+
+```javascript
+literalArray.every(callback)
+convertedArray.map(callback)
+```
+
+Use this style because it is the cleanest syntax and JavaScript automatically
+sets `this` to the array before the dot.
+
+### Use `.call()` For Array-Like Values
+
+Use `Array.prototype.method.call()` when you are working with an array-like
+value.
+
+Common examples:
+
+```text
+arguments object in regular functions
+NodeList from document.querySelectorAll()
+HTMLCollection
+custom objects with length and numeric keys
+strings
+legacy code or libraries that return array-like objects
+```
+
+Example:
+
+```javascript
+Array.prototype.every.call(arrayLike, callback)
+```
+
+You may also see `.apply()`:
+
+```javascript
+Array.prototype.every.apply(arrayLike, [callback])
+```
+
+Both examples borrow `every()` from `Array.prototype`.
+
+The difference is how arguments are passed:
+
+```text
+call(thisValue, arg1, arg2)
+apply(thisValue, [arg1, arg2])
+```
+
+For most modern code, prefer `.call()` here because it is easier to read.
+
+Small caution: strings are array-like, so many read-style methods can inspect
+their characters. Mutating Array methods are not a good fit for strings because
+strings are immutable.
+
+Another practical option is to convert the array-like value first:
+
+```javascript
+const values = Array.from(arrayLike)
+
+values.every(callback)
+values.map(callback)
+values.filter(callback)
+```
+
+This is often clearer when you need to use several Array methods on the same
+array-like value.
+
+Quick rule:
+
+```text
+Direct call:
+array.method(callback)
+
+Borrowed call:
+Array.prototype.method.call(valueToUseAsThis, callback)
+```
+
+## Examples With Different Methods
+
+```javascript
+const arrayLike = {
+  0: 'html',
+  1: 'css',
+  2: 'javascript',
+  length: 3,
+}
+```
+
+### `every()`
+
+```javascript
+Array.prototype.every.call(arrayLike, (value) => value.length > 0)
+// true
+```
+
+Meaning:
+
+```text
+Check whether every value is non-empty.
+```
+
+### `some()`
+
+```javascript
+Array.prototype.some.call(arrayLike, (value) => value === 'javascript')
+// true
+```
+
+Meaning:
+
+```text
+Check whether at least one value is "javascript".
+```
+
+### `map()`
+
+```javascript
+Array.prototype.map.call(arrayLike, (value) => value.toUpperCase())
+// [ 'HTML', 'CSS', 'JAVASCRIPT' ]
+```
+
+Meaning:
+
+```text
+Transform every value and return a new real array.
+```
+
+### `filter()`
+
+```javascript
+Array.prototype.filter.call(arrayLike, (value) => value.length > 3)
+// [ 'html', 'javascript' ]
+```
+
+Meaning:
+
+```text
+Keep only the values that pass the condition.
+```
+
+### `find()`
+
+```javascript
+Array.prototype.find.call(arrayLike, (value) => value.startsWith('j'))
+// 'javascript'
+```
+
+Meaning:
+
+```text
+Return the first value that matches.
+```
+
 ## Instance Method Vs Static Method
 
 An instance method is called on an array value.
@@ -417,11 +671,15 @@ closer to built-in array method behavior.
 3. The normal chain is `array -> Array.prototype -> Object.prototype -> null`.
 4. JavaScript checks own properties before prototype properties.
 5. Instance methods live on `Array.prototype`.
-6. Static methods live on `Array`.
-7. Iteration methods visit items.
-8. Mutator methods change the original array.
-9. Accessor and copying methods do not mutate the original array.
-10. Monkey patching built-in prototypes is useful for learning, but risky in
+6. Direct array method calls set `this` automatically to the array before the
+   dot.
+7. `Array.prototype.method.call(arrayLike, callback)` borrows an Array method
+   for an array-like value.
+8. Static methods live on `Array`.
+9. Iteration methods visit items.
+10. Mutator methods change the original array.
+11. Accessor and copying methods do not mutate the original array.
+12. Monkey patching built-in prototypes is useful for learning, but risky in
     production.
 
 ## Runnable Practice File

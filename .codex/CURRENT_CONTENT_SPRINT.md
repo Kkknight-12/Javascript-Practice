@@ -2,17 +2,17 @@
 
 ## Active Story
 
-### JS-CONTENT-001T: Review Array Includes Pair
+### JS-CONTENT-001U: Review Array Symbol.iterator Pair
 
-As the repo owner, I want the `Array.prototype.includes()` page to be clear,
-beginner-friendly, deterministic in the terminal, and useful as a high-quality
-JavaScript array-method page. Future website reuse is secondary and not part of
-the current sprint.
+As the repo owner, I want the `Array.prototype[Symbol.iterator]()` page to be
+clear, beginner-friendly, deterministic in the terminal, and useful as a
+high-quality JavaScript array-method page. Future website reuse is secondary and
+not part of the current sprint.
 
 ## Current Folder
 
 ```text
-src/array/methods/instance/includes/
+src/array/methods/instance/Symbol.iterator/
 ```
 
 ## Current Files
@@ -20,59 +20,59 @@ src/array/methods/instance/includes/
 Primary explanation:
 
 ```text
-src/array/methods/instance/includes/includes.md
+src/array/methods/instance/Symbol.iterator/Symbol.iterator.md
 ```
 
 Paired runnable example:
 
 ```text
-src/array/methods/instance/includes/includes.js
+src/array/methods/instance/Symbol.iterator/Symbol.iterator.js
 ```
 
 ## Starting Point
 
-- `includes.js` already existed directly under `src/array/methods/instance/`.
-- The old file showed basic boolean membership checks and generic array-like
-  behavior.
-- The old file did not clearly explain that `includes()` returns only a boolean,
-  not an index or value.
-- The old file did not cover `fromIndex`, negative `fromIndex`, `SameValueZero`,
-  `NaN`, `0`/`-0`, object references, sparse arrays, empty arrays, or callback
-  mistakes.
-- `findIndex-indexOf/` already teaches index-returning search, so this page
-  focuses on yes/no value membership.
-- `find-some/` already teaches condition-based yes/no checks with `some()`, so
-  this page explains why `includes()` is for exact values, not callbacks.
-- The reviewed pair now lives in `src/array/methods/instance/includes/` so the
-  method has its own folder.
+- `Symbol.iterator.js` already existed directly under
+  `src/array/methods/instance/`.
+- The old file only showed the basic MDN iterator example with `a`, `b`, and
+  `c`.
+- The old file did not explain why arrays work with `for...of`, spread, and
+  destructuring.
+- The old file did not explain that array iterators are stateful and consumed
+  after reading.
+- The old file did not cover `next()`, `values()`, sparse arrays, entry/key
+  comparison, plain object gotchas, or generic behavior.
+- `src/array/loop/for-of/` already teaches the `for...of` statement, so this
+  page focuses on the array iterator method that powers it.
 
 ## Reference Findings
 
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
-https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.includes
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Symbol.iterator
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/values
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
+https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype-%symbol.iterator%
 ```
 
 Key points to teach:
 
-- `includes()` returns `true` when the searched value is found.
-- `includes()` returns `false` when the searched value is not found.
-- `includes()` returns a boolean, not the element or index.
-- `fromIndex` controls where the search starts.
-- A negative `fromIndex` counts back from the end first, but the search still
-  moves left to right.
-- If `fromIndex` is greater than or equal to array length, the array is not
-  searched and `false` is returned.
-- `includes()` uses `SameValueZero` comparison.
-- `includes()` can find `NaN`.
-- `0` and `-0` are treated as equal.
-- Objects are compared by reference.
-- Sparse-array empty slots are treated like `undefined`.
-- `includes()` is generic and can be called on array-like objects.
+- `Array.prototype[Symbol.iterator]()` returns an Array Iterator object.
+- The initial `Symbol.iterator` value on `Array.prototype` is the same function
+  as `Array.prototype.values`.
+- The iterator yields array values in index order.
+- `for...of`, spread, destructuring, and `Array.from()` use the iterator
+  protocol.
+- Calling `next()` manually returns objects with `value` and `done`.
+- Iterator objects are stateful; once consumed, they keep their position.
+- Sparse-array empty slots are read as `undefined`.
+- Plain objects are not iterable by default because they do not have a
+  `Symbol.iterator` method.
+- `entries()` yields index-value pairs, `keys()` yields indexes, and
+  `values()`/`Symbol.iterator` yield values.
+- The method is generic and can be called on array-like objects.
 
-## Sprint 1: Review Array Includes Pair
+## Sprint 1: Review Array Symbol.iterator Pair
 
 Status: review
 
@@ -80,27 +80,25 @@ Checklist:
 
 - [x] Confirm current Git status before starting and keep unrelated
   `src/playground/del.js` out of this sprint.
-- [x] Treat `flatMap/` as approved after user moved to `includes.js`.
-- [x] Confirm the next requested array page is `includes.js`.
-- [x] Review existing `includes.js`.
-- [x] Check nearby `findIndex-indexOf/`, `find-some/`, and `flatMap/` pages for
+- [x] Add the requested Codex memory cleanup note before page work.
+- [x] Treat `includes/` as reviewed and choose the next unchecked array page.
+- [x] Confirm the next requested array page is `Symbol.iterator.js`.
+- [x] Review existing `Symbol.iterator.js`.
+- [x] Check nearby `for-of/`, `entries-find/`, and `includes/` pages for
   overlap.
 - [x] Cross-check key behavior against MDN and the ECMAScript spec for
-  `includes()`.
-- [x] Move the reviewed pair into `src/array/methods/instance/includes/`.
-- [x] Rewrite `includes.js` using the runnable JS teaching pattern.
-- [x] Create `includes.md` using the repo study-note teaching pattern.
-- [x] Polish `includes.md` after review so it explicitly includes the standard
-  `Syntax`, `Parameters`, `Return Value`, `Important Notes`, and
-  `When To Use It` sections.
-- [x] Cover boolean return, exact value search, string-vs-array `includes()`,
-  no type coercion, `fromIndex`, negative `fromIndex`, `SameValueZero`, `NaN`,
-  `0`/`-0`, object references, `some()` comparison, empty arrays, sparse arrays,
-  and generic behavior.
+  `Array.prototype[Symbol.iterator]()`.
+- [x] Move the reviewed pair into
+  `src/array/methods/instance/Symbol.iterator/`.
+- [x] Rewrite `Symbol.iterator.js` using the runnable JS teaching pattern.
+- [x] Create `Symbol.iterator.md` using the repo study-note teaching pattern.
+- [x] Polish `Symbol.iterator.md` with a second note-format review.
+- [x] Cover array iterability, `next()`, iterator state, `for...of`, spread,
+  destructuring, `values()`, `entries()`/`keys()` comparison, sparse arrays,
+  plain object gotcha, and generic array-like behavior.
 - [x] Run the `.js` example with Node.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md` after review.
-- [x] Add a Codex memory update to require a post-draft note-format check.
-- [x] Audit existing `.md` notes for the same heading-format gaps.
+- [x] Run `git diff --check`.
 
 Review List:
 
@@ -108,11 +106,11 @@ Review List:
 - [x] Confirm the runnable example has clear terminal labels and expected-output
   comments.
 - [x] Confirm common mistakes are covered.
-- [x] Confirm the file pair belongs under `src/array/methods/instance/includes/`.
-- [x] Confirm this page stays distinct from earlier `findIndex-indexOf/` and
-  `find-some/`.
-- [x] Confirm `includes.md` now follows the documented study-note format more
-  closely than the first draft.
+- [x] Confirm the file pair belongs under
+  `src/array/methods/instance/Symbol.iterator/`.
+- [x] Confirm this page stays distinct from the earlier `for-of/` loop page.
+- [x] Confirm `Symbol.iterator.md` uses the documented study-note format as a
+  flexible quality checklist.
 - [ ] Decide whether to commit this sprint.
 
 ## Stop Point
@@ -120,7 +118,7 @@ Review List:
 This sprint is ready for review. After approval, the next unchecked array page is:
 
 ```text
-src/array/methods/instance/Symbol.iterator.js
+src/array/methods/instance/map-filter.js
 ```
 
 ## Note Quality Cleanup

@@ -7,8 +7,10 @@
  * 1. Array.prototype
  * 2. prototype chain lookup
  * 3. Object.getPrototypeOf()
- * 4. method categories
- * 5. monkey patching
+ * 4. this inside Array methods
+ * 5. borrowing Array methods with call()
+ * 6. method categories
+ * 7. monkey patching
  *
  * Mental model:
  * "An array stores its own values, but it does not copy every method. Shared
@@ -113,7 +115,60 @@ delete words.join
 console.log('after deleting own join:', words.join(' '))
 // expected output: learn prototype
 
-console.log('--- 4. Instance methods vs static methods ---')
+console.log('--- 4. Direct method vs borrowed method ---')
+
+/*
+ * For real arrays, call the method directly. JavaScript automatically sets
+ * this to the array before the dot.
+ */
+const evenNumbers = [2, 4, 6]
+const isEven = (number) => number % 2 === 0
+
+console.log('direct every on real array:', evenNumbers.every(isEven))
+// expected output: true
+
+/*
+ * You can also borrow the shared method from Array.prototype and manually set
+ * this with call(). This is useful for array-like values.
+ */
+console.log(
+  'borrowed every on real array:',
+  Array.prototype.every.call(evenNumbers, isEven)
+)
+// expected output: true
+
+const arrayLikeTopics = {
+  0: 'html',
+  1: 'css',
+  2: 'javascript',
+  length: 3,
+}
+
+console.log('array-like has own every:', typeof arrayLikeTopics.every)
+// expected output: undefined
+
+console.log(
+  'borrowed every on array-like:',
+  Array.prototype.every.call(arrayLikeTopics, (topic) => topic.length > 0)
+)
+// expected output: true
+
+console.log(
+  'borrowed map on array-like:',
+  Array.prototype.map.call(arrayLikeTopics, (topic) => topic.toUpperCase())
+)
+// expected output: ['HTML', 'CSS', 'JAVASCRIPT']
+
+/*
+ * If you need many Array methods, converting once with Array.from() is often
+ * easier to read than borrowing one method at a time.
+ */
+const topicsArray = Array.from(arrayLikeTopics)
+
+console.log('converted array filter:', topicsArray.filter((topic) => topic.length > 3))
+// expected output: ['html', 'javascript']
+
+console.log('--- 5. Instance methods vs static methods ---')
 
 /*
  * Instance methods live on Array.prototype and are called on array values.
@@ -131,7 +186,7 @@ console.log('numbers.includes(20):', numbers.includes(20))
 console.log('Array.from("JS"):', Array.from('JS'))
 // expected output: ['J', 'S']
 
-console.log('--- 5. Iteration methods ---')
+console.log('--- 6. Iteration methods ---')
 
 /*
  * Iteration methods visit array items.
@@ -167,7 +222,7 @@ console.log('forEach return value:', forEachResult)
 console.log('original after iteration methods:', scores)
 // expected output: [70, 85, 90]
 
-console.log('--- 6. Mutator methods change the original array ---')
+console.log('--- 7. Mutator methods change the original array ---')
 
 /*
  * Mutator methods modify the same array object.
@@ -203,7 +258,7 @@ console.log('original after sort:', sortableNumbers)
 console.log('sort returned same array:', sortedNumbers === sortableNumbers)
 // expected output: true
 
-console.log('--- 7. Accessor and copying methods do not mutate ---')
+console.log('--- 8. Accessor and copying methods do not mutate ---')
 
 /*
  * These methods read from the array or return a new array/value.
@@ -226,7 +281,7 @@ console.log('join:', topics.join(' -> '))
 console.log('original after accessor/copying methods:', topics)
 // expected output: ['prototype', 'scope', 'closure']
 
-console.log('--- 8. Extending Array.prototype is monkey patching ---')
+console.log('--- 9. Extending Array.prototype is monkey patching ---')
 
 /*
  * Monkey patching means changing a built-in object at runtime.
@@ -253,7 +308,7 @@ delete Array.prototype.firstValuePractice
 console.log('method removed after demo:', 'firstValuePractice' in [])
 // expected output: false
 
-console.log('--- 9. Direct assignment warning ---')
+console.log('--- 10. Direct assignment warning ---')
 
 /*
  * Direct assignment creates an enumerable property by default.
@@ -285,4 +340,3 @@ delete Array.prototype.demoEnumerableMethod
 
 console.log('cleanup complete:', 'demoEnumerableMethod' in [])
 // expected output: false
-

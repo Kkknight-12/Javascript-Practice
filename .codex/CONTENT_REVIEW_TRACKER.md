@@ -135,7 +135,8 @@ Suggested order:
 - [x] `src/array/methods/instance/includes/includes.js`
 - [x] `src/array/methods/instance/includes/includes.md`
 - [x] `src/array/methods/instance/includes/doubt/same-value-zero.md`
-- [ ] `src/array/methods/instance/Symbol.iterator.js`
+- [x] `src/array/methods/instance/Symbol.iterator/Symbol.iterator.js`
+- [x] `src/array/methods/instance/Symbol.iterator/Symbol.iterator.md`
 - [ ] `src/array/methods/instance/map-filter.js`
 - [ ] `src/array/methods/instance/reduce.js`
 - [ ] `src/array/methods/instance/reverse.js`
@@ -523,6 +524,34 @@ Review List:
 - [x] Decide whether to commit this sprint.
 - [x] Committed as `docs: add array prototype study section`.
 
+### Follow-up Cleanup: Array Prototype Borrowed Methods
+
+Status: review
+
+Checklist:
+
+- [x] Rechecked `array-prototype.md` against the repo study-note quality bar.
+- [x] Confirmed the page was already strong on prototype chain lookup, own
+  property priority, instance/static methods, method categories, and monkey
+  patching.
+- [x] Cleaned up the borrowed-method explanation so
+  `Array.prototype.method.call(this, callback)` has one clear flow instead of
+  repeated direct-vs-borrowed rules.
+- [x] Added explicit guidance for when to use direct array methods, when to use
+  `.call()` / `.apply()`, and when converting with `Array.from()` is clearer.
+- [x] Added matching runnable examples to `array-prototype.js` for direct
+  `every()`, borrowed `every()`, borrowed `map()`, and `Array.from()`.
+- [x] Ran `node src/array/methods/instance/prototype/concept/array-prototype.js`.
+- [x] Ran `node --check src/array/methods/instance/prototype/concept/array-prototype.js`.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] Explanation is now richer without becoming an `every()`-only note.
+- [x] The shared concept page remains the right home for this reusable pattern.
+- [x] Runnable examples match the Markdown explanation.
+- [ ] Decide whether to commit this cleanup with the current content batch.
+
 ### Sprint 12: Review Array Concat Pair
 
 Status: complete
@@ -830,6 +859,42 @@ Review List:
 - [x] Page stays distinct from earlier `findIndex-indexOf/` and `find-some/`.
 - [x] `includes.md` now follows the documented study-note format more closely
   than the first draft.
+- [ ] Decide whether to commit this sprint.
+
+### Sprint 22: Review Array Symbol.iterator Pair
+
+Status: review
+
+Checklist:
+
+- [x] Chosen as the next array page after `includes/`.
+- [x] Reviewed existing `Symbol.iterator.js`.
+- [x] Checked nearby `for-of/`, `entries-find/`, and `includes/` pages for
+  overlap.
+- [x] Cross-checked key behavior against MDN and the ECMAScript spec for
+  `Array.prototype[Symbol.iterator]()`.
+- [x] Moved the reviewed pair into
+  `src/array/methods/instance/Symbol.iterator/`.
+- [x] Rewrote `Symbol.iterator.js` using the runnable JS teaching pattern.
+- [x] Created `Symbol.iterator.md` using the repo study-note teaching pattern.
+- [x] Polished `Symbol.iterator.md` with a second note-format review.
+- [x] Covered array iterability, `next()`, iterator state, `for...of`, spread,
+  destructuring, `values()`, `entries()`/`keys()` comparison, sparse arrays,
+  plain object gotcha, and generic array-like behavior.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] File pair belongs under
+  `src/array/methods/instance/Symbol.iterator/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Page stays distinct from the earlier `for-of/` loop page.
+- [x] `Symbol.iterator.md` uses the documented study-note format as a flexible
+  quality checklist.
 - [ ] Decide whether to commit this sprint.
 
 ### Note Quality Cleanup: Array Concat
