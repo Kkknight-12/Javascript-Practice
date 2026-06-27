@@ -137,8 +137,10 @@ Suggested order:
 - [x] `src/array/methods/instance/includes/doubt/same-value-zero.md`
 - [x] `src/array/methods/instance/Symbol.iterator/Symbol.iterator.js`
 - [x] `src/array/methods/instance/Symbol.iterator/Symbol.iterator.md`
-- [ ] `src/array/methods/instance/map-filter.js`
-- [ ] `src/array/methods/instance/reduce.js`
+- [x] `src/array/methods/instance/map-filter/map-filter.js`
+- [x] `src/array/methods/instance/map-filter/map-filter.md`
+- [x] `src/array/methods/instance/reduce/reduce.js`
+- [x] `src/array/methods/instance/reduce/reduce.md`
 - [ ] `src/array/methods/instance/reverse.js`
 - [ ] `src/array/methods/instance/slice.js`
 - [ ] `src/array/methods/instance/sort.js`
@@ -895,6 +897,76 @@ Review List:
 - [x] Page stays distinct from the earlier `for-of/` loop page.
 - [x] `Symbol.iterator.md` uses the documented study-note format as a flexible
   quality checklist.
+- [ ] Decide whether to commit this sprint.
+
+### Sprint 23: Review Array Map-Filter Pair
+
+Status: review
+
+Checklist:
+
+- [x] Chosen as the next array page after `Symbol.iterator/`.
+- [x] Reviewed existing `map-filter.js`.
+- [x] Checked nearby `filter/`, `flatMap/`, and custom map practice pages for
+  overlap.
+- [x] Cross-checked key behavior against MDN and the ECMAScript spec for
+  `filter()` and `map()`.
+- [x] Moved the reviewed pair into `src/array/methods/instance/map-filter/`.
+- [x] Rewrote `map-filter.js` using the runnable JS teaching pattern.
+- [x] Created `map-filter.md` using the repo study-note teaching pattern.
+- [x] Polished `map-filter.md` with a second note-format review.
+- [x] Covered keep-then-transform flow, order, callback return rules,
+  non-mutation, shallow object references, callback arguments, sparse arrays,
+  async callback gotchas, generic behavior, and boundaries with `filter()`,
+  `map()`, and `flatMap()`.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/map-filter/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Page stays distinct from `filter/`, custom map practice, and `flatMap/`.
+- [x] `map-filter.md` uses the documented study-note format as a flexible
+  quality checklist.
+- [ ] Decide whether to commit this sprint.
+
+### Sprint 24: Review Array Reduce Pair
+
+Status: review
+
+Checklist:
+
+- [x] Chosen as the next array page after `map-filter/`.
+- [x] Reviewed existing `reduce.js`.
+- [x] Checked nearby custom reduce practice and recent array-method pages for
+  overlap.
+- [x] Cross-checked key behavior against MDN and the ECMAScript spec for
+  `reduce()`.
+- [x] Moved the reviewed pair into `src/array/methods/instance/reduce/`.
+- [x] Rewrote `reduce.js` using the runnable JS teaching pattern.
+- [x] Created `reduce.md` using the repo study-note teaching pattern.
+- [x] Polished `reduce.md` with a second note-format review.
+- [x] Covered accumulator flow, initial value behavior, no-initial-value
+  behavior, empty arrays, sparse arrays, callback arguments, missing return,
+  counting, grouping, flattening, generic behavior, and when not to use
+  `reduce()`.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/reduce/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Page stays distinct from custom reduce implementation practice.
+- [x] `reduce.md` uses the documented study-note format as a flexible quality
+  checklist.
 - [ ] Decide whether to commit this sprint.
 
 ### Note Quality Cleanup: Array Concat

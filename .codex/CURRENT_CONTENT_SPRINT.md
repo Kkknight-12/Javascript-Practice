@@ -2,17 +2,17 @@
 
 ## Active Story
 
-### JS-CONTENT-001U: Review Array Symbol.iterator Pair
+### JS-CONTENT-001W: Review Array Reduce Pair
 
-As the repo owner, I want the `Array.prototype[Symbol.iterator]()` page to be
-clear, beginner-friendly, deterministic in the terminal, and useful as a
-high-quality JavaScript array-method page. Future website reuse is secondary and
-not part of the current sprint.
+As the repo owner, I want the `Array.prototype.reduce()` page to be clear,
+beginner-friendly, deterministic in the terminal, and useful as a high-quality
+JavaScript array-method page. Future website reuse is secondary and not part of
+the current sprint.
 
 ## Current Folder
 
 ```text
-src/array/methods/instance/Symbol.iterator/
+src/array/methods/instance/reduce/
 ```
 
 ## Current Files
@@ -20,59 +20,51 @@ src/array/methods/instance/Symbol.iterator/
 Primary explanation:
 
 ```text
-src/array/methods/instance/Symbol.iterator/Symbol.iterator.md
+src/array/methods/instance/reduce/reduce.md
 ```
 
 Paired runnable example:
 
 ```text
-src/array/methods/instance/Symbol.iterator/Symbol.iterator.js
+src/array/methods/instance/reduce/reduce.js
 ```
 
 ## Starting Point
 
-- `Symbol.iterator.js` already existed directly under
+- `reduce.js` already existed directly under
   `src/array/methods/instance/`.
-- The old file only showed the basic MDN iterator example with `a`, `b`, and
-  `c`.
-- The old file did not explain why arrays work with `for...of`, spread, and
-  destructuring.
-- The old file did not explain that array iterators are stateful and consumed
-  after reading.
-- The old file did not cover `next()`, `values()`, sparse arrays, entry/key
-  comparison, plain object gotchas, or generic behavior.
-- `src/array/loop/for-of/` already teaches the `for...of` statement, so this
-  page focuses on the array iterator method that powers it.
+- The old file had one useful Discord-style grouping example, but it mixed that
+  with unrelated cache/function identity notes.
+- The old file did not clearly explain accumulator flow.
+- The old file did not cover initial value behavior, empty arrays, sparse
+  arrays, missing returns, grouping/counting patterns, generic behavior, or why
+  `reduce()` can be overused.
+- Custom reduce practice already teaches a from-scratch implementation, so this
+  page focuses on using the built-in method well.
 
 ## Reference Findings
 
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Symbol.iterator
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/values
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
-https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype-%symbol.iterator%
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.reduce
 ```
 
 Key points to teach:
 
-- `Array.prototype[Symbol.iterator]()` returns an Array Iterator object.
-- The initial `Symbol.iterator` value on `Array.prototype` is the same function
-  as `Array.prototype.values`.
-- The iterator yields array values in index order.
-- `for...of`, spread, destructuring, and `Array.from()` use the iterator
-  protocol.
-- Calling `next()` manually returns objects with `value` and `done`.
-- Iterator objects are stateful; once consumed, they keep their position.
-- Sparse-array empty slots are read as `undefined`.
-- Plain objects are not iterable by default because they do not have a
-  `Symbol.iterator` method.
-- `entries()` yields index-value pairs, `keys()` yields indexes, and
-  `values()`/`Symbol.iterator` yield values.
-- The method is generic and can be called on array-like objects.
+- `reduce()` runs a reducer callback and returns one final accumulated value.
+- The callback receives accumulator, current value, current index, and the array.
+- The callback return value becomes the next accumulator.
+- With an initial value, iteration starts at the first existing element.
+- Without an initial value, the first existing element becomes the accumulator
+  and iteration starts at the next existing element.
+- Empty arrays without an initial value throw `TypeError`.
+- Empty slots in sparse arrays are skipped.
+- `reduce()` is generic and can be borrowed for array-like objects.
+- `reduce()` has no `thisArg` parameter.
 
-## Sprint 1: Review Array Symbol.iterator Pair
+## Sprint 1: Review Array Reduce Pair
 
 Status: review
 
@@ -80,22 +72,21 @@ Checklist:
 
 - [x] Confirm current Git status before starting and keep unrelated
   `src/playground/del.js` out of this sprint.
-- [x] Add the requested Codex memory cleanup note before page work.
-- [x] Treat `includes/` as reviewed and choose the next unchecked array page.
-- [x] Confirm the next requested array page is `Symbol.iterator.js`.
-- [x] Review existing `Symbol.iterator.js`.
-- [x] Check nearby `for-of/`, `entries-find/`, and `includes/` pages for
+- [x] Treat `map-filter/` as review-ready and choose the next unchecked array
+  page.
+- [x] Confirm the next requested array page is `reduce.js`.
+- [x] Review existing `reduce.js`.
+- [x] Check nearby custom reduce practice and recent array-method pages for
   overlap.
 - [x] Cross-check key behavior against MDN and the ECMAScript spec for
-  `Array.prototype[Symbol.iterator]()`.
-- [x] Move the reviewed pair into
-  `src/array/methods/instance/Symbol.iterator/`.
-- [x] Rewrite `Symbol.iterator.js` using the runnable JS teaching pattern.
-- [x] Create `Symbol.iterator.md` using the repo study-note teaching pattern.
-- [x] Polish `Symbol.iterator.md` with a second note-format review.
-- [x] Cover array iterability, `next()`, iterator state, `for...of`, spread,
-  destructuring, `values()`, `entries()`/`keys()` comparison, sparse arrays,
-  plain object gotcha, and generic array-like behavior.
+  `reduce()`.
+- [x] Move the reviewed pair into `src/array/methods/instance/reduce/`.
+- [x] Rewrite `reduce.js` using the runnable JS teaching pattern.
+- [x] Create `reduce.md` using the repo study-note teaching pattern.
+- [x] Polish `reduce.md` with a second note-format review.
+- [x] Cover accumulator flow, initial value behavior, no-initial-value behavior,
+  empty arrays, sparse arrays, callback arguments, missing return, counting,
+  grouping, flattening, generic behavior, and when not to use `reduce()`.
 - [x] Run the `.js` example with Node.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md` after review.
 - [x] Run `git diff --check`.
@@ -107,9 +98,10 @@ Review List:
   comments.
 - [x] Confirm common mistakes are covered.
 - [x] Confirm the file pair belongs under
-  `src/array/methods/instance/Symbol.iterator/`.
-- [x] Confirm this page stays distinct from the earlier `for-of/` loop page.
-- [x] Confirm `Symbol.iterator.md` uses the documented study-note format as a
+  `src/array/methods/instance/reduce/`.
+- [x] Confirm this page stays distinct from custom reduce implementation
+  practice.
+- [x] Confirm `reduce.md` uses the documented study-note format as a
   flexible quality checklist.
 - [ ] Decide whether to commit this sprint.
 
@@ -118,7 +110,7 @@ Review List:
 This sprint is ready for review. After approval, the next unchecked array page is:
 
 ```text
-src/array/methods/instance/map-filter.js
+src/array/methods/instance/reverse.js
 ```
 
 ## Note Quality Cleanup
