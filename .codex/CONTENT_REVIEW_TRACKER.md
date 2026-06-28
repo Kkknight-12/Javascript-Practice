@@ -143,7 +143,8 @@ Suggested order:
 - [x] `src/array/methods/instance/reduce/reduce.md`
 - [x] `src/array/methods/instance/reverse/reverse.js`
 - [x] `src/array/methods/instance/reverse/reverse.md`
-- [ ] `src/array/methods/instance/slice.js`
+- [x] `src/array/methods/instance/slice/slice.js`
+- [x] `src/array/methods/instance/slice/slice.md`
 - [ ] `src/array/methods/instance/sort.js`
 - [ ] `src/array/methods/instance/splice.js`
 - [x] `src/array/methods/static/Array.fromAsync/Array.fromAsync.js`
@@ -1001,6 +1002,40 @@ Review List:
 - [x] Page stays distinct from later `sort()` and existing copying-method
   notes.
 - [x] `reverse.md` uses the documented study-note format as a flexible quality
+  checklist.
+- [x] Decide whether to commit this sprint.
+
+### Sprint 26: Review Array Slice Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after `reverse/`.
+- [x] Reviewed existing `slice.js`.
+- [x] Checked nearby copying/mutating method pages for overlap.
+- [x] Cross-checked key behavior against MDN and the ECMAScript spec for
+  `slice()`.
+- [x] Moved the reviewed pair into `src/array/methods/instance/slice/`.
+- [x] Rewrote `slice.js` using the runnable JS teaching pattern.
+- [x] Created `slice.md` using the repo study-note teaching pattern.
+- [x] Polished `slice.md` with a second note-format review.
+- [x] Covered shallow copy, no mutation, excluded end index, no-argument copy,
+  negative indexes, out-of-range indexes, fractional indexes, sparse arrays,
+  generic behavior, and comparison with `splice()`.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/slice/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Page stays distinct from later `splice()` and existing copying-method
+  notes.
+- [x] `slice.md` uses the documented study-note format as a flexible quality
   checklist.
 - [x] Decide whether to commit this sprint.
 

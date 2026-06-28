@@ -2,9 +2,9 @@
 
 ## Active Story
 
-### JS-CONTENT-001X: Review Array Reverse Pair
+### JS-CONTENT-001Y: Review Array Slice Pair
 
-As the repo owner, I want the `Array.prototype.reverse()` page to be clear,
+As the repo owner, I want the `Array.prototype.slice()` page to be clear,
 beginner-friendly, deterministic in the terminal, and useful as a high-quality
 JavaScript array-method page. Future website reuse is secondary and not part of
 the current sprint.
@@ -12,7 +12,7 @@ the current sprint.
 ## Current Folder
 
 ```text
-src/array/methods/instance/reverse/
+src/array/methods/instance/slice/
 ```
 
 ## Current Files
@@ -20,75 +20,70 @@ src/array/methods/instance/reverse/
 Primary explanation:
 
 ```text
-src/array/methods/instance/reverse/reverse.md
+src/array/methods/instance/slice/slice.md
 ```
 
 Paired runnable example:
 
 ```text
-src/array/methods/instance/reverse/reverse.js
+src/array/methods/instance/slice/slice.js
 ```
 
 ## Starting Point
 
-- `reverse.js` already existed directly under
+- `slice.js` already existed directly under
   `src/array/methods/instance/`.
-- The old file correctly mentioned mutation and same-reference return.
-- The old file used semicolons and scratch-style comments unlike the current
-  reviewed pages.
-- The old file did not cover `toReversed()`, copying with spread/`Array.from()`,
-  sparse arrays, generic array-like behavior, object reference behavior, or
-  comparison with sorting/iteration.
-- Node in this repo supports `toReversed()`, so the runnable page can show the
-  modern copying method directly.
+- The old file correctly showed basic `start` / `end` examples and a common
+  remove-with-copy pattern.
+- The old file used scratch-style variable names and did not explain why the end
+  index is excluded.
+- The old file did not cover no-argument shallow copy, negative indexes,
+  out-of-range indexes, fractional indexes, sparse arrays, generic array-like
+  behavior, shallow object references, or the `slice()` / `splice()` contrast.
 
 ## Reference Findings
 
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toReversed
-https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.reverse
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.slice
 ```
 
 Key points to teach:
 
-- `reverse()` reverses array elements in place.
-- It returns the same array object.
-- Mutating the returned value mutates the original because they are the same
-  reference.
-- `reverse()` takes no parameters.
-- `toReversed()` returns a reversed shallow copy and does not mutate the
-  original.
-- `[...array].reverse()` and `Array.from(array).reverse()` are copy-first
-  alternatives.
-- `reverse()` preserves empty slots in sparse arrays.
-- `reverse()` is generic and can be borrowed for array-like objects.
+- `slice()` returns a shallow copy of a selected portion of an array.
+- It does not mutate the original array.
+- The `start` index is included.
+- The `end` index is excluded.
+- Omitting `end` copies through the end of the array.
+- Negative indexes count from the end.
+- Out-of-range indexes are clamped into the valid range.
+- Empty slots in sparse arrays are preserved.
+- `slice()` is generic and can be borrowed for array-like objects.
 
-## Sprint 1: Review Array Reverse Pair
+## Sprint 1: Review Array Slice Pair
 
 Status: complete
 
 Checklist:
 
 - [x] Confirm current Git status before starting and keep unrelated
-  `src/playground/del.js` out of this sprint.
-- [x] Commit and push the approved `map-filter/` and `reduce/` batch first.
-- [x] Treat `reduce/` as committed and choose the next unchecked array page.
-- [x] Confirm the next requested array page is `reverse.js`.
-- [x] Review existing `reverse.js`.
-- [x] Check nearby mutating/copying method pages for
-  overlap.
+  `src/playground/del.js` and `reduce/reduce.md` out of this sprint.
+- [x] Commit and push the approved `reverse/` batch first.
+- [x] Treat `reverse/` as committed and choose the next unchecked array page.
+- [x] Confirm the next requested array page is `slice.js`.
+- [x] Review existing `slice.js`.
+- [x] Check nearby copying/mutating method pages for overlap.
 - [x] Cross-check key behavior against MDN and the ECMAScript spec for
-  `reverse()`.
-- [x] Move the reviewed pair into `src/array/methods/instance/reverse/`.
-- [x] Rewrite `reverse.js` using the runnable JS teaching pattern.
-- [x] Create `reverse.md` using the repo study-note teaching pattern.
-- [x] Polish `reverse.md` with a second note-format review.
-- [x] Cover mutation, same-reference return, object references, copying with
-  `toReversed()` / spread / `Array.from()`, sparse arrays, generic behavior,
-  and comparison with `sort()`.
+  `slice()`.
+- [x] Move the reviewed pair into `src/array/methods/instance/slice/`.
+- [x] Rewrite `slice.js` using the runnable JS teaching pattern.
+- [x] Create `slice.md` using the repo study-note teaching pattern.
+- [x] Polish `slice.md` with a second note-format review.
+- [x] Cover shallow copy, no mutation, excluded end index, no-argument copy,
+  negative indexes, out-of-range indexes, fractional indexes, sparse arrays,
+  generic behavior, and comparison with `splice()`.
 - [x] Run the `.js` example with Node.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md` after review.
 - [x] Run `git diff --check`.
@@ -100,10 +95,10 @@ Review List:
   comments.
 - [x] Confirm common mistakes are covered.
 - [x] Confirm the file pair belongs under
-  `src/array/methods/instance/reverse/`.
-- [x] Confirm this page stays distinct from later `sort()` and existing
+  `src/array/methods/instance/slice/`.
+- [x] Confirm this page stays distinct from later `splice()` and existing
   copying-method notes.
-- [x] Confirm `reverse.md` uses the documented study-note format as a
+- [x] Confirm `slice.md` uses the documented study-note format as a
   flexible quality checklist.
 - [x] Decide whether to commit this sprint.
 
@@ -112,7 +107,7 @@ Review List:
 This sprint is ready for review. After approval, the next unchecked array page is:
 
 ```text
-src/array/methods/instance/slice.js
+src/array/methods/instance/sort.js
 ```
 
 ## Note Quality Cleanup
