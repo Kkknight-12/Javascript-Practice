@@ -141,7 +141,8 @@ Suggested order:
 - [x] `src/array/methods/instance/map-filter/map-filter.md`
 - [x] `src/array/methods/instance/reduce/reduce.js`
 - [x] `src/array/methods/instance/reduce/reduce.md`
-- [ ] `src/array/methods/instance/reverse.js`
+- [x] `src/array/methods/instance/reverse/reverse.js`
+- [x] `src/array/methods/instance/reverse/reverse.md`
 - [ ] `src/array/methods/instance/slice.js`
 - [ ] `src/array/methods/instance/sort.js`
 - [ ] `src/array/methods/instance/splice.js`
@@ -968,6 +969,40 @@ Review List:
 - [x] `reduce.md` uses the documented study-note format as a flexible quality
   checklist.
 - [ ] Decide whether to commit this sprint.
+
+### Sprint 25: Review Array Reverse Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after `reduce/`.
+- [x] Reviewed existing `reverse.js`.
+- [x] Checked nearby mutating/copying method pages for overlap.
+- [x] Cross-checked key behavior against MDN and the ECMAScript spec for
+  `reverse()`.
+- [x] Moved the reviewed pair into `src/array/methods/instance/reverse/`.
+- [x] Rewrote `reverse.js` using the runnable JS teaching pattern.
+- [x] Created `reverse.md` using the repo study-note teaching pattern.
+- [x] Polished `reverse.md` with a second note-format review.
+- [x] Covered mutation, same-reference return, object references, copying with
+  `toReversed()` / spread / `Array.from()`, sparse arrays, generic behavior,
+  and comparison with `sort()`.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/reverse/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Page stays distinct from later `sort()` and existing copying-method
+  notes.
+- [x] `reverse.md` uses the documented study-note format as a flexible quality
+  checklist.
+- [x] Decide whether to commit this sprint.
 
 ### Note Quality Cleanup: Array Concat
 

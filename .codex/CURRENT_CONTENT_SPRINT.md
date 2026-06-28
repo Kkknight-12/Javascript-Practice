@@ -2,9 +2,9 @@
 
 ## Active Story
 
-### JS-CONTENT-001W: Review Array Reduce Pair
+### JS-CONTENT-001X: Review Array Reverse Pair
 
-As the repo owner, I want the `Array.prototype.reduce()` page to be clear,
+As the repo owner, I want the `Array.prototype.reverse()` page to be clear,
 beginner-friendly, deterministic in the terminal, and useful as a high-quality
 JavaScript array-method page. Future website reuse is secondary and not part of
 the current sprint.
@@ -12,7 +12,7 @@ the current sprint.
 ## Current Folder
 
 ```text
-src/array/methods/instance/reduce/
+src/array/methods/instance/reverse/
 ```
 
 ## Current Files
@@ -20,73 +20,75 @@ src/array/methods/instance/reduce/
 Primary explanation:
 
 ```text
-src/array/methods/instance/reduce/reduce.md
+src/array/methods/instance/reverse/reverse.md
 ```
 
 Paired runnable example:
 
 ```text
-src/array/methods/instance/reduce/reduce.js
+src/array/methods/instance/reverse/reverse.js
 ```
 
 ## Starting Point
 
-- `reduce.js` already existed directly under
+- `reverse.js` already existed directly under
   `src/array/methods/instance/`.
-- The old file had one useful Discord-style grouping example, but it mixed that
-  with unrelated cache/function identity notes.
-- The old file did not clearly explain accumulator flow.
-- The old file did not cover initial value behavior, empty arrays, sparse
-  arrays, missing returns, grouping/counting patterns, generic behavior, or why
-  `reduce()` can be overused.
-- Custom reduce practice already teaches a from-scratch implementation, so this
-  page focuses on using the built-in method well.
+- The old file correctly mentioned mutation and same-reference return.
+- The old file used semicolons and scratch-style comments unlike the current
+  reviewed pages.
+- The old file did not cover `toReversed()`, copying with spread/`Array.from()`,
+  sparse arrays, generic array-like behavior, object reference behavior, or
+  comparison with sorting/iteration.
+- Node in this repo supports `toReversed()`, so the runnable page can show the
+  modern copying method directly.
 
 ## Reference Findings
 
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
-https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.reduce
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toReversed
+https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.reverse
 ```
 
 Key points to teach:
 
-- `reduce()` runs a reducer callback and returns one final accumulated value.
-- The callback receives accumulator, current value, current index, and the array.
-- The callback return value becomes the next accumulator.
-- With an initial value, iteration starts at the first existing element.
-- Without an initial value, the first existing element becomes the accumulator
-  and iteration starts at the next existing element.
-- Empty arrays without an initial value throw `TypeError`.
-- Empty slots in sparse arrays are skipped.
-- `reduce()` is generic and can be borrowed for array-like objects.
-- `reduce()` has no `thisArg` parameter.
+- `reverse()` reverses array elements in place.
+- It returns the same array object.
+- Mutating the returned value mutates the original because they are the same
+  reference.
+- `reverse()` takes no parameters.
+- `toReversed()` returns a reversed shallow copy and does not mutate the
+  original.
+- `[...array].reverse()` and `Array.from(array).reverse()` are copy-first
+  alternatives.
+- `reverse()` preserves empty slots in sparse arrays.
+- `reverse()` is generic and can be borrowed for array-like objects.
 
-## Sprint 1: Review Array Reduce Pair
+## Sprint 1: Review Array Reverse Pair
 
-Status: review
+Status: complete
 
 Checklist:
 
 - [x] Confirm current Git status before starting and keep unrelated
   `src/playground/del.js` out of this sprint.
-- [x] Treat `map-filter/` as review-ready and choose the next unchecked array
-  page.
-- [x] Confirm the next requested array page is `reduce.js`.
-- [x] Review existing `reduce.js`.
-- [x] Check nearby custom reduce practice and recent array-method pages for
+- [x] Commit and push the approved `map-filter/` and `reduce/` batch first.
+- [x] Treat `reduce/` as committed and choose the next unchecked array page.
+- [x] Confirm the next requested array page is `reverse.js`.
+- [x] Review existing `reverse.js`.
+- [x] Check nearby mutating/copying method pages for
   overlap.
 - [x] Cross-check key behavior against MDN and the ECMAScript spec for
-  `reduce()`.
-- [x] Move the reviewed pair into `src/array/methods/instance/reduce/`.
-- [x] Rewrite `reduce.js` using the runnable JS teaching pattern.
-- [x] Create `reduce.md` using the repo study-note teaching pattern.
-- [x] Polish `reduce.md` with a second note-format review.
-- [x] Cover accumulator flow, initial value behavior, no-initial-value behavior,
-  empty arrays, sparse arrays, callback arguments, missing return, counting,
-  grouping, flattening, generic behavior, and when not to use `reduce()`.
+  `reverse()`.
+- [x] Move the reviewed pair into `src/array/methods/instance/reverse/`.
+- [x] Rewrite `reverse.js` using the runnable JS teaching pattern.
+- [x] Create `reverse.md` using the repo study-note teaching pattern.
+- [x] Polish `reverse.md` with a second note-format review.
+- [x] Cover mutation, same-reference return, object references, copying with
+  `toReversed()` / spread / `Array.from()`, sparse arrays, generic behavior,
+  and comparison with `sort()`.
 - [x] Run the `.js` example with Node.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md` after review.
 - [x] Run `git diff --check`.
@@ -98,19 +100,19 @@ Review List:
   comments.
 - [x] Confirm common mistakes are covered.
 - [x] Confirm the file pair belongs under
-  `src/array/methods/instance/reduce/`.
-- [x] Confirm this page stays distinct from custom reduce implementation
-  practice.
-- [x] Confirm `reduce.md` uses the documented study-note format as a
+  `src/array/methods/instance/reverse/`.
+- [x] Confirm this page stays distinct from later `sort()` and existing
+  copying-method notes.
+- [x] Confirm `reverse.md` uses the documented study-note format as a
   flexible quality checklist.
-- [ ] Decide whether to commit this sprint.
+- [x] Decide whether to commit this sprint.
 
 ## Stop Point
 
 This sprint is ready for review. After approval, the next unchecked array page is:
 
 ```text
-src/array/methods/instance/reverse.js
+src/array/methods/instance/slice.js
 ```
 
 ## Note Quality Cleanup
