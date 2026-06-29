@@ -321,9 +321,6 @@ Result:
 }
 ```
 
-This is the strongest idea from the old scratch file, now with the accumulator
-made explicit.
-
 ## Reduce Into An Array
 
 The accumulator can be an array too.
