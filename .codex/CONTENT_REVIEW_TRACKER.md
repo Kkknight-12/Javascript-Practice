@@ -159,9 +159,8 @@ Suggested order:
 
 ### `src/object/`
 
-- [x] `src/object/checkKeyInObject/index.js`
-- [x] `src/object/checkKeyInObject/index.md`
-- [ ] `src/object/hasOwn.js`
+- [x] `src/object/concepts/key-existence/key-existence.js`
+- [x] `src/object/concepts/key-existence/key-existence.md`
 - [ ] `src/object/loop-through-object/for-loop.js`
 - [ ] `src/object/loop-through-object/for_in.js`
 - [ ] `src/object/methods/instance/isPrototypeOf.js`
@@ -176,6 +175,8 @@ Suggested order:
 - [ ] `src/object/methods/static-methods/getOwnPropertyNames.js`
 - [ ] `src/object/methods/static-methods/getPrototypeOf.js`
 - [ ] `src/object/methods/static-methods/groupBy.js`
+- [x] `src/object/methods/static-methods/hasOwn/hasOwn.js`
+- [x] `src/object/methods/static-methods/hasOwn/hasOwn.md`
 - [ ] `src/object/methods/static-methods/index.js`
 - [ ] `src/object/methods/static-methods/is.js`
 - [ ] `src/object/methods/static-methods/keys.js`
@@ -1119,18 +1120,21 @@ Checklist:
 
 - [x] Chosen as the first object page after the user explicitly pivoted to
   `src/object/`.
-- [x] Reviewed the existing `src/object/checkKeyInObject/index.js`.
-- [x] Checked nearby `src/object/hasOwn.js` for overlap.
+- [x] Reviewed the existing `src/object/checkKeyInObject/index.js` before
+  moving it into `src/object/concepts/key-existence/`.
+- [x] Checked the nearby `Object.hasOwn()` page for overlap.
 - [x] Cross-checked behavior against MDN pages for the `in` operator,
   `Object.hasOwn()`, and `Object.keys()`.
 - [x] Rewrote `index.js` using the runnable JS teaching pattern.
 - [x] Created `index.md` using the repo study-note teaching pattern.
+- [x] Moved the reviewed comparison page into
+  `src/object/concepts/key-existence/`.
 - [x] Covered inherited vs own properties, `Object.hasOwn()`,
   `Object.prototype.hasOwnProperty.call()`, `Object.keys().includes()`,
   non-enumerable properties, and why `object.key !== undefined` is not a
   reliable existence check.
-- [x] Run `node src/object/checkKeyInObject/index.js`.
-- [x] Run `node --check src/object/checkKeyInObject/index.js`.
+- [x] Run `node src/object/concepts/key-existence/key-existence.js`.
+- [x] Run `node --check src/object/concepts/key-existence/key-existence.js`.
 - [x] Run `git diff --check`.
 
 Review List:
@@ -1139,6 +1143,38 @@ Review List:
 - [x] Runnable example has clear labels and expected-output comments.
 - [x] Common mistakes are covered without duplicating the later dedicated
   `hasOwn.js` page.
+- [ ] Decide whether to commit this sprint.
+
+### Sprint 30: Review Object.hasOwn Pair
+
+Status: review
+
+Checklist:
+
+- [x] Chosen as the next object page after the key-existence opener.
+- [x] Reviewed the existing loose `src/object/hasOwn.js` file before moving it
+  into `src/object/methods/static-methods/hasOwn/`.
+- [x] Checked the previous object key-existence page for overlap.
+- [x] Cross-checked behavior against MDN and the ECMAScript spec.
+- [x] Rewrote `hasOwn.js` using the runnable JS teaching pattern.
+- [x] Created `hasOwn.md` using the repo study-note teaching pattern.
+- [x] Moved the reviewed pair into
+  `src/object/methods/static-methods/hasOwn/`.
+- [x] Recorded the object concept-vs-method bucket decision in
+  `.codex/PROJECT_MEMORY.md`.
+- [x] Covered own properties, inherited properties, falsy values,
+  shadowed `hasOwnProperty`, null-prototype objects, symbol keys, sparse array
+  slots, and `null`/`undefined` first-argument errors.
+- [x] Run `node src/object/methods/static-methods/hasOwn/hasOwn.js`.
+- [x] Run `node --check src/object/methods/static-methods/hasOwn/hasOwn.js`.
+- [x] Run `git diff --check`.
+
+Review List:
+
+- [x] Explanation is focused on `Object.hasOwn()` rather than repeating the full
+  key-existence concept overview.
+- [x] Runnable example has clear labels and expected-output comments.
+- [x] Common mistakes are covered with direct examples.
 - [ ] Decide whether to commit this sprint.
 
 ### Note Quality Cleanup: Array Concat

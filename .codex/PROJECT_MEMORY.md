@@ -109,6 +109,33 @@ src/array/methods/
   safety explanation and `practice/` for custom exercises. Keep custom
   map/filter/sort/reduce practice in separate folders under `practice/`.
 
+## Object Topic Buckets
+
+Object content should also keep concept pages separate from method pages:
+
+```text
+src/object/
+  concepts/
+    key-existence/
+  loop-through-object/
+  methods/
+    instance/
+    static-methods/
+  practice/
+  questions/
+```
+
+- Comparison or decision pages, such as checking whether a key exists with
+  `in`, `Object.hasOwn()`, `Object.keys().includes()`, or value checks, belong
+  under `src/object/concepts/`.
+- Static Object methods, such as `Object.hasOwn()`, `Object.keys()`, or
+  `Object.assign()`, belong under `src/object/methods/static-methods/`.
+- Object prototype or instance-style methods, such as `isPrototypeOf()`, belong
+  under `src/object/methods/instance/`.
+- When a method page has both a runnable `.js` file and a paired `.md` note,
+  keep them together in a method-named folder, for example
+  `src/object/methods/static-methods/hasOwn/`.
+
 ## Current Risks
 
 - Larger topic moves should stay reviewable and happen in a separate sprint.

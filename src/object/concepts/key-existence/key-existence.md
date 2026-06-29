@@ -243,7 +243,7 @@ properties and symbol keys.
 Run this file from the repo root:
 
 ```bash
-node src/object/checkKeyInObject/index.js
+node src/object/concepts/key-existence/key-existence.js
 ```
 
 The runnable file contains commented examples, terminal labels, and expected
