@@ -147,7 +147,8 @@ Suggested order:
 - [x] `src/array/methods/instance/slice/slice.md`
 - [x] `src/array/methods/instance/sort/sort.js`
 - [x] `src/array/methods/instance/sort/sort.md`
-- [ ] `src/array/methods/instance/splice.js`
+- [x] `src/array/methods/instance/splice/splice.js`
+- [x] `src/array/methods/instance/splice/splice.md`
 - [x] `src/array/methods/static/Array.fromAsync/Array.fromAsync.js`
 - [x] `src/array/methods/static/Array.fromAsync/notes.md`
 - [x] `src/array/methods/static/Array.isArray/Array.isArray.js`
@@ -1073,6 +1074,41 @@ Review List:
 - [x] `sort.md` uses the documented study-note format as a flexible quality
   checklist.
 - [x] Decide whether to commit this sprint.
+
+### Sprint 28: Review Array Splice Pair
+
+Status: review
+
+Checklist:
+
+- [x] Chosen as the next array page after `sort/`.
+- [x] Reviewed existing `splice.js`.
+- [x] Checked nearby `slice/`, `sort/`, and copying-method pages for overlap.
+- [x] Cross-checked key behavior against MDN and the ECMAScript spec for
+  `splice()`.
+- [x] Moved the reviewed pair into `src/array/methods/instance/splice/`.
+- [x] Rewrote `splice.js` using the runnable JS teaching pattern.
+- [x] Created `splice.md` using the repo study-note teaching pattern.
+- [x] Polished `splice.md` with a second note-format review.
+- [x] Covered mutation, removed-item return value, remove/insert/replace
+  patterns, omitted arguments, negative indexes, `Infinity` delete count,
+  `toSpliced()`, shallow copies, sparse arrays, generic behavior, and comparison
+  with `slice()`.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/splice/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Page stays distinct from `slice/` and modern `toSpliced()` copy-safe
+  behavior.
+- [x] `splice.md` uses the documented study-note format as a flexible quality
+  checklist.
+- [ ] Decide whether to commit this sprint.
 
 ### Note Quality Cleanup: Array Concat
 

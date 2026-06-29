@@ -43,7 +43,7 @@ console.log('--- Default sort is string sort ---')
 
 /*
  * Without a compare function, values are converted to strings and compared
- * by character order.
+ * by UTF-16 code unit order.
  */
 const defaultNumbers = [1, 30, 4, 21, 100000]
 const defaultSortedNumbers = [...defaultNumbers].sort()
@@ -204,6 +204,7 @@ console.log('--- undefined and sparse array behavior ---')
 
 /*
  * undefined values sort after defined values.
+ * The compare function is not called for undefined values.
  * Empty slots move after undefined values and remain empty slots.
  */
 const mixedValues = [3, undefined, 1, , 2]
@@ -249,4 +250,5 @@ console.log('well-formed compare:', safeNumbers.toSorted((a, b) => a - b))
 // expected output: [ 1, 2, 3 ]
 
 console.log('boolean-style compare result:', safeNumbers.toSorted((a, b) => a > b))
-// output can be engine-dependent; avoid this pattern
+// expected output in Node: [ 3, 1, 2 ]
+// result can be engine-dependent; avoid this pattern

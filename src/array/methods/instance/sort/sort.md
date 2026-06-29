@@ -80,8 +80,8 @@ positive number -> a after b
 0               -> keep their relative order
 ```
 
-If `compareFn` is omitted, values are converted to strings and sorted by
-character order.
+If `compareFn` is omitted, values are converted to strings and sorted by UTF-16
+code unit order.
 
 ## Return Value
 
@@ -161,8 +161,8 @@ scores.sort((a, b) => a - b)
 Why it works:
 
 ```text
-a - b is negative -> a comes first
-a - b is positive -> b comes first
+a - b is negative -> a stays before b
+a - b is positive -> a moves after b
 ```
 
 ## Numeric Descending Sort
@@ -206,6 +206,8 @@ Positive means `5` should come after `2`.
 ```
 
 Zero means the values are considered equal for sorting.
+
+If the compare function returns `NaN`, `sort()` treats it like `0`.
 
 ## Sort Objects By Number Property
 
@@ -369,6 +371,8 @@ tasks[1].done
 
 `undefined` values sort after defined values.
 
+The compare function is not called for `undefined` values.
+
 Empty slots move after `undefined` values and remain empty slots.
 
 ```javascript
@@ -468,6 +472,7 @@ sorted
 - Use `toSorted()` when you want a sorted copy.
 - Copy-first patterns are shallow, not deep.
 - `undefined` values sort after defined values.
+- The compare function is not called for `undefined` values.
 - Sparse array empty slots remain empty slots and move to the end.
 - `sort()` is generic and can be borrowed for array-like objects.
 
@@ -520,6 +525,10 @@ numbers.sort((a, b) => a > b)
 ```
 
 This is not a well-formed compare function.
+
+In Node, it may appear to leave `[3, 1, 2]` unchanged.
+
+Other engines may handle the bad comparison differently.
 
 Return a number instead.
 
