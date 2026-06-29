@@ -159,7 +159,8 @@ Suggested order:
 
 ### `src/object/`
 
-- [ ] `src/object/checkKeyInObject/index.js`
+- [x] `src/object/checkKeyInObject/index.js`
+- [x] `src/object/checkKeyInObject/index.md`
 - [ ] `src/object/hasOwn.js`
 - [ ] `src/object/loop-through-object/for-loop.js`
 - [ ] `src/object/loop-through-object/for_in.js`
@@ -1108,6 +1109,36 @@ Review List:
   behavior.
 - [x] `splice.md` uses the documented study-note format as a flexible quality
   checklist.
+- [ ] Decide whether to commit this sprint.
+
+### Sprint 29: Review Object Key-Existence Pair
+
+Status: review
+
+Checklist:
+
+- [x] Chosen as the first object page after the user explicitly pivoted to
+  `src/object/`.
+- [x] Reviewed the existing `src/object/checkKeyInObject/index.js`.
+- [x] Checked nearby `src/object/hasOwn.js` for overlap.
+- [x] Cross-checked behavior against MDN pages for the `in` operator,
+  `Object.hasOwn()`, and `Object.keys()`.
+- [x] Rewrote `index.js` using the runnable JS teaching pattern.
+- [x] Created `index.md` using the repo study-note teaching pattern.
+- [x] Covered inherited vs own properties, `Object.hasOwn()`,
+  `Object.prototype.hasOwnProperty.call()`, `Object.keys().includes()`,
+  non-enumerable properties, and why `object.key !== undefined` is not a
+  reliable existence check.
+- [x] Run `node src/object/checkKeyInObject/index.js`.
+- [x] Run `node --check src/object/checkKeyInObject/index.js`.
+- [x] Run `git diff --check`.
+
+Review List:
+
+- [x] Explanation is useful as the object-section opener.
+- [x] Runnable example has clear labels and expected-output comments.
+- [x] Common mistakes are covered without duplicating the later dedicated
+  `hasOwn.js` page.
 - [ ] Decide whether to commit this sprint.
 
 ### Note Quality Cleanup: Array Concat

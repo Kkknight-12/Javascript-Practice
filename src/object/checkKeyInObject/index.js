@@ -1,79 +1,111 @@
-// 'in' operator
-
-const obj = { key: 'value' };
-
-if ('key' in obj) {
-  console.log('checking Key exist in Object using in method');
-}
-
-// 2
-// hasOwnProperty() method
-if (obj.hasOwnProperty('key')) {
-  console.log('checking key exist in object with hasOwnProperty method');
-}
-
-// 3
-// !== undefined comparision
-
-if (obj.key !== undefined) {
-  console.log('checking key exist in Object with dot notation');
-}
-
-// 4
-// Object.keys and includes method
-const keys = Object.keys(obj);
-
-if (keys.includes('key')) {
-  console.log('checking key exist in Object with Object.keys method');
-}
-
-// NOTE
-/**
- * The "in" operator method also check for keys
- * in the object's prototype chain, while the other methods only check for
- * keys in the object itself.
+/*
+ * Checking whether a key exists in an object.
+ *
+ * First decide what "exists" means:
+ * 1. Should inherited properties count? Use the `in` operator.
+ * 2. Should only direct properties count? Use Object.hasOwn().
  */
 
-const parentObject = { parentKey: 'parent value' };
-const child = Object.create(parentObject);
-child.childKey = 'Child value';
-console.log(child); // { childKey: 'Child value' }
+const user = {
+  name: 'Asha',
+  role: 'developer',
+  email: undefined,
+};
 
-//
-// in
-console.log(`parentKey in child`, 'parentKey' in child); // true
-console.log(`childKey in child`, 'childKey' in child); // true
+console.log('1. "name" in user:', 'name' in user);
+// Expected output: true
 
-//
-// hasOwnProperty
+console.log('2. Object.hasOwn(user, "name"):', Object.hasOwn(user, 'name'));
+// Expected output: true
+
 console.log(
-  `child hasOwnProperty parentKey `,
-  child.hasOwnProperty('parentKey')
-); // false
-console.log(`child hasOwnProperty childKey `, child.hasOwnProperty('childKey')); // true
+  '3. Object.keys(user).includes("name"):',
+  Object.keys(user).includes('name')
+);
+// Expected output: true
 
-//
-// !==
-for (key in child) {
-  if (key !== undefined) {
-    console.log('key => ', key);
-  } else {
-    console.log(false);
-  }
-}
-// key =>  childKey
-// key =>  parentKey
-
-//
-// Object.keys and includes
-/**
- * here with object keys we are creating array which have element
- * which are only present child object, the array created using Object.keys
- * will not have keys from parent object.
+/*
+ * Do not use `object.key !== undefined` as a general key-existence check.
+ * A key can exist even when its value is actually undefined.
  */
-const childKeys = Object.keys(child);
-console.log(childKeys); // [ 'childKey' ]
+console.log('4. "email" in user:', 'email' in user);
+// Expected output: true
 
-console.log(childKeys.includes('childKey')); // true
+console.log('5. user.email !== undefined:', user.email !== undefined);
+// Expected output: false
 
-console.log(childKeys.includes('parentKey')); // false
+/*
+ * The `in` operator checks both:
+ * - own properties on the object itself
+ * - inherited properties from the prototype chain
+ */
+const sharedAccountFields = {
+  plan: 'pro',
+};
+
+const account = Object.create(sharedAccountFields);
+account.username = 'knight';
+
+console.log('6. "plan" in account:', 'plan' in account);
+// Expected output: true
+
+console.log(
+  '7. Object.hasOwn(account, "plan"):',
+  Object.hasOwn(account, 'plan')
+);
+// Expected output: false
+
+console.log(
+  '8. Object.hasOwn(account, "username"):',
+  Object.hasOwn(account, 'username')
+);
+// Expected output: true
+
+/*
+ * Object.keys(object).includes(key) checks only own enumerable string keys.
+ * That is useful when you already need the key list, but it is not the
+ * strongest general-purpose existence check.
+ */
+const lesson = {
+  title: 'Objects',
+};
+
+Object.defineProperty(lesson, 'internalId', {
+  value: 42,
+  enumerable: false,
+});
+
+console.log(
+  '9. Object.hasOwn(lesson, "internalId"):',
+  Object.hasOwn(lesson, 'internalId')
+);
+// Expected output: true
+
+console.log('10. Object.keys(lesson):', Object.keys(lesson));
+// Expected output: [ 'title' ]
+
+console.log(
+  '11. Object.keys(lesson).includes("internalId"):',
+  Object.keys(lesson).includes('internalId')
+);
+// Expected output: false
+
+/*
+ * Object.hasOwn() is the modern direct-property check.
+ * Object.prototype.hasOwnProperty.call() is the older safe pattern and is
+ * still useful when reading legacy code.
+ */
+const dictionary = Object.create(null);
+dictionary.topic = 'objects';
+
+console.log(
+  '12. Object.hasOwn(dictionary, "topic"):',
+  Object.hasOwn(dictionary, 'topic')
+);
+// Expected output: true
+
+console.log(
+  '13. Object.prototype.hasOwnProperty.call(dictionary, "topic"):',
+  Object.prototype.hasOwnProperty.call(dictionary, 'topic')
+);
+// Expected output: true
