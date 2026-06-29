@@ -145,7 +145,8 @@ Suggested order:
 - [x] `src/array/methods/instance/reverse/reverse.md`
 - [x] `src/array/methods/instance/slice/slice.js`
 - [x] `src/array/methods/instance/slice/slice.md`
-- [ ] `src/array/methods/instance/sort.js`
+- [x] `src/array/methods/instance/sort/sort.js`
+- [x] `src/array/methods/instance/sort/sort.md`
 - [ ] `src/array/methods/instance/splice.js`
 - [x] `src/array/methods/static/Array.fromAsync/Array.fromAsync.js`
 - [x] `src/array/methods/static/Array.fromAsync/notes.md`
@@ -1036,6 +1037,40 @@ Review List:
 - [x] Page stays distinct from later `splice()` and existing copying-method
   notes.
 - [x] `slice.md` uses the documented study-note format as a flexible quality
+  checklist.
+- [x] Decide whether to commit this sprint.
+
+### Sprint 27: Review Array Sort Pair
+
+Status: complete
+
+Checklist:
+
+- [x] Chosen as the next array page after `slice/`.
+- [x] Reviewed existing `sort.js`.
+- [x] Checked nearby custom sort practice and recent mutating/copying method
+  pages for overlap.
+- [x] Cross-checked key behavior against MDN and the ECMAScript spec for
+  `sort()`.
+- [x] Moved the reviewed pair into `src/array/methods/instance/sort/`.
+- [x] Rewrote `sort.js` using the runnable JS teaching pattern.
+- [x] Created `sort.md` using the repo study-note teaching pattern.
+- [x] Polished `sort.md` with a second note-format review.
+- [x] Covered mutation, same-reference return, default string sort, numeric
+  compare functions, object sorting, stable sort, `toSorted()`, shallow copies,
+  `undefined`, sparse arrays, generic behavior, and compare function mistakes.
+- [x] Ran the example with Node.
+- [x] Updated file tracker.
+- [x] Ran `git diff --check`.
+
+Review List:
+
+- [x] File pair belongs under `src/array/methods/instance/sort/`.
+- [x] Terminal output has readable labels.
+- [x] Explanation is useful as terminal-first repo content.
+- [x] Content quality matches the stricter post-prototype bar.
+- [x] Page stays distinct from custom sort implementation practice.
+- [x] `sort.md` uses the documented study-note format as a flexible quality
   checklist.
 - [x] Decide whether to commit this sprint.
 

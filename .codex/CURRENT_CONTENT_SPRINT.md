@@ -2,9 +2,9 @@
 
 ## Active Story
 
-### JS-CONTENT-001Y: Review Array Slice Pair
+### JS-CONTENT-001Z: Review Array Sort Pair
 
-As the repo owner, I want the `Array.prototype.slice()` page to be clear,
+As the repo owner, I want the `Array.prototype.sort()` page to be clear,
 beginner-friendly, deterministic in the terminal, and useful as a high-quality
 JavaScript array-method page. Future website reuse is secondary and not part of
 the current sprint.
@@ -12,7 +12,7 @@ the current sprint.
 ## Current Folder
 
 ```text
-src/array/methods/instance/slice/
+src/array/methods/instance/sort/
 ```
 
 ## Current Files
@@ -20,49 +20,53 @@ src/array/methods/instance/slice/
 Primary explanation:
 
 ```text
-src/array/methods/instance/slice/slice.md
+src/array/methods/instance/sort/sort.md
 ```
 
 Paired runnable example:
 
 ```text
-src/array/methods/instance/slice/slice.js
+src/array/methods/instance/sort/sort.js
 ```
 
 ## Starting Point
 
-- `slice.js` already existed directly under
+- `sort.js` already existed directly under
   `src/array/methods/instance/`.
-- The old file correctly showed basic `start` / `end` examples and a common
-  remove-with-copy pattern.
-- The old file used scratch-style variable names and did not explain why the end
-  index is excluded.
-- The old file did not cover no-argument shallow copy, negative indexes,
-  out-of-range indexes, fractional indexes, sparse arrays, generic array-like
-  behavior, shallow object references, or the `slice()` / `splice()` contrast.
+- The old file had a useful comparator contract comment and object-sorting
+  examples.
+- The old file mixed `sort()` with unrelated higher-order function and prototype
+  scratch experiments.
+- The old file did not clearly teach mutation, same-reference return, default
+  string sorting, numeric compare functions, stable sort, `toSorted()`, sparse
+  arrays, `undefined`, generic array-like behavior, or well-formed compare
+  functions.
 
 ## Reference Findings
 
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
-https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.slice
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted
+https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.sort
 ```
 
 Key points to teach:
 
-- `slice()` returns a shallow copy of a selected portion of an array.
-- It does not mutate the original array.
-- The `start` index is included.
-- The `end` index is excluded.
-- Omitting `end` copies through the end of the array.
-- Negative indexes count from the end.
-- Out-of-range indexes are clamped into the valid range.
-- Empty slots in sparse arrays are preserved.
-- `slice()` is generic and can be borrowed for array-like objects.
+- `sort()` sorts array elements in place.
+- It returns the same array object.
+- Without `compareFn`, values are converted to strings and sorted by character
+  order.
+- For numbers, `(a, b) => a - b` sorts ascending and `(a, b) => b - a` sorts
+  descending.
+- Modern JavaScript `sort()` is stable.
+- `toSorted()` returns a sorted shallow copy and does not mutate the original.
+- `undefined` values move after defined values.
+- Empty slots move to the end and remain empty slots.
+- `sort()` is generic and can be borrowed for array-like objects.
 
-## Sprint 1: Review Array Slice Pair
+## Sprint 1: Review Array Sort Pair
 
 Status: complete
 
@@ -70,20 +74,21 @@ Checklist:
 
 - [x] Confirm current Git status before starting and keep unrelated
   `src/playground/del.js` and `reduce/reduce.md` out of this sprint.
-- [x] Commit and push the approved `reverse/` batch first.
-- [x] Treat `reverse/` as committed and choose the next unchecked array page.
-- [x] Confirm the next requested array page is `slice.js`.
-- [x] Review existing `slice.js`.
-- [x] Check nearby copying/mutating method pages for overlap.
+- [x] Commit and push the approved `slice/` batch first.
+- [x] Treat `slice/` as committed and choose the next unchecked array page.
+- [x] Confirm the next requested array page is `sort.js`.
+- [x] Review existing `sort.js`.
+- [x] Check nearby custom sort practice and recent mutating/copying method pages
+  for overlap.
 - [x] Cross-check key behavior against MDN and the ECMAScript spec for
-  `slice()`.
-- [x] Move the reviewed pair into `src/array/methods/instance/slice/`.
-- [x] Rewrite `slice.js` using the runnable JS teaching pattern.
-- [x] Create `slice.md` using the repo study-note teaching pattern.
-- [x] Polish `slice.md` with a second note-format review.
-- [x] Cover shallow copy, no mutation, excluded end index, no-argument copy,
-  negative indexes, out-of-range indexes, fractional indexes, sparse arrays,
-  generic behavior, and comparison with `splice()`.
+  `sort()`.
+- [x] Move the reviewed pair into `src/array/methods/instance/sort/`.
+- [x] Rewrite `sort.js` using the runnable JS teaching pattern.
+- [x] Create `sort.md` using the repo study-note teaching pattern.
+- [x] Polish `sort.md` with a second note-format review.
+- [x] Cover mutation, same-reference return, default string sort, numeric
+  compare functions, object sorting, stable sort, `toSorted()`, shallow copies,
+  `undefined`, sparse arrays, generic behavior, and compare function mistakes.
 - [x] Run the `.js` example with Node.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md` after review.
 - [x] Run `git diff --check`.
@@ -95,10 +100,9 @@ Review List:
   comments.
 - [x] Confirm common mistakes are covered.
 - [x] Confirm the file pair belongs under
-  `src/array/methods/instance/slice/`.
-- [x] Confirm this page stays distinct from later `splice()` and existing
-  copying-method notes.
-- [x] Confirm `slice.md` uses the documented study-note format as a
+  `src/array/methods/instance/sort/`.
+- [x] Confirm this page stays distinct from custom sort implementation practice.
+- [x] Confirm `sort.md` uses the documented study-note format as a
   flexible quality checklist.
 - [x] Decide whether to commit this sprint.
 
@@ -107,7 +111,7 @@ Review List:
 This sprint is ready for review. After approval, the next unchecked array page is:
 
 ```text
-src/array/methods/instance/sort.js
+src/array/methods/instance/splice.js
 ```
 
 ## Note Quality Cleanup
