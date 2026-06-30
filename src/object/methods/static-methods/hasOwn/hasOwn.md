@@ -88,6 +88,28 @@ What happened:
 - Their values are falsy, but `Object.hasOwn()` is not checking truthiness.
 - It checks whether the property exists as an own property.
 
+## Non-Enumerable Properties Still Count
+
+```js
+const settings = {};
+
+Object.defineProperty(settings, 'internalId', {
+  value: 42,
+  enumerable: false,
+});
+
+console.log(Object.hasOwn(settings, 'internalId')); // true
+console.log(Object.keys(settings)); // []
+```
+
+What happened:
+
+- `internalId` exists directly on `settings`.
+- `enumerable: false` means the property is hidden from tools like
+  `Object.keys()`.
+- `Object.hasOwn()` still returns `true` because it checks ownership, not
+  enumerability.
+
 ## Inherited Properties Do Not Count
 
 ```js
@@ -189,6 +211,7 @@ In this example, index `1` is an empty slot. It is not an own property, so
 - It does not check the prototype chain.
 - It returns `true` for existing properties whose values are `undefined`,
   `null`, `false`, `0`, or `''`.
+- It returns `true` for own non-enumerable properties.
 - It throws a `TypeError` if the first argument is `null` or `undefined`.
 - It can check string keys and symbol keys.
 

@@ -51,14 +51,16 @@ Suggested order:
 2. `src/functions/`
 3. `src/array/`
 4. `src/object/`
-5. `src/string/`
-6. `src/collections/`
-7. `src/async/`
-8. `src/classes/`
-9. `src/advanced/`
-10. `src/miscellaneous/`
-11. `src/playground/`
-12. `src/notes.md`
+5. `src/reflect/`
+6. `src/proxy/`
+7. `src/string/`
+8. `src/collections/`
+9. `src/async/`
+10. `src/classes/`
+11. `src/advanced/`
+12. `src/miscellaneous/`
+13. `src/playground/`
+14. `src/notes.md`
 
 ## Folder Tracker
 
@@ -66,6 +68,8 @@ Suggested order:
 - [ ] `src/functions/`
 - [ ] `src/array/`
 - [ ] `src/object/`
+- [ ] `src/reflect/`
+- [ ] `src/proxy/`
 - [ ] `src/string/`
 - [ ] `src/collections/`
 - [ ] `src/async/`
@@ -159,10 +163,12 @@ Suggested order:
 
 ### `src/object/`
 
+- [x] `src/object/concepts/create-object/create-object.js`
+- [x] `src/object/concepts/create-object/create-object.md`
 - [x] `src/object/concepts/key-existence/key-existence.js`
 - [x] `src/object/concepts/key-existence/key-existence.md`
-- [ ] `src/object/loop-through-object/for-loop.js`
-- [ ] `src/object/loop-through-object/for_in.js`
+- [x] `src/object/loop-through-object/for-loop.js`
+- [x] `src/object/loop-through-object/for-loop.md`
 - [ ] `src/object/methods/instance/hasOwnProperty/hasOwnProperty.js`
 - [ ] `src/object/methods/instance/isPrototypeOf.js`
 - [ ] `src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.js`
@@ -197,6 +203,20 @@ Suggested order:
 - [ ] `src/object/methods/static-methods/values.js`
 - [ ] `src/object/practice/index.js`
 - [ ] `src/object/questions/deepCopyObject.js`
+
+### `src/reflect/`
+
+- [ ] `src/reflect/methods/static/ownKeys/ownKeys.js`
+- [ ] `src/reflect/methods/static/ownKeys/ownKeys.md`
+
+### `src/proxy/`
+
+- [ ] `src/proxy/concepts/proxy-basics/proxy-basics.js`
+- [ ] `src/proxy/concepts/proxy-basics/proxy-basics.md`
+- [ ] `src/proxy/handlers/ownKeys/ownKeys.js`
+- [ ] `src/proxy/handlers/ownKeys/ownKeys.md`
+- [ ] `src/proxy/methods/static/revocable/revocable.js`
+- [ ] `src/proxy/methods/static/revocable/revocable.md`
 
 ### `src/string/`
 
