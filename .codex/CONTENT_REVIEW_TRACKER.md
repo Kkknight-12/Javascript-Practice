@@ -163,7 +163,12 @@ Suggested order:
 - [x] `src/object/concepts/key-existence/key-existence.md`
 - [ ] `src/object/loop-through-object/for-loop.js`
 - [ ] `src/object/loop-through-object/for_in.js`
+- [ ] `src/object/methods/instance/hasOwnProperty/hasOwnProperty.js`
 - [ ] `src/object/methods/instance/isPrototypeOf.js`
+- [ ] `src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.js`
+- [ ] `src/object/methods/instance/toLocaleString/toLocaleString.js`
+- [ ] `src/object/methods/instance/toString/toString.js`
+- [ ] `src/object/methods/instance/valueOf/valueOf.js`
 - [ ] `src/object/methods/static-methods/assign.js`
 - [ ] `src/object/methods/static-methods/defineProperties.js`
 - [ ] `src/object/methods/static-methods/defineProperty.js`
@@ -173,12 +178,16 @@ Suggested order:
 - [ ] `src/object/methods/static-methods/getOwnPropertyDescriptor.js`
 - [ ] `src/object/methods/static-methods/getOwnPropertyDescriptors.js`
 - [ ] `src/object/methods/static-methods/getOwnPropertyNames.js`
+- [ ] `src/object/methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.js`
 - [ ] `src/object/methods/static-methods/getPrototypeOf.js`
 - [ ] `src/object/methods/static-methods/groupBy.js`
 - [x] `src/object/methods/static-methods/hasOwn/hasOwn.js`
 - [x] `src/object/methods/static-methods/hasOwn/hasOwn.md`
 - [ ] `src/object/methods/static-methods/index.js`
 - [ ] `src/object/methods/static-methods/is.js`
+- [ ] `src/object/methods/static-methods/isExtensible/isExtensible.js`
+- [ ] `src/object/methods/static-methods/isFrozen/isFrozen.js`
+- [ ] `src/object/methods/static-methods/isSealed/isSealed.js`
 - [ ] `src/object/methods/static-methods/keys.js`
 - [ ] `src/object/methods/static-methods/objectCreate/index.js`
 - [ ] `src/object/methods/static-methods/objectEntries/entries.js`

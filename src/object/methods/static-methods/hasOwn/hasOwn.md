@@ -18,6 +18,13 @@ not count.
 
 It returns `false` when the key is inherited or missing.
 
+## Related Concept
+
+This page focuses on the `Object.hasOwn()` method itself. For a side-by-side
+guide that compares `Object.hasOwn()`, the `in` operator,
+`Object.prototype.hasOwnProperty.call()`, and `Object.keys().includes()`, see
+[Checking Whether A Key Exists In An Object](../../../concepts/key-existence/key-existence.md).
+
 ## Mental Model
 
 Imagine an object sitting on top of its prototype.
@@ -133,13 +140,18 @@ dictionary.topic = 'objects';
 
 console.log(Object.hasOwn(dictionary, 'topic')); // true
 console.log(typeof dictionary.hasOwnProperty); // undefined
+console.log(Object.prototype.hasOwnProperty.call(dictionary, 'topic')); // true
 ```
 
 Objects created with `Object.create(null)` do not inherit from
-`Object.prototype`. That means they do not have
-`Object.prototype.hasOwnProperty()` available as a method.
+`Object.prototype`. That means `dictionary.hasOwnProperty` is not available as
+a method on `dictionary`.
 
-`Object.hasOwn()` still works because it is called from `Object`, not from the
+But `Object.prototype.hasOwnProperty` still exists on `Object.prototype`
+itself, so the older borrowed-call pattern can still use it with
+`dictionary` as `this`.
+
+`Object.hasOwn()` is simpler because it is called from `Object`, not from the
 object being checked.
 
 ## Symbol Keys
@@ -227,10 +239,12 @@ const dictionary = Object.create(null);
 dictionary.topic = 'objects';
 
 console.log(Object.hasOwn(dictionary, 'topic')); // true
+console.log(Object.prototype.hasOwnProperty.call(dictionary, 'topic')); // true
 ```
 
 Calling `dictionary.hasOwnProperty('topic')` would fail because the method does
-not exist on a null-prototype object.
+not exist on the null-prototype object itself. The borrowed
+`Object.prototype.hasOwnProperty.call(dictionary, 'topic')` pattern still works.
 
 ## Runnable Practice File
 

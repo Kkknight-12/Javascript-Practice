@@ -91,21 +91,65 @@ console.log(
 // Expected output: false
 
 /*
+ * Symbol keys also exist on objects, but Object.keys() does not list them.
+ * Use `in` or Object.hasOwn() when the key may be a symbol.
+ */
+const lessonId = Symbol('lessonId');
+const lessonWithSymbol = {
+  title: 'Objects',
+  [lessonId]: 101,
+};
+
+console.log(
+  '12. Object.hasOwn(lessonWithSymbol, lessonId):',
+  Object.hasOwn(lessonWithSymbol, lessonId)
+);
+// Expected output: true
+
+console.log('13. lessonId in lessonWithSymbol:', lessonId in lessonWithSymbol);
+// Expected output: true
+
+console.log('14. Object.keys(lessonWithSymbol):', Object.keys(lessonWithSymbol));
+// Expected output: [ 'title' ]
+
+/*
  * Object.hasOwn() is the modern direct-property check.
  * Object.prototype.hasOwnProperty.call() is the older safe pattern and is
  * still useful when reading legacy code.
+ *
+ * Avoid calling object.hasOwnProperty(key) directly. The object might replace
+ * that method with its own property or method.
  */
+const report = {
+  title: 'Progress',
+  hasOwnProperty() {
+    return false;
+  },
+};
+
+console.log(
+  '15. Direct hasOwnProperty can be shadowed:',
+  report.hasOwnProperty('title')
+);
+// Expected output: false
+
+console.log(
+  '16. Safe hasOwnProperty.call ignores shadowing:',
+  Object.prototype.hasOwnProperty.call(report, 'title')
+);
+// Expected output: true
+
 const dictionary = Object.create(null);
 dictionary.topic = 'objects';
 
 console.log(
-  '12. Object.hasOwn(dictionary, "topic"):',
+  '17. Object.hasOwn(dictionary, "topic"):',
   Object.hasOwn(dictionary, 'topic')
 );
 // Expected output: true
 
 console.log(
-  '13. Object.prototype.hasOwnProperty.call(dictionary, "topic"):',
+  '18. Object.prototype.hasOwnProperty.call(dictionary, "topic"):',
   Object.prototype.hasOwnProperty.call(dictionary, 'topic')
 );
 // Expected output: true

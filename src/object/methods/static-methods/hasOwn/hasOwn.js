@@ -82,7 +82,8 @@ console.log(
 
 /*
  * Object.hasOwn() also works with null-prototype objects.
- * These objects do not inherit Object.prototype.hasOwnProperty().
+ * These objects do not have dictionary.hasOwnProperty as a direct method,
+ * but the older borrowed-call pattern still works.
  */
 const dictionary = Object.create(null);
 dictionary.topic = 'objects';
@@ -96,6 +97,12 @@ console.log(
 );
 // Expected output: undefined
 
+console.log(
+  '13. Borrowed hasOwnProperty.call:',
+  Object.prototype.hasOwnProperty.call(dictionary, 'topic')
+);
+// Expected output: true
+
 /*
  * Property keys can be strings or symbols.
  */
@@ -105,7 +112,7 @@ const account = {
   [privateId]: 101,
 };
 
-console.log('13. Symbol key exists:', Object.hasOwn(account, privateId));
+console.log('14. Symbol key exists:', Object.hasOwn(account, privateId));
 // Expected output: true
 
 /*
@@ -114,10 +121,10 @@ console.log('13. Symbol key exists:', Object.hasOwn(account, privateId));
  */
 const scores = [10, , 30];
 
-console.log('14. Existing array index:', Object.hasOwn(scores, 0));
+console.log('15. Existing array index:', Object.hasOwn(scores, 0));
 // Expected output: true
 
-console.log('15. Empty array slot:', Object.hasOwn(scores, 1));
+console.log('16. Empty array slot:', Object.hasOwn(scores, 1));
 // Expected output: false
 
 /*
@@ -127,6 +134,6 @@ console.log('15. Empty array slot:', Object.hasOwn(scores, 1));
 try {
   Object.hasOwn(null, 'name');
 } catch (error) {
-  console.log('16. Null object error:', error.name);
+  console.log('17. Null object error:', error.name);
   // Expected output: TypeError
 }

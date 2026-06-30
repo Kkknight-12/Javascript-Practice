@@ -21,6 +21,10 @@ Use `Object.hasOwn(object, key)` when only direct properties should count.
 Use `Object.prototype.hasOwnProperty.call(object, key)` when you are reading or
 supporting older code that does not use `Object.hasOwn()`.
 
+This is a concept page for choosing the right key-existence check. The dedicated
+method page for `Object.hasOwn()` lives at
+[`src/object/methods/static-methods/hasOwn/hasOwn.md`](../../methods/static-methods/hasOwn/hasOwn.md).
+
 ## Mental Model
 
 Think of an object like a page, and its prototype like an older page behind it.
@@ -155,6 +159,27 @@ What happened:
 Use this pattern when you already need the key list. Do not treat it as the
 strongest general-purpose property-existence check.
 
+## Symbol Keys Need A Real Property Check
+
+```js
+const id = Symbol('id');
+
+const lesson = {
+  title: 'Objects',
+  [id]: 101,
+};
+
+console.log(Object.hasOwn(lesson, id)); // true
+console.log(id in lesson); // true
+console.log(Object.keys(lesson)); // [ 'title' ]
+```
+
+What happened:
+
+- The symbol key exists directly on `lesson`.
+- `Object.hasOwn()` and `in` can check symbol keys.
+- `Object.keys()` returns only string keys, so the symbol key is not listed.
+
 ## Safe Older Pattern
 
 ```js
@@ -167,6 +192,21 @@ console.log(Object.prototype.hasOwnProperty.call(dictionary, 'topic')); // true
 
 `Object.prototype.hasOwnProperty.call(object, key)` is the older safe pattern.
 It works even when the object does not inherit from `Object.prototype`.
+
+It is safer than calling `object.hasOwnProperty(key)` directly because an object
+can replace `hasOwnProperty` with its own property or method.
+
+```js
+const report = {
+  title: 'Progress',
+  hasOwnProperty() {
+    return false;
+  },
+};
+
+console.log(report.hasOwnProperty('title')); // false
+console.log(Object.prototype.hasOwnProperty.call(report, 'title')); // true
+```
 
 You will still see it in legacy code and libraries. In modern code,
 `Object.hasOwn(object, key)` is clearer.

@@ -2,68 +2,78 @@
 
 ## Active Story
 
-### JS-CONTENT-001AC: Review Object.hasOwn Pair
+### JS-CONTENT-001AD: Add Missing Object Method Files
 
-As the repo owner, I want the `Object.hasOwn()` page to clearly teach direct
-property checks, why inherited properties do not count, and why
-`Object.hasOwn()` is safer than calling `object.hasOwnProperty()` directly.
-Future website reuse is secondary and not part of the current sprint.
+As the repo owner, I want the object method inventory to include the important
+standard Object static and prototype methods so future review work does not miss
+core APIs. Future website reuse is secondary and not part of the current
+sprint.
 
 ## Current Folder
 
 ```text
-src/object/methods/static-methods/hasOwn/
+src/object/methods/
 ```
 
 ## Current Files
 
-Primary explanation:
+Added static method runnable files:
 
 ```text
-src/object/methods/static-methods/hasOwn/hasOwn.md
+src/object/methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.js
+src/object/methods/static-methods/isExtensible/isExtensible.js
+src/object/methods/static-methods/isFrozen/isFrozen.js
+src/object/methods/static-methods/isSealed/isSealed.js
 ```
 
-Paired runnable example:
+Added instance/prototype method runnable files:
 
 ```text
-src/object/methods/static-methods/hasOwn/hasOwn.js
+src/object/methods/instance/hasOwnProperty/hasOwnProperty.js
+src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.js
+src/object/methods/instance/toLocaleString/toLocaleString.js
+src/object/methods/instance/toString/toString.js
+src/object/methods/instance/valueOf/valueOf.js
 ```
 
 ## Starting Point
 
-- `hasOwn.js` already existed directly under `src/object/`.
-- The old file correctly said `Object.hasOwn()` checks own properties.
-- The old file included useful examples for undefined values, inherited
-  properties, and shadowed `hasOwnProperty`.
-- The old file had informal wording, noisy object output, and no paired
-  Markdown note.
-- The previous concept page, `src/object/concepts/key-existence/`, already
-  teaches the broad decision between `in`, `Object.hasOwn()`, and
-  `Object.keys().includes()`.
-- This page should stay focused on `Object.hasOwn()` itself.
-- The reviewed pair now lives in `src/object/methods/static-methods/hasOwn/`
-  because `Object.hasOwn()` is a static method.
+- `Object.hasOwn()` and the key-existence concept page were reviewed and moved
+  into their correct concept/static-method buckets.
+- The object method inventory still missed several important standard Object
+  APIs.
+- Existing unrelated dirty files were present:
+  `src/array/questions/flatten.js` and `src/playground/del.js`.
+- The user asked to add the missing method files, not to fully review each new
+  method page yet.
 
 ## Reference Findings
 
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn
-https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.hasown
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
 ```
 
-Key points to teach:
+Missing important static methods added:
 
-- `Object.hasOwn(object, key)` returns `true` for own properties.
-- It returns `false` for inherited properties and missing properties.
-- It is recommended over direct `object.hasOwnProperty()` calls.
-- It works when `hasOwnProperty` is shadowed.
-- It works with null-prototype objects.
-- It can check string keys and symbol keys.
-- It throws a `TypeError` when the first argument is `null` or `undefined`.
+- `Object.getOwnPropertySymbols()`
+- `Object.isExtensible()`
+- `Object.isFrozen()`
+- `Object.isSealed()`
 
-## Sprint 1: Review Object.hasOwn Pair
+Missing important instance/prototype methods added:
+
+- `Object.prototype.hasOwnProperty()`
+- `Object.prototype.propertyIsEnumerable()`
+- `Object.prototype.toLocaleString()`
+- `Object.prototype.toString()`
+- `Object.prototype.valueOf()`
+
+Deprecated prototype methods were intentionally not added to the main learning
+path.
+
+## Sprint 1: Add Missing Object Method Files
 
 Status: review
 
@@ -72,42 +82,28 @@ Checklist:
 - [x] Confirm current Git status before starting and leave unrelated
   `src/array/questions/flatten.js` and `src/playground/del.js` out of this
   sprint.
-- [x] Confirm the next unchecked object page was the loose
-  `src/object/hasOwn.js` file before moving it into the static-method bucket.
-- [x] Review existing `hasOwn.js`.
-- [x] Check the previous object key-existence page for overlap.
-- [x] Cross-check key behavior against MDN and the ECMAScript spec.
-- [x] Rewrite `hasOwn.js` using the runnable JS teaching pattern.
-- [x] Create `hasOwn.md` using the repo study-note teaching pattern.
-- [x] Move the pair into `src/object/methods/static-methods/hasOwn/` because
-  `Object.hasOwn()` is a static method.
-- [x] Record the object concept-vs-method bucket decision in
-  `.codex/PROJECT_MEMORY.md`.
-- [x] Cover own properties, inherited properties, falsy values,
-  shadowed `hasOwnProperty`, null-prototype objects, symbol keys, sparse array
-  slots, and `null`/`undefined` first-argument errors.
-- [x] Run the `.js` example with Node.
-- [x] Run `node --check` on the runnable file.
-- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md` after review.
+- [x] Check current object method inventory under `src/object/methods/`.
+- [x] Cross-check important Object APIs against MDN's Object reference.
+- [x] Add missing static method runnable files under
+  `src/object/methods/static-methods/`.
+- [x] Add missing instance/prototype method runnable files under
+  `src/object/methods/instance/`.
+- [x] Add each new file to `.codex/CONTENT_REVIEW_TRACKER.md` as unchecked
+  future review work.
+- [x] Run each new `.js` file with Node.
+- [x] Run `node --check` for each new `.js` file.
 - [x] Run `git diff --check`.
 
 Review List:
 
-- [x] Confirm the concept explanation feels easy to understand.
-- [x] Confirm the runnable example has clear terminal labels and expected-output
-  comments.
-- [x] Confirm common mistakes are covered.
-- [x] Confirm the file pair belongs under
-  `src/object/methods/static-methods/hasOwn/`.
-- [x] Confirm this page stays distinct from
-  `src/object/concepts/key-existence/key-existence.md`.
-- [x] Confirm `hasOwn.md` uses the documented study-note format as a flexible
-  quality checklist.
-- [ ] Decide whether to commit this sprint.
+- [x] Confirm each new method file is in the right static/instance bucket.
+- [x] Confirm the new files are learner-facing enough to run immediately.
+- [x] Confirm the tracker does not mark these files reviewed yet.
+- [ ] Decide whether to commit this inventory sprint.
 
 ## Stop Point
 
-This sprint is ready for review. After approval, the next unchecked object page is:
+This inventory sprint is ready for review. The next unchecked object review page is:
 
 ```text
 src/object/loop-through-object/for-loop.js
