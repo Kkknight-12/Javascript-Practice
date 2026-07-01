@@ -171,8 +171,11 @@ Suggested order:
 - [x] `src/object/loop-through-object/for-loop.md`
 - [x] `src/object/methods/instance/hasOwnProperty/hasOwnProperty.js`
 - [x] `src/object/methods/instance/hasOwnProperty/hasOwnProperty.md`
-- [ ] `src/object/methods/instance/isPrototypeOf.js`
-- [ ] `src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.js`
+- [x] `src/object/methods/instance/isPrototypeOf/isPrototypeOf.js`
+- [x] `src/object/methods/instance/isPrototypeOf/isPrototypeOf.md`
+- [x] `src/object/methods/instance/isPrototypeOf/doubt/doubt.md`
+- [x] `src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.js`
+- [x] `src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.md`
 - [ ] `src/object/methods/instance/toLocaleString/toLocaleString.js`
 - [ ] `src/object/methods/instance/toString/toString.js`
 - [ ] `src/object/methods/instance/valueOf/valueOf.js`
