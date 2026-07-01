@@ -169,7 +169,8 @@ Suggested order:
 - [x] `src/object/concepts/key-existence/key-existence.md`
 - [x] `src/object/loop-through-object/for-loop.js`
 - [x] `src/object/loop-through-object/for-loop.md`
-- [ ] `src/object/methods/instance/hasOwnProperty/hasOwnProperty.js`
+- [x] `src/object/methods/instance/hasOwnProperty/hasOwnProperty.js`
+- [x] `src/object/methods/instance/hasOwnProperty/hasOwnProperty.md`
 - [ ] `src/object/methods/instance/isPrototypeOf.js`
 - [ ] `src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.js`
 - [ ] `src/object/methods/instance/toLocaleString/toLocaleString.js`
