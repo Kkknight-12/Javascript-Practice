@@ -15,5 +15,5 @@ temp/
 
 # Local visual notes and screenshots
 *.png
-visual_notes/
-**/visual_notes/
+visual-notes/
+**/visual-notes/

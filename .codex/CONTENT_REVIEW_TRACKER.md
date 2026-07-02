@@ -178,7 +178,8 @@ Suggested order:
 - [x] `src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.md`
 - [x] `src/object/methods/instance/toLocaleString/toLocaleString.js`
 - [x] `src/object/methods/instance/toLocaleString/toLocaleString.md`
-- [ ] `src/object/methods/instance/toString/toString.js`
+- [x] `src/object/methods/instance/toString/toString.js`
+- [x] `src/object/methods/instance/toString/toString.md`
 - [ ] `src/object/methods/instance/valueOf/valueOf.js`
 - [ ] `src/object/methods/static-methods/assign.js`
 - [ ] `src/object/methods/static-methods/defineProperties.js`
