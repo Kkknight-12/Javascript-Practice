@@ -176,7 +176,8 @@ Suggested order:
 - [x] `src/object/methods/instance/isPrototypeOf/doubt/doubt.md`
 - [x] `src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.js`
 - [x] `src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.md`
-- [ ] `src/object/methods/instance/toLocaleString/toLocaleString.js`
+- [x] `src/object/methods/instance/toLocaleString/toLocaleString.js`
+- [x] `src/object/methods/instance/toLocaleString/toLocaleString.md`
 - [ ] `src/object/methods/instance/toString/toString.js`
 - [ ] `src/object/methods/instance/valueOf/valueOf.js`
 - [ ] `src/object/methods/static-methods/assign.js`

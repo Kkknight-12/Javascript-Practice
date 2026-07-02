@@ -2,33 +2,31 @@
 
 ## Active Story
 
-### JS-CONTENT-001AI: Review Object.prototype.propertyIsEnumerable
+### JS-CONTENT-001AJ: Review Object.prototype.toLocaleString
 
-As a learner, I want to understand `Object.prototype.propertyIsEnumerable()` as
-an own-and-enumerable property check, so I can tell the difference between a
-property existing and a property being included by enumeration tools.
+As a learner, I want to understand `Object.prototype.toLocaleString()` as the
+base method that delegates to `this.toString()`, so I can tell the difference
+between Object's fallback behavior and locale-aware built-in overrides.
 
 ## Current Folder
 
 ```text
-src/object/methods/instance/propertyIsEnumerable/
+src/object/methods/instance/toLocaleString/
 ```
 
 ## Current Files
 
 ```text
-src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.js
-src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.md
+src/object/methods/instance/toLocaleString/toLocaleString.js
+src/object/methods/instance/toLocaleString/toLocaleString.md
 ```
 
 ## Starting Point
 
 - The next unchecked object page was
-  `src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.js`.
-- The existing runnable file covered the basic own-enumerable distinction but
-  did not yet have a paired study note.
-- Existing uncommitted `isPrototypeOf` work remains in the working tree from the
-  previous review step.
+  `src/object/methods/instance/toLocaleString/toLocaleString.js`.
+- The existing runnable file showed the basic Object fallback plus Number and
+  Date overrides, but did not yet have a paired study note.
 - Existing unrelated dirty files remain outside this sprint:
   `src/array/questions/flatten.js` and `src/playground/del.js`.
 
@@ -37,21 +35,22 @@ src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.md
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/propertyIsEnumerable
-https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.prototype.propertyisenumerable
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toLocaleString
+https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.prototype.tolocalestring
 ```
 
 Key facts:
 
-- `propertyIsEnumerable()` returns `true` only when the property is both own and
-  enumerable.
-- Missing, inherited, and non-enumerable properties return `false`.
-- The property key can be a string or a symbol.
-- Null-prototype objects do not inherit this method, so the borrowed-call
-  pattern is needed.
-- Descriptor checks can expose the underlying `enumerable` flag.
+- `Object.prototype.toLocaleString()` returns the result of calling
+  `this.toString()`.
+- The base Object version does not use locale/options arguments.
+- The optional parameter positions are reserved for the pattern used by
+  locale-aware overrides.
+- Built-ins such as `Array`, `Number`, `Date`, `BigInt`, and typed arrays
+  override `toLocaleString()` with locale-aware behavior.
+- Null-prototype objects do not inherit the method.
 
-## Sprint 1: Review `propertyIsEnumerable`
+## Sprint 1: Review `toLocaleString`
 
 Status: review-ready
 
@@ -59,17 +58,17 @@ Checklist:
 
 - [x] Inspect the existing runnable file.
 - [x] Cross-check behavior against MDN and the ECMAScript spec.
-- [x] Expand `propertyIsEnumerable.js` with learner-facing examples.
-- [x] Add paired `propertyIsEnumerable.md` teaching note.
-- [x] Cover own enumerable properties, non-enumerable own properties, inherited
-  properties, symbol keys, arrays, null-prototype objects, and descriptor-based
-  checks.
+- [x] Expand `toLocaleString.js` with learner-facing examples.
+- [x] Add paired `toLocaleString.md` teaching note.
+- [x] Cover Object fallback behavior, custom `toString()`, ignored base
+  arguments, built-in overrides, null-prototype objects, and non-callable
+  `toString`.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
 
 Review List:
 
-- [x] Run `node src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.js`.
-- [x] Run `node --check src/object/methods/instance/propertyIsEnumerable/propertyIsEnumerable.js`.
+- [x] Run `node src/object/methods/instance/toLocaleString/toLocaleString.js`.
+- [x] Run `node --check src/object/methods/instance/toLocaleString/toLocaleString.js`.
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review against the project teaching pattern.
 
@@ -78,5 +77,5 @@ Review List:
 This page is review-ready. The next unchecked object page after this one is:
 
 ```text
-src/object/methods/instance/toLocaleString/toLocaleString.js
+src/object/methods/instance/toString/toString.js
 ```
