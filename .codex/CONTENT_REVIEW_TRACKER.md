@@ -185,7 +185,9 @@ Suggested order:
 - [x] `src/object/methods/instance/valueOf/doubt/doubt.md`
 - [x] `src/object/methods/static-methods/assign/assign.js`
 - [x] `src/object/methods/static-methods/assign/assign.md`
-- [ ] `src/object/methods/static-methods/defineProperties.js`
+- [x] `src/object/methods/static-methods/defineProperties/defineProperties.js`
+- [x] `src/object/methods/static-methods/defineProperties/defineProperties.md`
+- [x] `src/object/methods/static-methods/defineProperties/doubt/doubt.md`
 - [ ] `src/object/methods/static-methods/defineProperty.js`
 - [ ] `src/object/methods/static-methods/entries.js`
 - [ ] `src/object/methods/static-methods/freeze.js`
