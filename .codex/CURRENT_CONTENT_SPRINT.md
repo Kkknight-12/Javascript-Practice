@@ -2,34 +2,34 @@
 
 ## Active Story
 
-### JS-CONTENT-001AN: Review Object.defineProperties
+### JS-CONTENT-001AO: Review Object.defineProperty
 
-As a learner, I want to understand `Object.defineProperties()` as the static
-method that defines several property descriptors at once, so I can create
-hidden, read-only, accessor, or symbol properties intentionally.
+As a learner, I want to understand `Object.defineProperty()` as the static
+method that defines one property descriptor directly on an object, so I can
+create hidden, read-only, accessor, or symbol properties intentionally.
 
 ## Current Folder
 
 ```text
-src/object/methods/static-methods/defineProperties/
+src/object/methods/static-methods/defineProperty/
 ```
 
 ## Current Files
 
 ```text
-src/object/methods/static-methods/defineProperties/defineProperties.js
-src/object/methods/static-methods/defineProperties/defineProperties.md
-src/object/methods/static-methods/defineProperties/doubt/doubt.md
+src/object/methods/static-methods/defineProperty/defineProperty.js
+src/object/methods/static-methods/defineProperty/defineProperty.md
 ```
 
 ## Starting Point
 
 - The next unchecked object page was
-  `src/object/methods/static-methods/defineProperties.js`.
-- The existing runnable file covered one basic `Object.defineProperties()`
-  example, but did not yet have a paired study note.
+  `src/object/methods/static-methods/defineProperty.js`.
+- The existing runnable file covered one basic `Object.defineProperty()`
+  example and a non-writable assignment note, but did not yet have a paired
+  study note.
 - This reviewed page now lives in a method folder:
-  `src/object/methods/static-methods/defineProperties/`.
+  `src/object/methods/static-methods/defineProperty/`.
 - Existing unrelated dirty files remain outside this sprint:
   `src/array/questions/flatten.js` and `src/playground/del.js`.
 
@@ -38,26 +38,26 @@ src/object/methods/static-methods/defineProperties/doubt/doubt.md
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties
-https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.defineproperties
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.defineproperty
 ```
 
 Key facts:
 
-- `Object.defineProperties()` defines or modifies multiple properties directly
-  on one object and returns that object.
-- The second argument is a descriptor map. Its own enumerable keys are the
-  property keys to define.
-- Each descriptor must be a descriptor object.
+- `Object.defineProperty()` defines or modifies one own property directly on an
+  object and returns that object.
+- The property key can be a string or a symbol.
+- The descriptor argument must be an object.
 - Data descriptors use `value` and `writable`.
 - Accessor descriptors use `get` and `set`.
 - Descriptor flags such as `writable`, `enumerable`, and `configurable`
   default to `false`.
-- Invalid descriptor objects throw `TypeError`.
-- If a later definition fails after earlier definitions succeeded, earlier
-  changes can remain.
+- A descriptor cannot mix data descriptor fields with accessor descriptor
+  fields.
+- `Object.defineProperty()` defines an own property directly and does not call
+  inherited setters.
 
-## Sprint 1: Review `Object.defineProperties`
+## Sprint 1: Review `Object.defineProperty`
 
 Status: review-ready
 
@@ -65,21 +65,20 @@ Checklist:
 
 - [x] Inspect the existing runnable file.
 - [x] Cross-check behavior against MDN and the ECMAScript spec.
-- [x] Move the reviewed page into `defineProperties/` so the paired `.js` and
+- [x] Move the reviewed page into `defineProperty/` so the paired `.js` and
   `.md` files live together.
-- [x] Expand `defineProperties.js` with learner-facing examples.
-- [x] Add paired `defineProperties.md` teaching note.
-- [x] Add a focused doubt note for the nested `value` inside the descriptor map
-  example.
-- [x] Cover descriptor defaults, data descriptors, accessor descriptors,
-  modifying existing properties, descriptor-map enumerability, symbol keys,
-  invalid descriptors, `null`/`undefined`, and partial mutation on errors.
+- [x] Expand `defineProperty.js` with learner-facing examples.
+- [x] Add paired `defineProperty.md` teaching note.
+- [x] Cover descriptor defaults, data descriptors, writable, enumerable,
+  configurable, modifying existing properties, accessor descriptors, symbol
+  keys, invalid descriptors, own-property definition, empty descriptors, and
+  `null`/`undefined`.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
 
 Review List:
 
-- [x] Run `node src/object/methods/static-methods/defineProperties/defineProperties.js`.
-- [x] Run `node --check src/object/methods/static-methods/defineProperties/defineProperties.js`.
+- [x] Run `node src/object/methods/static-methods/defineProperty/defineProperty.js`.
+- [x] Run `node --check src/object/methods/static-methods/defineProperty/defineProperty.js`.
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review against the project teaching pattern.
 
@@ -88,5 +87,5 @@ Review List:
 This page is review-ready. The next unchecked object page after this one is:
 
 ```text
-src/object/methods/static-methods/defineProperty.js
+src/object/methods/static-methods/entries.js
 ```

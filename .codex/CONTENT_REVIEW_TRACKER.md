@@ -188,7 +188,8 @@ Suggested order:
 - [x] `src/object/methods/static-methods/defineProperties/defineProperties.js`
 - [x] `src/object/methods/static-methods/defineProperties/defineProperties.md`
 - [x] `src/object/methods/static-methods/defineProperties/doubt/doubt.md`
-- [ ] `src/object/methods/static-methods/defineProperty.js`
+- [x] `src/object/methods/static-methods/defineProperty/defineProperty.js`
+- [x] `src/object/methods/static-methods/defineProperty/defineProperty.md`
 - [ ] `src/object/methods/static-methods/entries.js`
 - [ ] `src/object/methods/static-methods/freeze.js`
 - [ ] `src/object/methods/static-methods/fromEntries.js`
