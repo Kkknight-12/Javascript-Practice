@@ -70,7 +70,7 @@ detail:
 - `Object.create()`:
   [`src/object/methods/static-methods/objectCreate/index.js`](../../methods/static-methods/objectCreate/index.js)
 - `Object.assign()`:
-  [`src/object/methods/static-methods/assign.js`](../../methods/static-methods/assign.js)
+  [`src/object/methods/static-methods/assign/assign.md`](../../methods/static-methods/assign/assign.md)
 - `Object.fromEntries()`:
   [`src/object/methods/static-methods/fromEntries.js`](../../methods/static-methods/fromEntries.js)
 - Class basics:

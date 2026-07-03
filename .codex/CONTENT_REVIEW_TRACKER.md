@@ -180,8 +180,11 @@ Suggested order:
 - [x] `src/object/methods/instance/toLocaleString/toLocaleString.md`
 - [x] `src/object/methods/instance/toString/toString.js`
 - [x] `src/object/methods/instance/toString/toString.md`
-- [ ] `src/object/methods/instance/valueOf/valueOf.js`
-- [ ] `src/object/methods/static-methods/assign.js`
+- [x] `src/object/methods/instance/valueOf/valueOf.js`
+- [x] `src/object/methods/instance/valueOf/valueOf.md`
+- [x] `src/object/methods/instance/valueOf/doubt/doubt.md`
+- [x] `src/object/methods/static-methods/assign/assign.js`
+- [x] `src/object/methods/static-methods/assign/assign.md`
 - [ ] `src/object/methods/static-methods/defineProperties.js`
 - [ ] `src/object/methods/static-methods/defineProperty.js`
 - [ ] `src/object/methods/static-methods/entries.js`
