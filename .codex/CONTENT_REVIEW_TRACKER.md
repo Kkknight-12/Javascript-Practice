@@ -194,7 +194,8 @@ Suggested order:
 - [x] `src/object/methods/static-methods/entries/entries.md`
 - [x] `src/object/methods/static-methods/freeze/freeze.js`
 - [x] `src/object/methods/static-methods/freeze/freeze.md`
-- [ ] `src/object/methods/static-methods/fromEntries.js`
+- [x] `src/object/methods/static-methods/fromEntries/fromEntries.js`
+- [x] `src/object/methods/static-methods/fromEntries/fromEntries.md`
 - [ ] `src/object/methods/static-methods/getOwnPropertyDescriptor.js`
 - [ ] `src/object/methods/static-methods/getOwnPropertyDescriptors.js`
 - [ ] `src/object/methods/static-methods/getOwnPropertyNames.js`

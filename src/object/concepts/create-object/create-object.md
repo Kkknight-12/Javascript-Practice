@@ -72,7 +72,7 @@ detail:
 - `Object.assign()`:
   [`src/object/methods/static-methods/assign/assign.md`](../../methods/static-methods/assign/assign.md)
 - `Object.fromEntries()`:
-  [`src/object/methods/static-methods/fromEntries.js`](../../methods/static-methods/fromEntries.js)
+  [`src/object/methods/static-methods/fromEntries/fromEntries.md`](../../methods/static-methods/fromEntries/fromEntries.md)
 - Class basics:
   [`src/classes/basic-syntax-1.js`](../../../classes/basic-syntax-1.js)
 - Key existence:
