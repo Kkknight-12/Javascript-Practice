@@ -33,7 +33,7 @@ belong in these places:
 - `Object.values()`: [`src/object/methods/static-methods/values.js`](../methods/static-methods/values.js)
 - `Object.entries()`: [`src/object/methods/static-methods/entries/entries.md`](../methods/static-methods/entries/entries.md)
 - `Object.getOwnPropertyNames()`:
-  [`src/object/methods/static-methods/getOwnPropertyNames.js`](../methods/static-methods/getOwnPropertyNames.js)
+  [`src/object/methods/static-methods/getOwnPropertyNames/getOwnPropertyNames.md`](../methods/static-methods/getOwnPropertyNames/getOwnPropertyNames.md)
 - `Object.getOwnPropertySymbols()`:
   [`src/object/methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.js`](../methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.js)
 - `Object.hasOwn()`:
