@@ -35,7 +35,7 @@ belong in these places:
 - `Object.getOwnPropertyNames()`:
   [`src/object/methods/static-methods/getOwnPropertyNames/getOwnPropertyNames.md`](../methods/static-methods/getOwnPropertyNames/getOwnPropertyNames.md)
 - `Object.getOwnPropertySymbols()`:
-  [`src/object/methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.js`](../methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.js)
+  [`src/object/methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.md`](../methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.md)
 - `Object.hasOwn()`:
   [`src/object/methods/static-methods/hasOwn/hasOwn.md`](../methods/static-methods/hasOwn/hasOwn.md)
 - `Reflect.ownKeys()`:
