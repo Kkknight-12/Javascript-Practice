@@ -198,7 +198,8 @@ Suggested order:
 - [x] `src/object/methods/static-methods/fromEntries/fromEntries.md`
 - [x] `src/object/methods/static-methods/getOwnPropertyDescriptor/getOwnPropertyDescriptor.js`
 - [x] `src/object/methods/static-methods/getOwnPropertyDescriptor/getOwnPropertyDescriptor.md`
-- [ ] `src/object/methods/static-methods/getOwnPropertyDescriptors.js`
+- [x] `src/object/methods/static-methods/getOwnPropertyDescriptors/getOwnPropertyDescriptors.js`
+- [x] `src/object/methods/static-methods/getOwnPropertyDescriptors/getOwnPropertyDescriptors.md`
 - [ ] `src/object/methods/static-methods/getOwnPropertyNames.js`
 - [ ] `src/object/methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.js`
 - [ ] `src/object/methods/static-methods/getPrototypeOf.js`

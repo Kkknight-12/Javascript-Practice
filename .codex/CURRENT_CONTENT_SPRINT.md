@@ -2,33 +2,33 @@
 
 ## Active Story
 
-### JS-CONTENT-001AS: Review Object.getOwnPropertyDescriptor
+### JS-CONTENT-001AT: Review Object.getOwnPropertyDescriptors
 
-As a learner, I want to understand `Object.getOwnPropertyDescriptor()` as the
-static method that inspects one own property's descriptor, so I can see
-writable, enumerable, configurable, value, getter, and setter details.
+As a learner, I want to understand `Object.getOwnPropertyDescriptors()` as the
+static method that collects all own property descriptors, so I can inspect,
+copy, and preserve descriptor details intentionally.
 
 ## Current Folder
 
 ```text
-src/object/methods/static-methods/getOwnPropertyDescriptor/
+src/object/methods/static-methods/getOwnPropertyDescriptors/
 ```
 
 ## Current Files
 
 ```text
-src/object/methods/static-methods/getOwnPropertyDescriptor/getOwnPropertyDescriptor.js
-src/object/methods/static-methods/getOwnPropertyDescriptor/getOwnPropertyDescriptor.md
+src/object/methods/static-methods/getOwnPropertyDescriptors/getOwnPropertyDescriptors.js
+src/object/methods/static-methods/getOwnPropertyDescriptors/getOwnPropertyDescriptors.md
 ```
 
 ## Starting Point
 
 - The next unchecked object page was the old flat
-  `Object.getOwnPropertyDescriptor()` file.
-- The existing runnable file covered one basic descriptor example, but did not
-  yet have a paired study note.
+  `Object.getOwnPropertyDescriptors()` file.
+- The existing runnable file covered one basic all-descriptors example and a
+  shallow-copy pattern, but did not yet have a paired study note.
 - This reviewed page now lives in a method folder:
-  `src/object/methods/static-methods/getOwnPropertyDescriptor/`.
+  `src/object/methods/static-methods/getOwnPropertyDescriptors/`.
 - Existing unrelated dirty files remain outside this sprint:
   `src/array/questions/flatten.js` and `src/playground/del.js`.
 
@@ -37,25 +37,25 @@ src/object/methods/static-methods/getOwnPropertyDescriptor/getOwnPropertyDescrip
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor
-https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.getownpropertydescriptor
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors
+https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.getownpropertydescriptors
 ```
 
 Key facts:
 
-- `Object.getOwnPropertyDescriptor()` converts the first argument with
+- `Object.getOwnPropertyDescriptors()` converts the first argument with
   `ToObject`, so primitive strings can be inspected but `null` and `undefined`
   throw `TypeError`.
-- The property key is converted with `ToPropertyKey`.
-- It checks only own properties through `[[GetOwnProperty]]`.
-- Missing or inherited properties return `undefined`.
-- Existing own properties return a descriptor object.
-- Descriptor objects can be data descriptors or accessor descriptors.
-- Reading an accessor descriptor does not call the getter.
-- The returned descriptor object is mutable, but mutating it does not change the
-  original property.
+- It gets all own property keys with `[[OwnPropertyKeys]]`.
+- It includes string-keyed and symbol-keyed own properties.
+- It includes enumerable and non-enumerable own properties.
+- It skips inherited properties.
+- It creates a new ordinary descriptor-map object.
+- Each value in the descriptor map is a descriptor object created from the
+  source property descriptor.
+- The descriptor map can be passed to `Object.defineProperties()`.
 
-## Sprint 1: Review `Object.getOwnPropertyDescriptor`
+## Sprint 1: Review `Object.getOwnPropertyDescriptors`
 
 Status: review-ready
 
@@ -63,21 +63,21 @@ Checklist:
 
 - [x] Inspect the existing runnable file.
 - [x] Cross-check behavior against MDN and the ECMAScript spec.
-- [x] Move the reviewed page into `getOwnPropertyDescriptor/` so the paired
+- [x] Move the reviewed page into `getOwnPropertyDescriptors/` so the paired
   `.js` and `.md` files live together.
-- [x] Expand `getOwnPropertyDescriptor.js` with learner-facing examples.
-- [x] Add paired `getOwnPropertyDescriptor.md` teaching note.
-- [x] Cover normal descriptors, `Object.defineProperty()` descriptors, own-only
-  lookup, missing properties, accessors, getter behavior, symbol keys, key
-  conversion, primitives, descriptor-copy behavior, optional chaining, and
-  differences from `Object.getOwnPropertyDescriptors()` and
-  `Reflect.getOwnPropertyDescriptor()`.
+- [x] Expand `getOwnPropertyDescriptors.js` with learner-facing examples.
+- [x] Add paired `getOwnPropertyDescriptors.md` teaching note.
+- [x] Cover descriptor-map shape, non-enumerable properties, symbol keys,
+  inherited-property skipping, accessors, getter behavior, descriptor-map copy
+  behavior, descriptor-preserving copies, `Object.assign()` differences,
+  prototype-preserving shallow clones, primitives, and the difference from
+  `Object.getOwnPropertyDescriptor()`.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
 
 Review List:
 
-- [x] Run `node src/object/methods/static-methods/getOwnPropertyDescriptor/getOwnPropertyDescriptor.js`.
-- [x] Run `node --check src/object/methods/static-methods/getOwnPropertyDescriptor/getOwnPropertyDescriptor.js`.
+- [x] Run `node src/object/methods/static-methods/getOwnPropertyDescriptors/getOwnPropertyDescriptors.js`.
+- [x] Run `node --check src/object/methods/static-methods/getOwnPropertyDescriptors/getOwnPropertyDescriptors.js`.
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review against the project teaching pattern.
 
@@ -86,5 +86,5 @@ Review List:
 This page is review-ready. The next unchecked object page after this one is:
 
 ```text
-src/object/methods/static-methods/getOwnPropertyDescriptors.js
+src/object/methods/static-methods/getOwnPropertyNames.js
 ```
