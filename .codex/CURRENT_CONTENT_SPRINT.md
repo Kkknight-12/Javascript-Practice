@@ -2,33 +2,33 @@
 
 ## Active Story
 
-### JS-CONTENT-001AV: Review Object.getOwnPropertySymbols
+### JS-CONTENT-001AW: Review Object.getPrototypeOf
 
-As a learner, I want to understand `Object.getOwnPropertySymbols()` as the
-static method that returns own symbol keys, so I can inspect symbol-keyed
-properties without confusing them with string keys or private state.
+As a learner, I want to understand `Object.getPrototypeOf()` as the static
+method that returns an object's immediate prototype, so I can inspect direct
+prototype links without confusing them with whole-chain checks.
 
 ## Current Folder
 
 ```text
-src/object/methods/static-methods/getOwnPropertySymbols/
+src/object/methods/static-methods/getPrototypeOf/
 ```
 
 ## Current Files
 
 ```text
-src/object/methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.js
-src/object/methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.md
+src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.js
+src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.md
 ```
 
 ## Starting Point
 
-- The next unchecked object page was
-  `src/object/methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.js`.
-- The existing runnable file covered basic symbol keys, string-key skipping,
-  and inherited-symbol skipping, but did not yet have a paired study note.
-- This reviewed page already lived in a method folder:
-  `src/object/methods/static-methods/getOwnPropertySymbols/`.
+- The next unchecked object page was the old flat
+  `src/object/methods/static-methods/getPrototypeOf.js`.
+- The existing runnable file covered one `Object.create()` prototype example,
+  but did not yet have a paired study note.
+- This reviewed page now lives in a method folder:
+  `src/object/methods/static-methods/getPrototypeOf/`.
 - Existing unrelated dirty files remain outside this sprint:
   `src/array/questions/flatten.js` and `src/playground/del.js`.
 
@@ -37,24 +37,24 @@ src/object/methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.md
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols
-https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.getownpropertysymbols
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf
+https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.getprototypeof
 ```
 
 Key facts:
 
-- `Object.getOwnPropertySymbols()` converts the argument with `ToObject`, so
-  primitives can be inspected but `null` and `undefined` throw `TypeError`.
-- It returns an array of symbols.
-- It includes own enumerable and non-enumerable symbol-keyed properties.
-- It skips inherited symbol properties.
-- It skips string-keyed properties.
-- Symbol descriptions do not make two symbols equal.
-- Symbols are not private because they can be discovered from the object.
-- Use `Reflect.ownKeys()` when own string keys and own symbol keys are both
-  needed.
+- `Object.getPrototypeOf()` converts the argument with `ToObject`, so primitive
+  values can be inspected but `null` and `undefined` throw `TypeError`.
+- It returns the immediate `[[Prototype]]` value.
+- The return value can be another object or `null`.
+- It does not return the whole prototype chain.
+- Normal object literals point to `Object.prototype`; `Object.prototype` points
+  to `null`.
+- `Object.create(null)` creates an object whose prototype is `null`.
+- `Reflect.getPrototypeOf()` does not coerce primitive values.
+- Proxy objects can intercept prototype reads with a `getPrototypeOf` trap.
 
-## Sprint 1: Review `Object.getOwnPropertySymbols`
+## Sprint 1: Review `Object.getPrototypeOf`
 
 Status: review-ready
 
@@ -62,21 +62,20 @@ Checklist:
 
 - [x] Inspect the existing runnable file.
 - [x] Cross-check behavior against MDN and the ECMAScript spec.
-- [x] Keep the reviewed page in `getOwnPropertySymbols/` so the paired `.js`
+- [x] Move the reviewed page into `getPrototypeOf/` so the paired `.js`
   and `.md` files live together.
-- [x] Expand `getOwnPropertySymbols.js` with learner-facing examples.
-- [x] Add paired `getOwnPropertySymbols.md` teaching note.
-- [x] Cover basic symbol keys, non-enumerable symbol keys, string-key skipping,
-  symbol identity, inherited-symbol skipping, `Reflect.ownKeys()`, symbols not
-  being private, names-vs-descriptors, JSON behavior, `Symbol.for()`,
-  primitives, and differences from `Object.getOwnPropertyNames()`.
-- [x] Update the object-loop reference to the new detail page.
+- [x] Expand `getPrototypeOf.js` with learner-facing examples.
+- [x] Add paired `getPrototypeOf.md` teaching note.
+- [x] Cover `Object.create()`, normal object literals, `Object.prototype`,
+  null-prototype objects, class chains, constructor functions,
+  `Object.setPrototypeOf()`, primitives, `Reflect.getPrototypeOf()`,
+  differences from `isPrototypeOf()` and `instanceof`, and proxy traps.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
 
 Review List:
 
-- [x] Run `node src/object/methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.js`.
-- [x] Run `node --check src/object/methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.js`.
+- [x] Run `node src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.js`.
+- [x] Run `node --check src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.js`.
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review against the project teaching pattern.
 
@@ -85,5 +84,5 @@ Review List:
 This page is review-ready. The next unchecked object page after this one is:
 
 ```text
-src/object/methods/static-methods/getPrototypeOf.js
+src/object/methods/static-methods/groupBy.js
 ```

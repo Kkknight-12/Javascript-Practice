@@ -350,7 +350,7 @@ Use `instanceof`:
 - `Object.create()`:
   [`src/object/methods/static-methods/objectCreate/index.js`](../../static-methods/objectCreate/index.js)
 - `Object.getPrototypeOf()`:
-  [`src/object/methods/static-methods/getPrototypeOf.js`](../../static-methods/getPrototypeOf.js)
+  [`src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.md`](../../static-methods/getPrototypeOf/getPrototypeOf.md)
 - `Object.setPrototypeOf()`:
   [`src/object/methods/static-methods/setPrototypeOf.js`](../../static-methods/setPrototypeOf.js)
 
