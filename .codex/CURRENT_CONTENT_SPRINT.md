@@ -2,34 +2,33 @@
 
 ## Active Story
 
-### JS-CONTENT-001AY: Review Object static methods overview
+### JS-CONTENT-001AZ: Review Object.is
 
-As a learner, I want a clear overview of `Object` static methods, so I can
-understand which method family solves which object problem before reading the
-individual method pages.
+As a learner, I want to understand `Object.is()` as JavaScript's SameValue
+comparison helper, so I can compare values without confusing it with `==`,
+`===`, or SameValueZero.
 
 ## Current Folder
 
 ```text
-src/object/methods/static-methods/
+src/object/methods/static-methods/is/
 ```
 
 ## Current Files
 
 ```text
-src/object/methods/static-methods/index.js
-src/object/methods/static-methods/index.md
+src/object/methods/static-methods/is/is.js
+src/object/methods/static-methods/is/is.md
 ```
 
 ## Starting Point
 
-- The next unchecked object page was
-  `src/object/methods/static-methods/index.js`.
-- The existing file mixed several short examples, included an instance method
-  (`hasOwnProperty`) inside the static-method overview, and did not explain the
-  method families clearly.
-- This page stays at the static-methods folder root because it is an overview,
-  not one specific method page.
+- The next unchecked object page was the old flat
+  `src/object/methods/static-methods/is.js`.
+- The existing file covered a few MDN examples, but several calls were not
+  logged and the page did not yet have a paired study note.
+- This reviewed page now lives in a method folder:
+  `src/object/methods/static-methods/is/`.
 - Existing unrelated dirty files remain outside this sprint:
   `src/array/questions/flatten.js` and `src/playground/del.js`.
 
@@ -38,26 +37,22 @@ src/object/methods/static-methods/index.md
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
-https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object-constructor
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.is
 ```
 
 Key facts:
 
-- `Object` static methods are called from `Object`, usually with the target
-  object passed as an argument.
-- Modern object utilities are mostly static methods.
-- Static methods are safer for null-prototype objects because the method does
-  not need to be inherited from the object being inspected.
-- Property-reading methods differ by own vs inherited, enumerable vs
-  non-enumerable, and string vs symbol coverage.
-- Descriptor methods explain property settings, not just property values.
-- Integrity methods have action/check pairs such as `freeze()` /
-  `isFrozen()`.
-- `Reflect.ownKeys()` is not an `Object` method, but it is the useful companion
-  when all own string and symbol keys are needed.
+- `Object.is(value1, value2)` returns a boolean.
+- It uses SameValue comparison.
+- It does not perform type coercion.
+- It treats `NaN` as equal to `NaN`.
+- It treats `0` and `-0` as different values.
+- For most other everyday comparisons, it behaves like `===`.
+- Objects, arrays, functions, and symbols are compared by identity/reference.
+- It is different from SameValueZero, which treats `0` and `-0` as the same.
 
-## Sprint 1: Review `Object` static methods overview
+## Sprint 1: Review `Object.is`
 
 Status: review-ready
 
@@ -65,19 +60,20 @@ Checklist:
 
 - [x] Inspect the existing runnable file.
 - [x] Cross-check behavior against MDN and the ECMAScript spec.
-- [x] Keep `index.js` at the static-methods folder root because it is an
-  overview page.
-- [x] Rewrite `index.js` as a runnable overview of static method families.
-- [x] Add paired `index.md` teaching note.
-- [x] Cover static-vs-instance methods, null-prototype safety, property-reading
-  coverage, descriptors, creation/conversion, prototypes, ownership,
-  comparison, integrity methods, and related detail-page links.
+- [x] Move the reviewed page into `is/` so the paired `.js` and `.md` files
+  live together.
+- [x] Expand `is.js` with learner-facing examples.
+- [x] Add paired `is.md` teaching note.
+- [x] Cover no coercion, `NaN`, signed zero, object/array references, mutation
+  and references, symbol identity, `==`, `===`, SameValueZero, deep-equality
+  mistakes, and a small value-change helper.
+- [x] Update the static-methods overview link.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
 
 Review List:
 
-- [x] Run `node src/object/methods/static-methods/index.js`.
-- [x] Run `node --check src/object/methods/static-methods/index.js`.
+- [x] Run `node src/object/methods/static-methods/is/is.js`.
+- [x] Run `node --check src/object/methods/static-methods/is/is.js`.
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review against the project teaching pattern.
 
@@ -86,5 +82,5 @@ Review List:
 This page is review-ready. The next unchecked object page after this one is:
 
 ```text
-src/object/methods/static-methods/is.js
+src/object/methods/static-methods/isExtensible/isExtensible.js
 ```

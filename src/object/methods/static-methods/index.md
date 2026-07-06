@@ -352,7 +352,7 @@ Ownership, comparison, and integrity:
 - `Object.hasOwn()`:
   [`hasOwn/hasOwn.md`](hasOwn/hasOwn.md)
 - `Object.is()`:
-  [`is.js`](is.js)
+  [`is/is.md`](is/is.md)
 - `Object.preventExtensions()`:
   [`preventExtensions.js`](preventExtensions.js)
 - `Object.seal()`:
