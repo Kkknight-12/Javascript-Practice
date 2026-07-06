@@ -206,7 +206,8 @@ Suggested order:
 - [x] `src/object/methods/static-methods/getOwnPropertySymbols/getOwnPropertySymbols.md`
 - [x] `src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.js`
 - [x] `src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.md`
-- [ ] `src/object/methods/static-methods/groupBy.js`
+- [x] `src/object/methods/static-methods/groupBy/groupBy.js`
+- [x] `src/object/methods/static-methods/groupBy/groupBy.md`
 - [x] `src/object/methods/static-methods/hasOwn/hasOwn.js`
 - [x] `src/object/methods/static-methods/hasOwn/hasOwn.md`
 - [ ] `src/object/methods/static-methods/index.js`

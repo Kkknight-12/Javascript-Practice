@@ -2,33 +2,33 @@
 
 ## Active Story
 
-### JS-CONTENT-001AW: Review Object.getPrototypeOf
+### JS-CONTENT-001AX: Review Object.groupBy
 
-As a learner, I want to understand `Object.getPrototypeOf()` as the static
-method that returns an object's immediate prototype, so I can inspect direct
-prototype links without confusing them with whole-chain checks.
+As a learner, I want to understand `Object.groupBy()` as the static method that
+groups iterable elements into arrays, so I can split lists by category without
+writing manual accumulator code.
 
 ## Current Folder
 
 ```text
-src/object/methods/static-methods/getPrototypeOf/
+src/object/methods/static-methods/groupBy/
 ```
 
 ## Current Files
 
 ```text
-src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.js
-src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.md
+src/object/methods/static-methods/groupBy/groupBy.js
+src/object/methods/static-methods/groupBy/groupBy.md
 ```
 
 ## Starting Point
 
 - The next unchecked object page was the old flat
-  `src/object/methods/static-methods/getPrototypeOf.js`.
-- The existing runnable file covered one `Object.create()` prototype example,
-  but did not yet have a paired study note.
+  `src/object/methods/static-methods/groupBy.js`.
+- The existing runnable file defined inventory data but left the main
+  `Object.groupBy()` example commented out.
 - This reviewed page now lives in a method folder:
-  `src/object/methods/static-methods/getPrototypeOf/`.
+  `src/object/methods/static-methods/groupBy/`.
 - Existing unrelated dirty files remain outside this sprint:
   `src/array/questions/flatten.js` and `src/playground/del.js`.
 
@@ -37,24 +37,23 @@ src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.md
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf
-https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.getprototypeof
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy
+https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.groupby
 ```
 
 Key facts:
 
-- `Object.getPrototypeOf()` converts the argument with `ToObject`, so primitive
-  values can be inspected but `null` and `undefined` throw `TypeError`.
-- It returns the immediate `[[Prototype]]` value.
-- The return value can be another object or `null`.
-- It does not return the whole prototype chain.
-- Normal object literals point to `Object.prototype`; `Object.prototype` points
-  to `null`.
-- `Object.create(null)` creates an object whose prototype is `null`.
-- `Reflect.getPrototypeOf()` does not coerce primitive values.
-- Proxy objects can intercept prototype reads with a `getPrototypeOf` trap.
+- `Object.groupBy(items, callback)` groups values from an iterable.
+- The callback is called once for each element with `(element, index)`.
+- The callback return value is coerced to a property key.
+- Group keys can be strings or symbols.
+- The returned object has a null prototype.
+- Each group value is an array of the matching original elements.
+- Plain objects are not iterable by default; use `Object.entries()`,
+  `Object.values()`, or `Object.keys()` first when grouping object data.
+- Use `Map.groupBy()` when group keys should keep object identity.
 
-## Sprint 1: Review `Object.getPrototypeOf`
+## Sprint 1: Review `Object.groupBy`
 
 Status: review-ready
 
@@ -62,20 +61,19 @@ Checklist:
 
 - [x] Inspect the existing runnable file.
 - [x] Cross-check behavior against MDN and the ECMAScript spec.
-- [x] Move the reviewed page into `getPrototypeOf/` so the paired `.js`
+- [x] Move the reviewed page into `groupBy/` so the paired `.js`
   and `.md` files live together.
-- [x] Expand `getPrototypeOf.js` with learner-facing examples.
-- [x] Add paired `getPrototypeOf.md` teaching note.
-- [x] Cover `Object.create()`, normal object literals, `Object.prototype`,
-  null-prototype objects, class chains, constructor functions,
-  `Object.setPrototypeOf()`, primitives, `Reflect.getPrototypeOf()`,
-  differences from `isPrototypeOf()` and `instanceof`, and proxy traps.
+- [x] Expand `groupBy.js` with learner-facing examples.
+- [x] Add paired `groupBy.md` teaching note.
+- [x] Cover grouping by property, callback index, null-prototype results,
+  property-key coercion, symbol group keys, iterable inputs, plain object input
+  mistakes, original object references, `reduce()`, and `Map.groupBy()`.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
 
 Review List:
 
-- [x] Run `node src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.js`.
-- [x] Run `node --check src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.js`.
+- [x] Run `node src/object/methods/static-methods/groupBy/groupBy.js`.
+- [x] Run `node --check src/object/methods/static-methods/groupBy/groupBy.js`.
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review against the project teaching pattern.
 
@@ -84,5 +82,5 @@ Review List:
 This page is review-ready. The next unchecked object page after this one is:
 
 ```text
-src/object/methods/static-methods/groupBy.js
+src/object/methods/static-methods/index.js
 ```
