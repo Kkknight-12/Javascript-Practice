@@ -362,7 +362,7 @@ Ownership, comparison, and integrity:
 - `Object.isExtensible()`:
   [`isExtensible/isExtensible.md`](isExtensible/isExtensible.md)
 - `Object.isSealed()`:
-  [`isSealed/isSealed.js`](isSealed/isSealed.js)
+  [`isSealed/isSealed.md`](isSealed/isSealed.md)
 - `Object.isFrozen()`:
   [`isFrozen/isFrozen.md`](isFrozen/isFrozen.md)
 
