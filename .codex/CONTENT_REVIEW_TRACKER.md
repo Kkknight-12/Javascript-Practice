@@ -216,7 +216,8 @@ Suggested order:
 - [x] `src/object/methods/static-methods/is/is.md`
 - [x] `src/object/methods/static-methods/isExtensible/isExtensible.js`
 - [x] `src/object/methods/static-methods/isExtensible/isExtensible.md`
-- [ ] `src/object/methods/static-methods/isFrozen/isFrozen.js`
+- [x] `src/object/methods/static-methods/isFrozen/isFrozen.js`
+- [x] `src/object/methods/static-methods/isFrozen/isFrozen.md`
 - [ ] `src/object/methods/static-methods/isSealed/isSealed.js`
 - [ ] `src/object/methods/static-methods/keys.js`
 - [ ] `src/object/methods/static-methods/objectCreate/index.js`

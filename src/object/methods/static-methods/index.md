@@ -364,7 +364,7 @@ Ownership, comparison, and integrity:
 - `Object.isSealed()`:
   [`isSealed/isSealed.js`](isSealed/isSealed.js)
 - `Object.isFrozen()`:
-  [`isFrozen/isFrozen.js`](isFrozen/isFrozen.js)
+  [`isFrozen/isFrozen.md`](isFrozen/isFrozen.md)
 
 ## Important Notes
 
