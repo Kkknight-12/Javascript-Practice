@@ -360,7 +360,7 @@ Ownership, comparison, and integrity:
 - `Object.freeze()`:
   [`freeze/freeze.md`](freeze/freeze.md)
 - `Object.isExtensible()`:
-  [`isExtensible/isExtensible.js`](isExtensible/isExtensible.js)
+  [`isExtensible/isExtensible.md`](isExtensible/isExtensible.md)
 - `Object.isSealed()`:
   [`isSealed/isSealed.js`](isSealed/isSealed.js)
 - `Object.isFrozen()`:
