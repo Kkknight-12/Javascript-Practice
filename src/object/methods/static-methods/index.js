@@ -1,96 +1,203 @@
-/* 
-__create = Object.create: This method creates a new object, using an existing object as the prototype of the newly created object. For example:
+/*
+ * Object static methods are helper methods called from Object itself.
+ *
+ * They usually receive the target object as an argument:
+ * Object.keys(object)
+ * Object.hasOwn(object, key)
+ * Object.getPrototypeOf(object)
+ *
+ * They are different from Object.prototype instance methods, which are called
+ * from an object value:
+ * object.toString()
+ * object.valueOf()
  */
 
-var person = {
-  isHuman: false,
-  printIntroduction: function () {
-    console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
-  },
+const learner = {
+  name: 'Asha',
+  topic: 'objects',
 };
 
-var me = Object.create(person);
+console.log('1. Static method call:', Object.keys(learner));
+// Expected output: [ 'name', 'topic' ]
 
-me.name = 'Matthew'; // "name" is a property set on "me", but not on "person"
-me.isHuman = true; // inherited properties can be overwritten
-
-me.printIntroduction();
-// output: "My name is Matthew. Am I human? true"
-
-// --------------------------------------------------------------------------------------------
-
-/* 
-__defProp = Object.defineProperty: This method defines a new property directly on an object, or modifies an existing property on an object, and returns the object. For example:
-*/
-
-var obj = {};
-Object.defineProperty(obj, 'property1', {
-  value: 42,
-  writable: false,
-});
-
-console.log(obj.property1); // output: 42
-obj.property1 = 77; // throws an error in strict mode
-console.log(obj.property1); // output: 42
-
-// --------------------------------------------------------------------------------------------
+console.log('2. There is no learner.keys method:', typeof learner.keys);
+// Expected output: undefined
 
 /*
- * __getOwnPropDesc = Object.getOwnPropertyDescriptor:
- * This method returns a property descriptor for a named
- * property on an object. For example:
+ * Static Object methods are safer with null-prototype objects because
+ * the method is called from Object, not from the object being checked.
  */
+const dictionary = Object.create(null);
+dictionary.topic = 'objects';
 
-var obj = {
-  get x() {
-    return 17;
-  },
-  name: 'sample object',
-  randomFunction() {
-    return 'random function';
+console.log('3. Null-prototype keys:', Object.keys(dictionary));
+// Expected output: [ 'topic' ]
+
+console.log('4. Object.hasOwn works:', Object.hasOwn(dictionary, 'topic'));
+// Expected output: true
+
+console.log('5. No inherited hasOwnProperty:', typeof dictionary.hasOwnProperty);
+// Expected output: undefined
+
+/*
+ * Different static methods answer different property-visibility questions.
+ */
+const hiddenId = Symbol('hiddenId');
+const inheritedData = {
+  inheritedRole: 'member',
+};
+
+const account = Object.create(inheritedData);
+account.name = 'Mina';
+account[hiddenId] = 'symbol-value';
+
+Object.defineProperty(account, 'internalId', {
+  value: 42,
+  enumerable: false,
+});
+
+console.log('6. Object.keys:', Object.keys(account));
+// Expected output: [ 'name' ]
+
+console.log(
+  '7. Object.getOwnPropertyNames:',
+  Object.getOwnPropertyNames(account),
+);
+// Expected output: [ 'name', 'internalId' ]
+
+console.log(
+  '8. Object.getOwnPropertySymbols:',
+  Object.getOwnPropertySymbols(account),
+);
+// Expected output: [ Symbol(hiddenId) ]
+
+console.log('9. Reflect.ownKeys:', Reflect.ownKeys(account));
+// Expected output: [ 'name', 'internalId', Symbol(hiddenId) ]
+
+console.log(
+  '10. Inherited property skipped:',
+  Object.keys(account).includes('inheritedRole'),
+);
+// Expected output: false
+
+/*
+ * Descriptor methods inspect or define property settings.
+ */
+const settings = {};
+
+Object.defineProperty(settings, 'mode', {
+  value: 'dark',
+  enumerable: true,
+  writable: false,
+  configurable: false,
+});
+
+const modeDescriptor = Object.getOwnPropertyDescriptor(settings, 'mode');
+
+console.log('11. Descriptor value:', modeDescriptor.value);
+// Expected output: dark
+
+console.log('12. Descriptor writable:', modeDescriptor.writable);
+// Expected output: false
+
+console.log(
+  '13. Descriptor keys:',
+  Object.keys(Object.getOwnPropertyDescriptors(settings)),
+);
+// Expected output: [ 'mode' ]
+
+/*
+ * Creation and conversion methods create or copy object shapes.
+ */
+const sharedBehavior = {
+  describe() {
+    return `${this.name} studies ${this.topic}`;
   },
 };
-console.log(Object.getOwnPropertyDescriptor(obj, 'x').get()); // 17
-console.log(Object.getOwnPropertyDescriptor(obj, 'name').value); // sample object
-console.log(Object.getOwnPropertyDescriptor(obj, 'randomFunction'));
 
-// output: { get: [Function: get x],
-//           set: undefined,
-//           enumerable: true,
-//           configurable: true }
-console.log('desc --> ', obj.x);
+const student = Object.create(sharedBehavior);
+student.name = 'Nia';
+student.topic = 'static methods';
 
-/* 
-In JavaScript, get is not a reserved keyword but a special syntax for defining getter methods in an object literal or class definition. When you define a method with get in front of it, like get x() { return 17; }, it's not a regular method but a getter method.
+console.log(
+  '14. Object.create prototype:',
+  Object.getPrototypeOf(student) === sharedBehavior,
+);
+// Expected output: true
 
-A getter method is a special kind of method that gets called when you try to access the property it's associated with. In this case, x is the property. So when you do obj.x, it doesn't just return the value of x but it actually calls the get x() method and returns whatever that method returns.
+console.log('15. Inherited behavior:', student.describe());
+// Expected output: Nia studies static methods
 
-That's why you can do obj.x and get 17 without explicitly calling x as a function. It's because x is not a regular method but a getter method, and getter methods get called automatically when you try to access their associated property.
+const mergedProfile = Object.assign(
+  {},
+  { role: 'reader' },
+  { topic: 'objects' },
+);
+
+console.log('16. Object.assign result:', mergedProfile);
+// Expected output: { role: 'reader', topic: 'objects' }
+
+const rebuiltProfile = Object.fromEntries(Object.entries(mergedProfile));
+
+console.log('17. Object.fromEntries result:', rebuiltProfile);
+// Expected output: { role: 'reader', topic: 'objects' }
+
+/*
+ * Object.groupBy() groups iterable values into arrays on a null-prototype
+ * result object.
  */
-// --------------------------------------------------------------------------------------------
+const tasks = [
+  { title: 'Read', status: 'todo' },
+  { title: 'Practice', status: 'doing' },
+  { title: 'Review', status: 'todo' },
+];
 
-/* 
-__getOwnPropNames = Object.getOwnPropertyNames: This method returns an array of all properties (including non-enumerable properties except for those which use Symbol) found directly in a given object. For example:
+const tasksByStatus = Object.groupBy(tasks, ({ status }) => status);
+
+console.log(
+  '18. Grouped todo tasks:',
+  tasksByStatus.todo.map(({ title }) => title),
+);
+// Expected output: [ 'Read', 'Review' ]
+
+console.log(
+  '19. Group result null prototype:',
+  Object.getPrototypeOf(tasksByStatus) === null,
+);
+// Expected output: true
+
+/*
+ * Integrity methods control whether an object can be extended or changed.
  */
+const frozenConfig = Object.freeze({
+  level: 1,
+});
 
-var arr = ['a', 'b', 'c'];
-console.log(Object.getOwnPropertyNames(arr).sort());
-// output: ["0", "1", "2", "length"]
+frozenConfig.level = 2;
 
-// --------------------------------------------------------------------------------------------
+console.log('20. Object.isFrozen:', Object.isFrozen(frozenConfig));
+// Expected output: true
 
-/* 
-__getProtoOf = Object.getPrototypeOf: This method returns the prototype (i.e. the value of the internal [[Prototype]] property) of the specified object. For example:
+console.log('21. Frozen value unchanged:', frozenConfig.level);
+// Expected output: 1
+
+const lockedUser = Object.preventExtensions({
+  name: 'Asha',
+});
+
+lockedUser.topic = 'objects';
+
+console.log('22. Object.isExtensible:', Object.isExtensible(lockedUser));
+// Expected output: false
+
+console.log('23. New property was not added:', Object.hasOwn(lockedUser, 'topic'));
+// Expected output: false
+
+/*
+ * Object.is() is a static comparison helper.
  */
-var proto = {};
-var obj = Object.create(proto);
-Object.getPrototypeOf(obj) === proto; // output: true
+console.log('24. Object.is(NaN, NaN):', Object.is(NaN, NaN));
+// Expected output: true
 
-// --------------------------------------------------------------------------------------------
-
-/* 
-__hasOwnProp = Object.prototype.hasOwnProperty: This method returns a boolean indicating whether the object has the specified property as its own property (as opposed to inheriting it). For example:
- */
-var obj = { a: 1 };
-console.log(obj.hasOwnProperty('a')); // output: true
-console.log(obj.hasOwnProperty('b')); // output: false
+console.log('25. Object.is(0, -0):', Object.is(0, -0));
+// Expected output: false

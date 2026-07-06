@@ -210,7 +210,8 @@ Suggested order:
 - [x] `src/object/methods/static-methods/groupBy/groupBy.md`
 - [x] `src/object/methods/static-methods/hasOwn/hasOwn.js`
 - [x] `src/object/methods/static-methods/hasOwn/hasOwn.md`
-- [ ] `src/object/methods/static-methods/index.js`
+- [x] `src/object/methods/static-methods/index.js`
+- [x] `src/object/methods/static-methods/index.md`
 - [ ] `src/object/methods/static-methods/is.js`
 - [ ] `src/object/methods/static-methods/isExtensible/isExtensible.js`
 - [ ] `src/object/methods/static-methods/isFrozen/isFrozen.js`
