@@ -332,7 +332,7 @@ Property reading:
 - `Object.entries()`:
   [`entries/entries.md`](entries/entries.md)
 - `Object.keys()`:
-  [`keys.js`](keys.js)
+  [`keys/keys.md`](keys/keys.md)
 - `Object.values()`:
   [`values.js`](values.js)
 - `Object.getOwnPropertyNames()`:

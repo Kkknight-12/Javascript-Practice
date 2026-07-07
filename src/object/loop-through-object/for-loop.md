@@ -29,7 +29,8 @@ for (let index = 0; index < keys.length; index++) {
 This page compares several property-reading tools. The detailed method pages
 belong in these places:
 
-- `Object.keys()`: [`src/object/methods/static-methods/keys.js`](../methods/static-methods/keys.js)
+- `Object.keys()`:
+  [`src/object/methods/static-methods/keys/keys.md`](../methods/static-methods/keys/keys.md)
 - `Object.values()`: [`src/object/methods/static-methods/values.js`](../methods/static-methods/values.js)
 - `Object.entries()`: [`src/object/methods/static-methods/entries/entries.md`](../methods/static-methods/entries/entries.md)
 - `Object.getOwnPropertyNames()`:

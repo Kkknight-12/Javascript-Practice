@@ -2,33 +2,34 @@
 
 ## Active Story
 
-### JS-CONTENT-001BC: Review Object.isSealed
+### JS-CONTENT-001BD: Review Object.keys
 
-As a learner, I want to understand `Object.isSealed()` as the integrity check
-for a locked property structure, so I can separate sealed, frozen, and
-non-extensible behavior clearly.
+As a learner, I want to understand `Object.keys()` as the method for reading an
+object's own enumerable string-keyed property names, so I can choose it correctly
+when looping over objects or comparing key-reading methods.
 
 ## Current Folder
 
 ```text
-src/object/methods/static-methods/isSealed/
+src/object/methods/static-methods/keys/
 ```
 
 ## Current Files
 
 ```text
-src/object/methods/static-methods/isSealed/isSealed.js
-src/object/methods/static-methods/isSealed/isSealed.md
+src/object/methods/static-methods/keys/keys.js
+src/object/methods/static-methods/keys/keys.md
 ```
 
 ## Starting Point
 
 - The next unchecked object page was
-  `src/object/methods/static-methods/isSealed/isSealed.js`.
-- The existing runnable file covered a basic `Object.seal()` flow, but it did
-  not yet have a paired study note.
-- This reviewed page already lived in a method folder:
-  `src/object/methods/static-methods/isSealed/`.
+  `src/object/methods/static-methods/keys.js`.
+- The existing runnable file covered arrays, array-like objects, numeric key
+  order, and one non-enumerable property example, but it did not yet have a
+  paired study note.
+- The reviewed page was moved into a method folder:
+  `src/object/methods/static-methods/keys/`.
 - Existing unrelated dirty files remain outside this sprint:
   `src/array/questions/flatten.js` and `src/playground/del.js`.
 
@@ -37,23 +38,24 @@ src/object/methods/static-methods/isSealed/isSealed.md
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isSealed
-https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.issealed
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.keys
 ```
 
 Key facts:
 
-- `Object.isSealed(object)` returns a boolean.
-- Sealed means non-extensible and all own properties non-configurable.
-- Existing writable data-property values can still change.
-- Frozen objects are sealed.
-- Sealed objects are not automatically frozen.
-- Empty non-extensible objects are sealed.
-- Sealing is shallow.
-- Accessor properties are checked by configurability.
-- Modern JavaScript returns `true` for primitive values.
+- `Object.keys(object)` returns an array of strings.
+- It returns own enumerable string-keyed property names.
+- It skips inherited properties, non-enumerable properties, and symbol keys.
+- Its order matches `for...in` for own properties, but `for...in` also includes
+  the prototype chain.
+- Numeric index keys come before other string keys in ascending numeric order.
+- Non-object arguments are converted to objects.
+- Strings return character index keys.
+- Most other primitives return `[]`.
+- `null` and `undefined` throw `TypeError`.
 
-## Sprint 1: Review `Object.isSealed`
+## Sprint 1: Review `Object.keys`
 
 Status: review-ready
 
@@ -61,21 +63,22 @@ Checklist:
 
 - [x] Inspect the existing runnable file.
 - [x] Cross-check behavior against MDN and the ECMAScript spec.
-- [x] Keep the reviewed page in `isSealed/` so the paired `.js` and `.md`
-  files live together.
-- [x] Expand `isSealed.js` with learner-facing examples.
-- [x] Add paired `isSealed.md` teaching note.
-- [x] Cover `Object.seal()`, sealed vs frozen vs non-extensible, writable data
-  properties, non-configurable descriptors, deletion, empty non-extensible
-  objects, accessor properties, shallow sealing, primitives, and strict-mode
-  errors.
+- [x] Move the reviewed page into `keys/` so the paired `.js` and `.md` files
+  live together.
+- [x] Expand `keys.js` with learner-facing examples.
+- [x] Add paired `keys.md` teaching note.
+- [x] Cover own enumerable string keys, inherited property skipping,
+  non-enumerable property skipping, symbol key skipping, arrays, sparse arrays,
+  key order, null-prototype objects, primitives, `for...in` comparison, getter
+  behavior, and `Object.keys().includes()` limitations.
 - [x] Update the static-methods overview link.
+- [x] Update the object-loop note link that pointed at the old loose `keys.js`.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
 
 Review List:
 
-- [x] Run `node src/object/methods/static-methods/isSealed/isSealed.js`.
-- [x] Run `node --check src/object/methods/static-methods/isSealed/isSealed.js`.
+- [x] Run `node src/object/methods/static-methods/keys/keys.js`.
+- [x] Run `node --check src/object/methods/static-methods/keys/keys.js`.
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review against the project teaching pattern.
 
@@ -84,5 +87,5 @@ Review List:
 This page is review-ready. The next unchecked object page after this one is:
 
 ```text
-src/object/methods/static-methods/keys.js
+src/object/methods/static-methods/objectCreate/index.js
 ```

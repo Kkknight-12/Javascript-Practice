@@ -220,7 +220,8 @@ Suggested order:
 - [x] `src/object/methods/static-methods/isFrozen/isFrozen.md`
 - [x] `src/object/methods/static-methods/isSealed/isSealed.js`
 - [x] `src/object/methods/static-methods/isSealed/isSealed.md`
-- [ ] `src/object/methods/static-methods/keys.js`
+- [x] `src/object/methods/static-methods/keys/keys.js`
+- [x] `src/object/methods/static-methods/keys/keys.md`
 - [ ] `src/object/methods/static-methods/objectCreate/index.js`
 - [ ] `src/object/methods/static-methods/objectEntries/entries.js`
 - [ ] `src/object/methods/static-methods/preventExtensions.js`
