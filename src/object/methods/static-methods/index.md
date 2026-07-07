@@ -356,7 +356,7 @@ Ownership, comparison, and integrity:
 - `Object.preventExtensions()`:
   [`preventExtensions/preventExtensions.md`](preventExtensions/preventExtensions.md)
 - `Object.seal()`:
-  [`seal.js`](seal.js)
+  [`seal/seal.md`](seal/seal.md)
 - `Object.freeze()`:
   [`freeze/freeze.md`](freeze/freeze.md)
 - `Object.isExtensible()`:

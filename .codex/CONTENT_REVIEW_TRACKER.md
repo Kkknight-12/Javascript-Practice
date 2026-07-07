@@ -226,7 +226,8 @@ Suggested order:
 - [x] `src/object/methods/static-methods/objectCreate/objectCreate.md`
 - [x] `src/object/methods/static-methods/preventExtensions/preventExtensions.js`
 - [x] `src/object/methods/static-methods/preventExtensions/preventExtensions.md`
-- [ ] `src/object/methods/static-methods/seal.js`
+- [x] `src/object/methods/static-methods/seal/seal.js`
+- [x] `src/object/methods/static-methods/seal/seal.md`
 - [ ] `src/object/methods/static-methods/setPrototypeOf.js`
 - [ ] `src/object/methods/static-methods/values.js`
 - [ ] `src/object/practice/index.js`
