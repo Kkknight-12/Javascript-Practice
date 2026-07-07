@@ -310,7 +310,7 @@ Creation and copying:
 - `Object.assign()`:
   [`assign/assign.md`](assign/assign.md)
 - `Object.create()`:
-  [`objectCreate/index.js`](objectCreate/index.js)
+  [`objectCreate/objectCreate.md`](objectCreate/objectCreate.md)
 - `Object.fromEntries()`:
   [`fromEntries/fromEntries.md`](fromEntries/fromEntries.md)
 - `Object.groupBy()`:

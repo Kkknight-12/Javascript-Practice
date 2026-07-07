@@ -348,7 +348,7 @@ Use `instanceof`:
 - Object creation:
   [`src/object/concepts/create-object/create-object.md`](../../../concepts/create-object/create-object.md)
 - `Object.create()`:
-  [`src/object/methods/static-methods/objectCreate/index.js`](../../static-methods/objectCreate/index.js)
+  [`src/object/methods/static-methods/objectCreate/objectCreate.md`](../../static-methods/objectCreate/objectCreate.md)
 - `Object.getPrototypeOf()`:
   [`src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.md`](../../static-methods/getPrototypeOf/getPrototypeOf.md)
 - `Object.setPrototypeOf()`:

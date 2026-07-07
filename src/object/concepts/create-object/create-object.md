@@ -68,7 +68,7 @@ This page gives the overview. These pages explain individual tools in more
 detail:
 
 - `Object.create()`:
-  [`src/object/methods/static-methods/objectCreate/index.js`](../../methods/static-methods/objectCreate/index.js)
+  [`src/object/methods/static-methods/objectCreate/objectCreate.md`](../../methods/static-methods/objectCreate/objectCreate.md)
 - `Object.assign()`:
   [`src/object/methods/static-methods/assign/assign.md`](../../methods/static-methods/assign/assign.md)
 - `Object.fromEntries()`:
