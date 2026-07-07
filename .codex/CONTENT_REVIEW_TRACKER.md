@@ -224,8 +224,8 @@ Suggested order:
 - [x] `src/object/methods/static-methods/keys/keys.md`
 - [x] `src/object/methods/static-methods/objectCreate/objectCreate.js`
 - [x] `src/object/methods/static-methods/objectCreate/objectCreate.md`
-- [ ] `src/object/methods/static-methods/objectEntries/entries.js`
-- [ ] `src/object/methods/static-methods/preventExtensions.js`
+- [x] `src/object/methods/static-methods/preventExtensions/preventExtensions.js`
+- [x] `src/object/methods/static-methods/preventExtensions/preventExtensions.md`
 - [ ] `src/object/methods/static-methods/seal.js`
 - [ ] `src/object/methods/static-methods/setPrototypeOf.js`
 - [ ] `src/object/methods/static-methods/values.js`
