@@ -345,7 +345,7 @@ Prototype:
 - `Object.getPrototypeOf()`:
   [`getPrototypeOf/getPrototypeOf.md`](getPrototypeOf/getPrototypeOf.md)
 - `Object.setPrototypeOf()`:
-  [`setPrototypeOf.js`](setPrototypeOf.js)
+  [`setPrototypeOf/setPrototypeOf.md`](setPrototypeOf/setPrototypeOf.md)
 
 Ownership, comparison, and integrity:
 

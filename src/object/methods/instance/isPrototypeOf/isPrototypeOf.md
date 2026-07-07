@@ -352,7 +352,7 @@ Use `instanceof`:
 - `Object.getPrototypeOf()`:
   [`src/object/methods/static-methods/getPrototypeOf/getPrototypeOf.md`](../../static-methods/getPrototypeOf/getPrototypeOf.md)
 - `Object.setPrototypeOf()`:
-  [`src/object/methods/static-methods/setPrototypeOf.js`](../../static-methods/setPrototypeOf.js)
+  [`src/object/methods/static-methods/setPrototypeOf/setPrototypeOf.md`](../../static-methods/setPrototypeOf/setPrototypeOf.md)
 
 ## Common Mistakes
 

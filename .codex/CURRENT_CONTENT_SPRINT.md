@@ -2,33 +2,34 @@
 
 ## Active Story
 
-### JS-CONTENT-001BG: Review Object.seal
+### JS-CONTENT-001BH: Review Object.setPrototypeOf
 
-As a learner, I want to understand `Object.seal()` as the middle object-integrity
-action, so I can separate "fixed property structure" from read-only frozen
-behavior.
+As a learner, I want to understand `Object.setPrototypeOf()` as the method that
+changes an existing object's immediate prototype, so I can separate prototype
+mutation from safer creation-time prototype choices.
 
 ## Current Folder
 
 ```text
-src/object/methods/static-methods/seal/
+src/object/methods/static-methods/setPrototypeOf/
 ```
 
 ## Current Files
 
 ```text
-src/object/methods/static-methods/seal/seal.js
-src/object/methods/static-methods/seal/seal.md
+src/object/methods/static-methods/setPrototypeOf/setPrototypeOf.js
+src/object/methods/static-methods/setPrototypeOf/setPrototypeOf.md
 ```
 
 ## Starting Point
 
-- The next real unchecked page was
-  `src/object/methods/static-methods/seal.js`.
-- The existing runnable file covered the basic `Object.seal()` flow and the
-  prevent-extensions/seal/freeze comparison, but it was still a loose file and
-  did not have a paired study note.
-- The reviewed page was moved into `seal/` with `seal.js` and `seal.md`.
+- The next real unchecked page was the `Object.setPrototypeOf()` page under
+  `src/object/methods/static-methods/`.
+- The existing runnable file explained prototype-chain performance concerns and
+  basic constructor-function inheritance, but it was still a loose file and did
+  not have a paired study note.
+- The reviewed page was moved into `setPrototypeOf/` with `setPrototypeOf.js`
+  and `setPrototypeOf.md`.
 - Existing unrelated dirty files remain outside this sprint:
   `src/array/questions/flatten.js` and `src/playground/del.js`.
 
@@ -37,25 +38,26 @@ src/object/methods/static-methods/seal/seal.md
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/seal
-https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.seal
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf
+https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.setprototypeof
 ```
 
 Key facts:
 
-- `Object.seal(object)` seals an object and returns the same object.
-- Sealing prevents extensions and makes existing own properties
-  non-configurable.
-- New properties cannot be added.
-- Existing own properties cannot be deleted.
-- Existing own properties cannot be reconfigured or converted between data and
-  accessor properties.
-- Existing writable data-property values can still change.
-- The object's prototype cannot be reassigned.
-- Sealing is shallow.
-- Modern JavaScript returns primitive values as-is.
+- `Object.setPrototypeOf(object, prototype)` sets an object's immediate
+  prototype and returns the first argument.
+- The new prototype must be an object or `null`.
+- `null` and `undefined` object arguments throw `TypeError`.
+- Non-null primitive object arguments are returned as-is when the prototype
+  argument is valid.
+- Non-extensible objects cannot be changed to a different prototype.
+- Setting the same prototype again is allowed.
+- `Object.prototype` has an immutable prototype.
+- Changing prototypes after creation can hurt performance and readability.
+- `Object.create()` is preferred when the desired prototype is known at creation
+  time.
 
-## Sprint 1: Review `Object.seal`
+## Sprint 1: Review `Object.setPrototypeOf`
 
 Status: review-ready
 
@@ -63,21 +65,21 @@ Checklist:
 
 - [x] Inspect the existing runnable file.
 - [x] Cross-check behavior against MDN and the ECMAScript spec.
-- [x] Move the reviewed page into `seal/` with method-page naming.
-- [x] Rewrite `seal.js` with learner-facing examples.
-- [x] Add paired `seal.md` teaching note.
-- [x] Cover same-object return value, failed additions, writable value changes,
-  failed deletion, non-configurable descriptors, descriptor reconfiguration,
-  prototype reassignment, inherited properties from the prototype, accessor
-  setters, sealed versus frozen behavior, shallow behavior, arrays,
-  null-prototype objects, primitives, and strict mode errors.
-- [x] Update the static-method overview link.
+- [x] Move the reviewed page into `setPrototypeOf/` with method-page naming.
+- [x] Rewrite `setPrototypeOf.js` with learner-facing examples.
+- [x] Add paired `setPrototypeOf.md` teaching note.
+- [x] Cover immediate prototype changes, same-object return value, null
+  prototypes, invalid prototype values, primitive object arguments,
+  non-extensible objects, immutable prototype objects, `Object.create()`
+  comparison, constructor-function prototype chains, static inheritance,
+  `Reflect.setPrototypeOf()`, and `__proto__`.
+- [x] Update static-method, `isPrototypeOf()`, and overview links.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
 
 Review List:
 
-- [x] Run `node src/object/methods/static-methods/seal/seal.js`.
-- [x] Run `node --check src/object/methods/static-methods/seal/seal.js`.
+- [x] Run `node src/object/methods/static-methods/setPrototypeOf/setPrototypeOf.js`.
+- [x] Run `node --check src/object/methods/static-methods/setPrototypeOf/setPrototypeOf.js`.
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review against the project teaching pattern.
 
@@ -86,5 +88,5 @@ Review List:
 This page is review-ready. The next unchecked object page after this one is:
 
 ```text
-src/object/methods/static-methods/setPrototypeOf.js
+src/object/methods/static-methods/values.js
 ```
