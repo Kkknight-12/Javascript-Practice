@@ -2,34 +2,33 @@
 
 ## Active Story
 
-### JS-CONTENT-001BH: Review Object.setPrototypeOf
+### JS-CONTENT-001BI: Review Object.values
 
-As a learner, I want to understand `Object.setPrototypeOf()` as the method that
-changes an existing object's immediate prototype, so I can separate prototype
-mutation from safer creation-time prototype choices.
+As a learner, I want to understand `Object.values()` as the method for reading an
+object's own enumerable string-keyed values, so I can choose it correctly when I
+need values but not property names.
 
 ## Current Folder
 
 ```text
-src/object/methods/static-methods/setPrototypeOf/
+src/object/methods/static-methods/values/
 ```
 
 ## Current Files
 
 ```text
-src/object/methods/static-methods/setPrototypeOf/setPrototypeOf.js
-src/object/methods/static-methods/setPrototypeOf/setPrototypeOf.md
+src/object/methods/static-methods/values/values.js
+src/object/methods/static-methods/values/values.md
 ```
 
 ## Starting Point
 
-- The next real unchecked page was the `Object.setPrototypeOf()` page under
+- The next real unchecked page was the `Object.values()` page under
   `src/object/methods/static-methods/`.
-- The existing runnable file explained prototype-chain performance concerns and
-  basic constructor-function inheritance, but it was still a loose file and did
-  not have a paired study note.
-- The reviewed page was moved into `setPrototypeOf/` with `setPrototypeOf.js`
-  and `setPrototypeOf.md`.
+- The existing runnable file covered a basic object, a non-enumerable property,
+  strings, and number primitives, but it was still a loose file and did not have
+  a paired study note.
+- The reviewed page was moved into `values/` with `values.js` and `values.md`.
 - Existing unrelated dirty files remain outside this sprint:
   `src/array/questions/flatten.js` and `src/playground/del.js`.
 
@@ -38,26 +37,24 @@ src/object/methods/static-methods/setPrototypeOf/setPrototypeOf.md
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf
-https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.setprototypeof
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values
+https://tc39.es/ecma262/multipage/fundamental-objects.html#sec-object.values
 ```
 
 Key facts:
 
-- `Object.setPrototypeOf(object, prototype)` sets an object's immediate
-  prototype and returns the first argument.
-- The new prototype must be an object or `null`.
-- `null` and `undefined` object arguments throw `TypeError`.
-- Non-null primitive object arguments are returned as-is when the prototype
-  argument is valid.
-- Non-extensible objects cannot be changed to a different prototype.
-- Setting the same prototype again is allowed.
-- `Object.prototype` has an immutable prototype.
-- Changing prototypes after creation can hurt performance and readability.
-- `Object.create()` is preferred when the desired prototype is known at creation
-  time.
+- `Object.values(object)` returns an array.
+- It returns values from own enumerable string-keyed properties.
+- It skips inherited properties, non-enumerable properties, and symbol keys.
+- It reads values, so getters run.
+- Its order follows the same own string-key order used by `Object.keys()` and
+  `Object.entries()`.
+- Numeric index keys come before other string keys in ascending numeric order.
+- Strings return character values.
+- Most other primitives return `[]`.
+- `null` and `undefined` throw `TypeError`.
 
-## Sprint 1: Review `Object.setPrototypeOf`
+## Sprint 1: Review `Object.values`
 
 Status: review-ready
 
@@ -65,21 +62,20 @@ Checklist:
 
 - [x] Inspect the existing runnable file.
 - [x] Cross-check behavior against MDN and the ECMAScript spec.
-- [x] Move the reviewed page into `setPrototypeOf/` with method-page naming.
-- [x] Rewrite `setPrototypeOf.js` with learner-facing examples.
-- [x] Add paired `setPrototypeOf.md` teaching note.
-- [x] Cover immediate prototype changes, same-object return value, null
-  prototypes, invalid prototype values, primitive object arguments,
-  non-extensible objects, immutable prototype objects, `Object.create()`
-  comparison, constructor-function prototype chains, static inheritance,
-  `Reflect.setPrototypeOf()`, and `__proto__`.
-- [x] Update static-method, `isPrototypeOf()`, and overview links.
+- [x] Move the reviewed page into `values/` with method-page naming.
+- [x] Rewrite `values.js` with learner-facing examples.
+- [x] Add paired `values.md` teaching note.
+- [x] Cover own enumerable string-keyed values, inherited property skipping,
+  non-enumerable property skipping, symbol-keyed value skipping, getter behavior,
+  arrays, sparse arrays, explicit `undefined` values, value order,
+  null-prototype objects, primitives, and `Object.entries()` comparison.
+- [x] Update static-method and object-loop overview links.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
 
 Review List:
 
-- [x] Run `node src/object/methods/static-methods/setPrototypeOf/setPrototypeOf.js`.
-- [x] Run `node --check src/object/methods/static-methods/setPrototypeOf/setPrototypeOf.js`.
+- [x] Run `node src/object/methods/static-methods/values/values.js`.
+- [x] Run `node --check src/object/methods/static-methods/values/values.js`.
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review against the project teaching pattern.
 
@@ -88,5 +84,5 @@ Review List:
 This page is review-ready. The next unchecked object page after this one is:
 
 ```text
-src/object/methods/static-methods/values.js
+src/object/practice/index.js
 ```

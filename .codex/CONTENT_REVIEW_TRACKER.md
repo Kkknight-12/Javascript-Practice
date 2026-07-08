@@ -230,7 +230,8 @@ Suggested order:
 - [x] `src/object/methods/static-methods/seal/seal.md`
 - [x] `src/object/methods/static-methods/setPrototypeOf/setPrototypeOf.js`
 - [x] `src/object/methods/static-methods/setPrototypeOf/setPrototypeOf.md`
-- [ ] `src/object/methods/static-methods/values.js`
+- [x] `src/object/methods/static-methods/values/values.js`
+- [x] `src/object/methods/static-methods/values/values.md`
 - [ ] `src/object/practice/index.js`
 - [ ] `src/object/questions/deepCopyObject.js`
 

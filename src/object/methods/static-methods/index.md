@@ -334,7 +334,7 @@ Property reading:
 - `Object.keys()`:
   [`keys/keys.md`](keys/keys.md)
 - `Object.values()`:
-  [`values.js`](values.js)
+  [`values/values.md`](values/values.md)
 - `Object.getOwnPropertyNames()`:
   [`getOwnPropertyNames/getOwnPropertyNames.md`](getOwnPropertyNames/getOwnPropertyNames.md)
 - `Object.getOwnPropertySymbols()`:

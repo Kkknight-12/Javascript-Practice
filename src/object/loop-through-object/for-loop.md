@@ -31,7 +31,8 @@ belong in these places:
 
 - `Object.keys()`:
   [`src/object/methods/static-methods/keys/keys.md`](../methods/static-methods/keys/keys.md)
-- `Object.values()`: [`src/object/methods/static-methods/values.js`](../methods/static-methods/values.js)
+- `Object.values()`:
+  [`src/object/methods/static-methods/values/values.md`](../methods/static-methods/values/values.md)
 - `Object.entries()`: [`src/object/methods/static-methods/entries/entries.md`](../methods/static-methods/entries/entries.md)
 - `Object.getOwnPropertyNames()`:
   [`src/object/methods/static-methods/getOwnPropertyNames/getOwnPropertyNames.md`](../methods/static-methods/getOwnPropertyNames/getOwnPropertyNames.md)
