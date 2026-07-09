@@ -228,6 +228,88 @@ trusted reference. Keep the note learner-first, not a compressed reference
 sheet: define the method, say what it does, show the smallest useful examples,
 then add gotchas and deeper details.
 
+## Problem Explanation Pattern From DSA_Ts
+
+For question/problem notes, especially recursion or algorithmic practice under
+`src/array/questions/`, `src/object/questions/`, or similar folders, use a
+lighter version of the DSA TypeScript repo's problem-teaching style.
+
+The goal is not to make every JavaScript practice note as detailed as the DSA
+repo. The goal is to explain problems in a way that lets a beginner simulate the
+solution instead of memorizing code.
+
+Preferred flow for problem notes:
+
+1. Problem statement in plain English.
+2. Small input and expected output.
+3. Brute force or obvious first idea, when useful.
+4. Key insight: the one idea that makes the solution feel natural.
+5. Variables/state table: name each important variable and its role.
+6. Mental model: describe what each function call or loop iteration means.
+7. Conditions: base cases, branch conditions, stop conditions, and why each one
+   exists.
+8. Adjustment logic: what changes before the next step or recursive call.
+9. Small visual tree, decision tree, or flow diagram when it makes the problem
+   easier to see.
+10. Small execution table when order, mutation, return flow, or backtracking is
+    easy to misunderstand.
+11. Common mistakes.
+12. Runnable Practice File with the exact repo-root `node ...` command.
+
+When a question has more than one approach, do not keep everything in one flat
+`question.js` / `question.md` pair. Create a problem-named folder and split the
+content by approach:
+
+```text
+src/<topic>/questions/<problem-name>/
+  problem.md
+  brute-force.js
+  better.js              # only when a middle approach exists
+  optimal.js             # or optimal-recursive.js / optimal-iterative.js
+  notes/
+    brute-force-notes.md
+    better-notes.md      # only when needed
+    optimal-notes.md     # or approach-specific note files
+    doubts.md            # only when needed
+```
+
+`problem.md` should introduce the problem, examples, goal, and approach file
+map. Do not start `problem.md` with conditions, adjustment logic, visual trees,
+or execution tables.
+
+Put conditions, adjustment logic, visual trees, decision trees, and execution
+tables inside the relevant approach note, after that approach has been
+introduced. This keeps the learning order natural:
+
+```text
+problem -> first idea -> approach intuition -> code -> conditions/adjustments -> dry run
+```
+
+For recursion problems:
+
+- Show the state for each call: input value, index, path/current result,
+  accumulated value, or whatever the problem uses.
+- Name the base case in problem language, not only code language.
+- Explain what happens before the recursive call and what happens after it
+  returns.
+- If a loop contains a recursive call, show where control returns and whether
+  the loop continues.
+- If backtracking is used, explicitly say which choice is undone and that one
+  undo belongs to the current frame only.
+- Prefer a tiny example. A small complete tree is better than a large partial
+  tree.
+
+Use visuals based on the problem:
+
+- decision tree for choose/skip or multiple-choice problems,
+- recursion tree for nested calls,
+- call-frame boxes when return flow is the confusing part,
+- table when exact execution order or state changes matter.
+
+Keep the tone aligned with this JavaScript repo: clear English, terminal-first,
+beginner-friendly, and not overly heavy unless the user asks for a deeper DSA
+style explanation.
+
 ## Collaboration Rules From DSA Visual Learning
 
 These rules are adapted from the user's `dsa-visual-learning` workflow and apply

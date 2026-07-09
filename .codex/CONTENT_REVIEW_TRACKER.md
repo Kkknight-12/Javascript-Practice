@@ -159,7 +159,13 @@ Suggested order:
 - [x] `src/array/methods/static/Array.isArray/notes.md`
 - [x] `src/array/methods/static/Array.from/array.from.js`
 - [x] `src/array/methods/static/Array.from/array.from.md`
-- [ ] `src/array/questions/flatten.js`
+- [x] `src/array/questions/flatten/problem.md`
+- [x] `src/array/questions/flatten/brute-force.js`
+- [x] `src/array/questions/flatten/optimal-recursive.js`
+- [x] `src/array/questions/flatten/optimal-iterative.js`
+- [x] `src/array/questions/flatten/notes/brute-force-notes.md`
+- [x] `src/array/questions/flatten/notes/optimal-recursive-notes.md`
+- [x] `src/array/questions/flatten/notes/optimal-iterative-notes.md`
 
 ### `src/object/`
 
@@ -232,8 +238,17 @@ Suggested order:
 - [x] `src/object/methods/static-methods/setPrototypeOf/setPrototypeOf.md`
 - [x] `src/object/methods/static-methods/values/values.js`
 - [x] `src/object/methods/static-methods/values/values.md`
-- [ ] `src/object/practice/index.js`
-- [ ] `src/object/questions/deepCopyObject.js`
+- [x] `src/object/practice/index.js`
+- [x] `src/object/practice/index.md`
+- [x] `src/object/questions/deep-copy-object/problem.md`
+- [x] `src/object/questions/deep-copy-object/brute-force.js`
+- [x] `src/object/questions/deep-copy-object/better-json-clone.js`
+- [x] `src/object/questions/deep-copy-object/optimal-recursive.js`
+- [x] `src/object/questions/deep-copy-object/built-in-structured-clone.js`
+- [x] `src/object/questions/deep-copy-object/notes/brute-force-notes.md`
+- [x] `src/object/questions/deep-copy-object/notes/better-json-clone-notes.md`
+- [x] `src/object/questions/deep-copy-object/notes/optimal-recursive-notes.md`
+- [x] `src/object/questions/deep-copy-object/notes/structured-clone-notes.md`
 
 ### `src/reflect/`
 
