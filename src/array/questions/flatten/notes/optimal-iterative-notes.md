@@ -34,16 +34,25 @@ The loop stops only when every item is already a non-array value.
 
 ```js
 function flattenIterative(values) {
+  // Guard clause: this helper works with real arrays only.
+  // Array-like objects are rejected so the behavior stays predictable.
   if (!Array.isArray(values)) {
     throw new TypeError('flattenIterative expects an array');
   }
 
+  // slice() creates a shallow copy of the outer array.
+  // The loop will replace result again and again, so the original input stays untouched.
   let result = values.slice();
 
+  // some(Array.isArray) asks whether at least one nested array still exists.
+  // If yes, one more flattening pass is needed.
   while (result.some(Array.isArray)) {
+    // concat() opens arrays one level.
+    // Spread passes each current item as a separate concat argument.
     result = [].concat(...result);
   }
 
+  // When the loop stops, no item in result is an array anymore.
   return result;
 }
 ```

@@ -10,16 +10,26 @@
  */
 
 function deepClonePlain(value) {
+  // Base case: primitives, functions, undefined, symbols, bigints, and null
+  // do not have nested object structure for this helper to walk through.
+  // `value === null` is needed because typeof null is 'object'.
   if (typeof value !== 'object' || value === null) {
     return value;
   }
 
   if (Array.isArray(value)) {
+    // Array branch: keep the result as an array.
+    // map() creates a new array, and every item goes through the same clone logic
+    // because an item can also be an object or another array.
     return value.map((item) => deepClonePlain(item));
   }
 
+  // Object branch: Object.entries() gives own enumerable string-keyed pairs.
+  // We clone each nested value, then Object.fromEntries() builds a new object
+  // from the cloned pairs.
   return Object.fromEntries(
     Object.entries(value).map(([key, nestedValue]) => {
+      // Keep the same key, but replace the old nested value with its cloned value.
       return [key, deepClonePlain(nestedValue)];
     }),
   );

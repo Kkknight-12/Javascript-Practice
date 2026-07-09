@@ -48,16 +48,26 @@ recursion fits naturally.
 
 ```js
 function deepClonePlain(value) {
+  // Base case: primitives, functions, undefined, symbols, bigints, and null
+  // do not have nested object structure for this helper to walk through.
+  // `value === null` is needed because typeof null is 'object'.
   if (typeof value !== 'object' || value === null) {
     return value;
   }
 
   if (Array.isArray(value)) {
+    // Array branch: keep the result as an array.
+    // map() creates a new array, and every item goes through the same clone logic
+    // because an item can also be an object or another array.
     return value.map((item) => deepClonePlain(item));
   }
 
+  // Object branch: Object.entries() gives own enumerable string-keyed pairs.
+  // We clone each nested value, then Object.fromEntries() builds a new object
+  // from the cloned pairs.
   return Object.fromEntries(
     Object.entries(value).map(([key, nestedValue]) => {
+      // Keep the same key, but replace the old nested value with its cloned value.
       return [key, deepClonePlain(nestedValue)];
     }),
   );
@@ -149,50 +159,93 @@ Each `nestedValue` is cloned recursively.
 Input:
 
 ```js
-{
+const original = {
   user: { role: 'admin' },
-  tags: ['object']
-}
+  tags: ['object'],
+};
 ```
 
-Tree:
+Goal:
 
 ```text
-deepClonePlain(original)
-|
-|-- value is plain object
-|   `-- read entries: user, tags
-|
-|-- clone user
-|   `-- deepClonePlain({ role: 'admin' })
-|       |
-|       `-- clone role
-|           `-- deepClonePlain('admin') returns 'admin'
-|
-|-- clone tags
-|   `-- deepClonePlain(['object'])
-|       |
-|       `-- clone item 'object'
-|           `-- returns 'object'
-|
-`-- return {
-      user: { role: 'admin' },
-      tags: ['object']
-    }
+Create a new root object.
+Create a new user object.
+Create a new tags array.
+Keep primitive values as they are.
+```
+
+Think of each line as a small node.
+
+Each node should show:
+
+```text
+call or action
+kind of value
+what it is waiting for
+what it returns
+```
+
+Recursion tree:
+
+```text
+root  deepClonePlain(original) (kind=object, waiting for cloned keys)
+│
+├── key "user" -> value { role: 'admin' } -> recurse
+│   │
+│   └── deepClonePlain({ role: 'admin' }) (kind=object, waiting for "role")
+│       │
+│       ├── key "role" -> value 'admin' -> primitive base case
+│       │   │
+│       │   └── return 'admin'
+│       │
+│       └── rebuild user object with cloned "role"
+│           │
+│           └── return { role: 'admin' }
+│
+├── key "tags" -> value ['object'] -> recurse
+│   │
+│   └── deepClonePlain(['object']) (kind=array, waiting for index 0)
+│       │
+│       ├── index 0 -> value 'object' -> primitive base case
+│       │   │
+│       │   └── return 'object'
+│       │
+│       └── rebuild tags array with cloned index 0
+│           │
+│           └── return ['object']
+│
+└── rebuild root object with cloned properties
+    │
+    ├── "user" gets { role: 'admin' }
+    ├── "tags" gets ['object']
+    │
+    └── return {
+          user: { role: 'admin' },
+          tags: ['object'],
+        }
+```
+
+Important reference point:
+
+```text
+The root node returns a new root object.
+The user node returns a new user object.
+The tags node returns a new tags array.
+The strings 'admin' and 'object' are primitives, so they are returned directly.
 ```
 
 ## Execution Table
 
-| step | call | result returned |
-|---:|---|---|
-| `1` | `deepClonePlain(original)` | waits for nested values |
-| `2` | `deepClonePlain({ role: 'admin' })` | waits for `role` |
-| `3` | `deepClonePlain('admin')` | `'admin'` |
-| `4` | finish user object | `{ role: 'admin' }` |
-| `5` | `deepClonePlain(['object'])` | waits for array item |
-| `6` | `deepClonePlain('object')` | `'object'` |
-| `7` | finish tags array | `['object']` |
-| `8` | finish root object | `{ user: { role: 'admin' }, tags: ['object'] }` |
+| step | frame / action | waiting for | returned value |
+|---:|---|---|---|
+| `1` | `deepClonePlain(original)` sees a plain object | `user`, `tags` | not ready |
+| `2` | `deepClonePlain({ role: 'admin' })` sees a plain object | `role` | not ready |
+| `3` | `deepClonePlain('admin')` hits primitive base case | nothing | `'admin'` |
+| `4` | call for `user` rebuilds from cloned `role` | nothing | `{ role: 'admin' }` |
+| `5` | `deepClonePlain(['object'])` sees an array | item `0` | not ready |
+| `6` | `deepClonePlain('object')` hits primitive base case | nothing | `'object'` |
+| `7` | call for `tags` rebuilds from cloned item `0` | nothing | `['object']` |
+| `8` | root call rebuilds from cloned `user` and `tags` | nothing | `{ user: { role: 'admin' }, tags: ['object'] }` |
 
 ## Important Limitation
 

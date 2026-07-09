@@ -120,6 +120,9 @@ const rawScores = {
   nia: 88,
 };
 
+// Object.entries() gives [key, value] pairs so we can transform values while
+// keeping each original name. Object.fromEntries() turns the transformed pairs
+// back into an object.
 const scoreLabels = Object.fromEntries(
   Object.entries(rawScores).map(([name, score]) => {
     return [name, score >= 85 ? 'high' : 'practice'];
@@ -129,6 +132,8 @@ const scoreLabels = Object.fromEntries(
 console.log('17. Score labels:', scoreLabels);
 // Expected output: { asha: 'high', mina: 'practice', nia: 'high' }
 
+// filter() keeps only the entries that pass the score condition.
+// map() then keeps only the name from each remaining [name, score] pair.
 const highScoreNames = Object.entries(rawScores)
   .filter(([_name, score]) => score >= 85)
   .map(([name]) => name);
@@ -136,6 +141,8 @@ const highScoreNames = Object.entries(rawScores)
 console.log('18. High score names:', highScoreNames);
 // Expected output: [ 'asha', 'nia' ]
 
+// Object.values() is enough here because the key names are not needed.
+// reduce() carries the running total from one score to the next.
 const totalScore = Object.values(rawScores).reduce((total, score) => {
   return total + score;
 }, 0);
@@ -151,6 +158,8 @@ const tasks = [
   { title: 'Review mistakes', status: 'todo' },
 ];
 
+// Object.groupBy() uses the callback return value as the group key.
+// Returning status creates groups such as todo and doing.
 const tasksByStatus = Object.groupBy(tasks, ({ status }) => status);
 
 console.log('20. Group keys:', Object.keys(tasksByStatus));
@@ -182,6 +191,8 @@ const preferences = {
 
 Object.seal(preferences);
 
+// Sealing blocks adding/removing properties, but writable existing properties
+// can still be updated.
 preferences.theme = 'dark';
 preferences.language = 'en';
 

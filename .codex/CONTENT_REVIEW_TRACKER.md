@@ -252,8 +252,9 @@ Suggested order:
 
 ### `src/reflect/`
 
-- [ ] `src/reflect/methods/static/ownKeys/ownKeys.js`
-- [ ] `src/reflect/methods/static/ownKeys/ownKeys.md`
+- [x] `src/reflect/notes.md`
+- [x] `src/reflect/methods/static/ownKeys/ownKeys.js`
+- [x] `src/reflect/methods/static/ownKeys/ownKeys.md`
 
 ### `src/proxy/`
 

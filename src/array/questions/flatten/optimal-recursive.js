@@ -9,20 +9,36 @@
  */
 
 function flattenRecursive(values) {
+  // Guard clause: this helper is written for real arrays only.
+  // Throwing early gives a clear error instead of silently treating bad input as iterable data.
   if (!Array.isArray(values)) {
     throw new TypeError('flattenRecursive expects an array');
   }
 
+  // Each function call owns its own result array.
+  // Inner recursive calls build their own result and return it to the parent call.
   const result = [];
 
+  // for...of reads the actual values.
+  // Flattening cares about each value, not about numeric indexes.
   for (const value of values) {
     if (Array.isArray(value)) {
+      // Array value means we found a smaller flatten problem.
+      // The recursive call returns a flat array for this inner value.
+      //
+      // Spread (...) is important here:
+      // result.push(...[2, 3]) adds 2 and 3 as separate values.
+      // Without spread, result.push([2, 3]) would keep a nested array.
       result.push(...flattenRecursive(value));
     } else {
+      // Non-array values are already flat.
+      // Keep them exactly as they are.
       result.push(value);
     }
   }
 
+  // Return the flat values collected by this call.
+  // If this was an inner call, the parent will spread these values into its own result.
   return result;
 }
 

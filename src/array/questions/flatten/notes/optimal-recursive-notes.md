@@ -44,20 +44,36 @@ of the same problem.
 
 ```js
 function flattenRecursive(values) {
+  // Guard clause: this helper is written for real arrays only.
+  // Throwing early gives a clear error instead of silently treating bad input as iterable data.
   if (!Array.isArray(values)) {
     throw new TypeError('flattenRecursive expects an array');
   }
 
+  // Each function call owns its own result array.
+  // Inner recursive calls build their own result and return it to the parent call.
   const result = [];
 
+  // for...of reads the actual values.
+  // Flattening cares about each value, not about numeric indexes.
   for (const value of values) {
     if (Array.isArray(value)) {
+      // Array value means we found a smaller flatten problem.
+      // The recursive call returns a flat array for this inner value.
+      //
+      // Spread (...) is important here:
+      // result.push(...[2, 3]) adds 2 and 3 as separate values.
+      // Without spread, result.push([2, 3]) would keep a nested array.
       result.push(...flattenRecursive(value));
     } else {
+      // Non-array values are already flat.
+      // Keep them exactly as they are.
       result.push(value);
     }
   }
 
+  // Return the flat values collected by this call.
+  // If this was an inner call, the parent will spread these values into its own result.
   return result;
 }
 ```
@@ -192,32 +208,103 @@ caller.
 
 ## Recursive Visual Tree
 
-```text
-flattenRecursive([1, [2, [3]], 4, [5]])
-|
-|-- value 1 is normal
-|   `-- result = [1]
-|
-|-- value [2, [3]] is array
-|   `-- flattenRecursive([2, [3]])
-|       |
-|       |-- value 2 is normal
-|       |   `-- inner result = [2]
-|       |
-|       `-- value [3] is array
-|           `-- flattenRecursive([3])
-|               `-- returns [3]
-|
-|-- spread returned [2, 3]
-|   `-- result = [1, 2, 3]
-|
-|-- value 4 is normal
-|   `-- result = [1, 2, 3, 4]
-|
-`-- value [5] is array
-    `-- flattenRecursive([5]) returns [5]
-        `-- final result = [1, 2, 3, 4, 5]
+Input:
+
+```js
+[1, [2, [3]], 4, [5]]
 ```
+
+Goal:
+
+```text
+Return [1, 2, 3, 4, 5]
+```
+
+Think of each line as a small node.
+
+Each node should show:
+
+```text
+current call or action
+current value being checked
+whether the value is kept or opened
+what the call returns
+```
+
+Recursion tree:
+
+```text
+root  flattenRecursive([1, [2, [3]], 4, [5]]) (result=[])
+│
+├── value 1 -> not array -> keep
+│   │
+│   └── result becomes [1]
+│
+├── value [2, [3]] -> array -> recurse
+│   │
+│   └── flattenRecursive([2, [3]]) (inner result=[])
+│       │
+│       ├── value 2 -> not array -> keep
+│       │   │
+│       │   └── inner result becomes [2]
+│       │
+│       ├── value [3] -> array -> recurse
+│       │   │
+│       │   └── flattenRecursive([3]) (inner result=[])
+│       │       │
+│       │       ├── value 3 -> not array -> keep
+│       │       │   │
+│       │       │   └── inner result becomes [3]
+│       │       │
+│       │       └── return [3]
+│       │
+│       ├── spread returned [3]
+│       │   │
+│       │   └── inner result becomes [2, 3]
+│       │
+│       └── return [2, 3]
+│
+├── spread returned [2, 3]
+│   │
+│   └── result becomes [1, 2, 3]
+│
+├── value 4 -> not array -> keep
+│   │
+│   └── result becomes [1, 2, 3, 4]
+│
+├── value [5] -> array -> recurse
+│   │
+│   └── flattenRecursive([5]) (inner result=[])
+│       │
+│       ├── value 5 -> not array -> keep
+│       │   │
+│       │   └── inner result becomes [5]
+│       │
+│       └── return [5]
+│
+├── spread returned [5]
+│   │
+│   └── result becomes [1, 2, 3, 4, 5]
+│
+└── return [1, 2, 3, 4, 5]
+```
+
+Execution table:
+
+| step | call / action | current call result | returned value |
+|---:|---|---|---|
+| `1` | start `flattenRecursive([1, [2, [3]], 4, [5]])` | `[]` | not ready |
+| `2` | keep `1` | `[1]` | not ready |
+| `3` | recurse into `[2, [3]]` | `[1]` | waits for inner return |
+| `4` | inside `[2, [3]]`, keep `2` | `[2]` | not ready |
+| `5` | recurse into `[3]` | `[2]` | waits for inner return |
+| `6` | inside `[3]`, keep `3` | `[3]` | `[3]` |
+| `7` | spread returned `[3]` into `[2, [3]]` call | `[2, 3]` | `[2, 3]` |
+| `8` | spread returned `[2, 3]` into root call | `[1, 2, 3]` | not ready |
+| `9` | keep `4` | `[1, 2, 3, 4]` | not ready |
+| `10` | recurse into `[5]` | `[1, 2, 3, 4]` | waits for inner return |
+| `11` | inside `[5]`, keep `5` | `[5]` | `[5]` |
+| `12` | spread returned `[5]` into root call | `[1, 2, 3, 4, 5]` | `[1, 2, 3, 4, 5]` |
 
 ## Common Mistakes
 

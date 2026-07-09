@@ -41,7 +41,7 @@ belong in these places:
 - `Object.hasOwn()`:
   [`src/object/methods/static-methods/hasOwn/hasOwn.md`](../methods/static-methods/hasOwn/hasOwn.md)
 - `Reflect.ownKeys()`:
-  [MDN `Reflect.ownKeys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys)
+  [`src/reflect/methods/static/ownKeys/ownKeys.md`](../../reflect/methods/static/ownKeys/ownKeys.md)
 
 ## Mental Model
 
