@@ -2,36 +2,48 @@
 
 ## Active Story
 
-### JS-CONTENT-001BM: Add Reflect Overview
+### JS-CONTENT-001BQ: Organize Proxy and Reflect Notes
 
-As a learner, I want to understand what `Reflect` is and why it exists, so the
-individual Reflect method pages do not feel like duplicate Object method pages.
+As a learner, I want the complete Proxy and Reflect explanation divided into
+numbered topic pages, so I can read it in sequence without navigating one very
+large file.
 
 ## Current Folder
 
 ```text
-src/reflect/
+src/proxy/organized-notes/
 ```
 
 ## Current Files
 
 ```text
-src/reflect/notes.md
-src/reflect/methods/static/ownKeys/ownKeys.js
-src/reflect/methods/static/ownKeys/ownKeys.md
-src/object/loop-through-object/for-loop.md
+src/proxy/organized-notes/00-reading-order.md
+src/proxy/organized-notes/01-proxy-fundamentals.md
+src/proxy/organized-notes/02-internal-methods-and-proxy-traps.md
+...
+src/proxy/organized-notes/20-complete-summary.md
+src/proxy/proxy-reflect-revision-sequence.md
+.codex/CURRENT_CONTENT_SPRINT.md
 ```
 
 ## Starting Point
 
-- The user said `Reflect` is new and asked whether the doubt is correct:
-  Reflect appears to overlap with Object static methods.
-- That doubt is valid: many Reflect methods overlap with normal syntax or
-  `Object.*` methods, but Reflect exists as a consistent function-form API for
-  low-level object operations and Proxy forwarding.
-- The previous sprint created `src/reflect/methods/static/ownKeys/ownKeys.md`.
-  The new overview note should sit at `src/reflect/notes.md` and explain why
-  Reflect exists before learners study individual Reflect methods.
+- The user asked to check whether `proxy-basics` was correct and
+  self-explanatory for a first-time learner.
+- `proxy-basics` was re-read and checked against official Proxy/Reflect
+  behavior.
+- The page covers the required beginner foundation: target, handler, trap,
+  empty handler forwarding, `get` and `set` parameter meanings, `Reflect`
+  forwarding, proxy-vs-target identity, and direct target access bypassing the
+  proxy.
+- Because the page was good enough to build on, the next lesson in the revision
+  sequence, `reflect-forwarding`, was created.
+- The user then updated `src/proxy/organized-notes.md` and asked for its large
+  explanation to be divided into numbered, topic-focused pages.
+- The source already contained 20 clear `Part` headings, so those headings are
+  used as the page boundaries and reading order.
+- `src/proxy/reference_jsinfo.md` was removed because its useful material is now
+  incorporated into the organized notes.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -40,92 +52,94 @@ src/object/loop-through-object/for-loop.md
 Sources checked:
 
 ```text
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
-https://tc39.es/ecma262/multipage/reflection.html#sec-reflect.ownkeys
-https://tc39.es/ecma262/multipage/reflection.html#sec-reflect-object
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect
+https://tc39.es/ecma262/multipage/reflection.html#sec-proxy-objects
 ```
 
 Key facts:
 
-- `Reflect` is not a constructor; it is a namespace object with static methods.
-- `Reflect` methods invoke interceptable JavaScript object internal methods.
-- Many Reflect methods correspond to Proxy handler method names.
-- A major use case is forwarding default behavior inside Proxy traps.
-- Many Reflect operations can be done with normal syntax or `Object.*` methods,
-  but Reflect gives consistent function forms and some subtle extra control.
-- `Reflect.ownKeys(target)` returns an array of the target object's own property
-  keys.
-- The returned array can contain string keys and symbol keys.
-- It includes enumerable and non-enumerable own keys.
-- It skips inherited keys.
-- It throws `TypeError` when `target` is not an object.
-- For ordinary objects, key order is integer-index string keys first in numeric
-  order, then other string keys in property creation order, then symbol keys in
-  property creation order.
-- `Reflect.ownKeys()` reads keys, not property values, so getters do not run.
-- The ECMAScript operation calls the target object's `[[OwnPropertyKeys]]`
-  internal method and returns those keys as an array.
+- `Proxy` creates an object that can be used in place of the original object
+  and can redefine fundamental object operations.
+- The `target` is the original object being proxied.
+- The `handler` contains traps that define proxy behavior.
+- A trap defines behavior for the corresponding object internal method.
+- `Reflect` has static methods with the same names as proxy handler methods.
+- A major `Reflect` use case is default forwarding behavior in Proxy traps.
+- `Reflect` can invoke the corresponding object internal method after the trap
+  performs custom work.
+- Calling a `Reflect` method on the proxy from inside that proxy's own trap can
+  re-enter the same trap and cause recursion.
 
-## Sprint 1: Create Reflect Overview
+## Sprint 1: Recheck Proxy Basics
 
 Status: review-ready
 
 Checklist:
 
-- [x] Add `src/reflect/notes.md`.
-- [x] Explain that the user's doubt is valid: Reflect overlaps with existing
-  syntax and Object methods.
-- [x] Explain what Reflect is: a namespace object with static methods, not a
-  constructor.
-- [x] Explain why Reflect exists: function form, low-level object operations,
-  boolean success/failure, Proxy forwarding, and extra control such as receiver
-  or `new.target`.
-- [x] Compare common Object/syntax forms with their Reflect versions.
-- [x] Link `src/reflect/methods/static/ownKeys/ownKeys.md` back to the new
-  Reflect overview.
-- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+- [x] Re-read `src/proxy/concepts/proxy-basics/proxy-basics.md`.
+- [x] Re-read `src/proxy/concepts/proxy-basics/proxy-basics.js`.
+- [x] Check that the page explains target, handler, trap, empty handler,
+  `get`, `set`, `receiver`, Reflect forwarding, proxy-vs-target identity, and
+  direct target bypass.
+- [x] Confirm the page is good enough for a first-time learner before moving
+  forward.
 
-Review List:
-
-- [x] Run `git diff --check`.
-- [x] Do a second note-format review for `src/reflect/notes.md`.
-
-## Previous Sprint: Create And Review `Reflect.ownKeys()`
+## Sprint 2: Create Reflect Forwarding
 
 Status: review-ready
 
 Checklist:
 
-- [x] Replace the placeholder `.gitkeep` with a real `ownKeys.js` and
-  `ownKeys.md` page.
-- [x] Cross-check behavior against MDN and the ECMAScript specification.
-- [x] Explain own vs inherited property coverage.
-- [x] Explain string keys vs symbol keys.
-- [x] Explain enumerable vs non-enumerable coverage.
-- [x] Compare `Reflect.ownKeys()` with `Object.keys()`,
-  `Object.getOwnPropertyNames()`, `Object.getOwnPropertySymbols()`, and
-  `for...in`.
-- [x] Show that getters do not run because only keys are read.
-- [x] Show key order with integer-index strings, other strings, and symbols.
-- [x] Show array behavior, including the non-enumerable `length` key.
-- [x] Show `TypeError` for primitive targets.
-- [x] Update `src/object/loop-through-object/for-loop.md` to link to the new
-  local `Reflect.ownKeys()` page.
+- [x] Replace `src/proxy/concepts/reflect-forwarding/.gitkeep` with a real
+  page.
+- [x] Add `src/proxy/concepts/reflect-forwarding/reflect-forwarding.js`.
+- [x] Add `src/proxy/concepts/reflect-forwarding/reflect-forwarding.md`.
+- [x] Explain the trap -> custom work -> Reflect -> target mental model.
+- [x] Show `Reflect.get()` forwarding.
+- [x] Show `Reflect.set()` forwarding.
+- [x] Show `Reflect.has()` forwarding.
+- [x] Show `Reflect.deleteProperty()` forwarding.
+- [x] Explain the `Reflect.get(...arguments)` shortcut.
+- [x] Explain why forwarding to the same proxy can recurse.
 - [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
 
 Review List:
 
-- [x] Run `node src/reflect/methods/static/ownKeys/ownKeys.js`.
-- [x] Run `node --check src/reflect/methods/static/ownKeys/ownKeys.js`.
+- [x] Run `node src/proxy/concepts/reflect-forwarding/reflect-forwarding.js`.
+- [x] Run `node --check src/proxy/concepts/reflect-forwarding/reflect-forwarding.js`.
 - [x] Run `git diff --check`.
-- [x] Do a second note-format review for `ownKeys.md`.
+- [x] Do a second note-format review for `reflect-forwarding.md`.
+
+## Sprint 3: Split The Organized Notes
+
+Status: review-ready
+
+Checklist:
+
+- [x] Remove `src/proxy/reference_jsinfo.md`.
+- [x] Replace the monolithic `src/proxy/organized-notes.md` with a dedicated
+  `src/proxy/organized-notes/` folder.
+- [x] Add `00-reading-order.md` as the entry page.
+- [x] Create `01-proxy-fundamentals.md` through
+  `20-complete-summary.md`.
+- [x] Preserve the existing `Part 1` through `Part 20` titles.
+- [x] Fold the original introduction into Part 1.
+- [x] Preserve the continuous section numbering from `1` through `77`.
+- [x] Link the numbered reading order from
+  `proxy-reflect-revision-sequence.md`.
+
+Review List:
+
+- [x] Confirm every numbered page has one top-level `Part` heading.
+- [x] Confirm code fences remain balanced in every numbered page.
+- [x] Confirm the split preserves all source content except the replaced
+  document title and extra blank line.
 
 ## Stop Point
 
 This page is review-ready. The next unchecked section after this one is:
 
 ```text
-src/proxy/concepts/proxy-basics/proxy-basics.js
+src/proxy/handlers/get/get.js
 ```

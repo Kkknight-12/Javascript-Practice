@@ -253,17 +253,86 @@ Suggested order:
 ### `src/reflect/`
 
 - [x] `src/reflect/notes.md`
+- [ ] `src/reflect/methods/static/get/get.js`
+- [ ] `src/reflect/methods/static/get/get.md`
+- [ ] `src/reflect/methods/static/set/set.js`
+- [ ] `src/reflect/methods/static/set/set.md`
+- [ ] `src/reflect/methods/static/has/has.js`
+- [ ] `src/reflect/methods/static/has/has.md`
+- [ ] `src/reflect/methods/static/deleteProperty/deleteProperty.js`
+- [ ] `src/reflect/methods/static/deleteProperty/deleteProperty.md`
 - [x] `src/reflect/methods/static/ownKeys/ownKeys.js`
 - [x] `src/reflect/methods/static/ownKeys/ownKeys.md`
+- [ ] `src/reflect/methods/static/getOwnPropertyDescriptor/getOwnPropertyDescriptor.js`
+- [ ] `src/reflect/methods/static/getOwnPropertyDescriptor/getOwnPropertyDescriptor.md`
+- [ ] `src/reflect/methods/static/defineProperty/defineProperty.js`
+- [ ] `src/reflect/methods/static/defineProperty/defineProperty.md`
+- [ ] `src/reflect/methods/static/getPrototypeOf/getPrototypeOf.js`
+- [ ] `src/reflect/methods/static/getPrototypeOf/getPrototypeOf.md`
+- [ ] `src/reflect/methods/static/setPrototypeOf/setPrototypeOf.js`
+- [ ] `src/reflect/methods/static/setPrototypeOf/setPrototypeOf.md`
+- [ ] `src/reflect/methods/static/isExtensible/isExtensible.js`
+- [ ] `src/reflect/methods/static/isExtensible/isExtensible.md`
+- [ ] `src/reflect/methods/static/preventExtensions/preventExtensions.js`
+- [ ] `src/reflect/methods/static/preventExtensions/preventExtensions.md`
+- [ ] `src/reflect/methods/static/apply/apply.js`
+- [ ] `src/reflect/methods/static/apply/apply.md`
+- [ ] `src/reflect/methods/static/construct/construct.js`
+- [ ] `src/reflect/methods/static/construct/construct.md`
 
 ### `src/proxy/`
 
-- [ ] `src/proxy/concepts/proxy-basics/proxy-basics.js`
-- [ ] `src/proxy/concepts/proxy-basics/proxy-basics.md`
+- [x] `src/proxy/proxy-reflect-revision-sequence.md`
+- [x] `src/proxy/concepts/proxy-basics/proxy-basics.js`
+- [x] `src/proxy/concepts/proxy-basics/proxy-basics.md`
+- [x] `src/proxy/concepts/reflect-forwarding/reflect-forwarding.js`
+- [x] `src/proxy/concepts/reflect-forwarding/reflect-forwarding.md`
+- [ ] `src/proxy/handlers/get/get.js`
+- [ ] `src/proxy/handlers/get/get.md`
+- [ ] `src/proxy/concepts/receiver/receiver.js`
+- [ ] `src/proxy/concepts/receiver/receiver.md`
+- [ ] `src/proxy/handlers/set/set.js`
+- [ ] `src/proxy/handlers/set/set.md`
+- [ ] `src/proxy/handlers/has/has.js`
+- [ ] `src/proxy/handlers/has/has.md`
+- [ ] `src/proxy/handlers/deleteProperty/deleteProperty.js`
+- [ ] `src/proxy/handlers/deleteProperty/deleteProperty.md`
+- [ ] `src/proxy/concepts/invariants/invariants.js`
+- [ ] `src/proxy/concepts/invariants/invariants.md`
 - [ ] `src/proxy/handlers/ownKeys/ownKeys.js`
 - [ ] `src/proxy/handlers/ownKeys/ownKeys.md`
+- [ ] `src/proxy/handlers/getOwnPropertyDescriptor/getOwnPropertyDescriptor.js`
+- [ ] `src/proxy/handlers/getOwnPropertyDescriptor/getOwnPropertyDescriptor.md`
+- [ ] `src/proxy/handlers/defineProperty/defineProperty.js`
+- [ ] `src/proxy/handlers/defineProperty/defineProperty.md`
+- [ ] `src/proxy/concepts/protected-properties/protected-properties.js`
+- [ ] `src/proxy/concepts/protected-properties/protected-properties.md`
+- [ ] `src/proxy/handlers/getPrototypeOf/getPrototypeOf.js`
+- [ ] `src/proxy/handlers/getPrototypeOf/getPrototypeOf.md`
+- [ ] `src/proxy/handlers/setPrototypeOf/setPrototypeOf.js`
+- [ ] `src/proxy/handlers/setPrototypeOf/setPrototypeOf.md`
+- [ ] `src/proxy/handlers/isExtensible/isExtensible.js`
+- [ ] `src/proxy/handlers/isExtensible/isExtensible.md`
+- [ ] `src/proxy/handlers/preventExtensions/preventExtensions.js`
+- [ ] `src/proxy/handlers/preventExtensions/preventExtensions.md`
+- [ ] `src/proxy/handlers/apply/apply.js`
+- [ ] `src/proxy/handlers/apply/apply.md`
+- [ ] `src/proxy/handlers/construct/construct.js`
+- [ ] `src/proxy/handlers/construct/construct.md`
+- [ ] `src/proxy/concepts/arrays-and-proxy/arrays-and-proxy.js`
+- [ ] `src/proxy/concepts/arrays-and-proxy/arrays-and-proxy.md`
+- [ ] `src/proxy/concepts/internal-slots/internal-slots.js`
+- [ ] `src/proxy/concepts/internal-slots/internal-slots.md`
+- [ ] `src/proxy/concepts/private-fields/private-fields.js`
+- [ ] `src/proxy/concepts/private-fields/private-fields.md`
+- [ ] `src/proxy/concepts/proxy-identity/proxy-identity.js`
+- [ ] `src/proxy/concepts/proxy-identity/proxy-identity.md`
+- [ ] `src/proxy/concepts/use-proxy-everywhere/use-proxy-everywhere.js`
+- [ ] `src/proxy/concepts/use-proxy-everywhere/use-proxy-everywhere.md`
 - [ ] `src/proxy/methods/static/revocable/revocable.js`
 - [ ] `src/proxy/methods/static/revocable/revocable.md`
+- [ ] `src/proxy/concepts/best-practices/best-practices.js`
+- [ ] `src/proxy/concepts/best-practices/best-practices.md`
 
 ### `src/string/`
 
