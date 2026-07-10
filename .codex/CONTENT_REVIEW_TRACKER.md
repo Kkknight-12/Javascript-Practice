@@ -287,8 +287,8 @@ Suggested order:
 - [x] `src/proxy/concepts/proxy-basics/proxy-basics.md`
 - [x] `src/proxy/concepts/reflect-forwarding/reflect-forwarding.js`
 - [x] `src/proxy/concepts/reflect-forwarding/reflect-forwarding.md`
-- [ ] `src/proxy/handlers/get/get.js`
-- [ ] `src/proxy/handlers/get/get.md`
+- [x] `src/proxy/handlers/get/get.js`
+- [x] `src/proxy/handlers/get/get.md`
 - [ ] `src/proxy/concepts/receiver/receiver.js`
 - [ ] `src/proxy/concepts/receiver/receiver.md`
 - [ ] `src/proxy/handlers/set/set.js`

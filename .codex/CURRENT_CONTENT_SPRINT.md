@@ -2,27 +2,24 @@
 
 ## Active Story
 
-### JS-CONTENT-001BQ: Organize Proxy and Reflect Notes
+### JS-CONTENT-001BR: Create The Proxy `get` Trap Lesson
 
-As a learner, I want the complete Proxy and Reflect explanation divided into
-numbered topic pages, so I can read it in sequence without navigating one very
-large file.
+As a learner, I want to understand exactly when the Proxy `get` trap runs and
+what its parameters mean, so I can safely customize property reads without
+breaking normal object behavior.
 
 ## Current Folder
 
 ```text
-src/proxy/organized-notes/
+src/proxy/handlers/get/
 ```
 
 ## Current Files
 
 ```text
-src/proxy/organized-notes/00-reading-order.md
-src/proxy/organized-notes/01-proxy-fundamentals.md
-src/proxy/organized-notes/02-internal-methods-and-proxy-traps.md
-...
-src/proxy/organized-notes/20-complete-summary.md
-src/proxy/proxy-reflect-revision-sequence.md
+src/proxy/handlers/get/get.js
+src/proxy/handlers/get/get.md
+.codex/CONTENT_REVIEW_TRACKER.md
 .codex/CURRENT_CONTENT_SPRINT.md
 ```
 
@@ -44,6 +41,10 @@ src/proxy/proxy-reflect-revision-sequence.md
   used as the page boundaries and reading order.
 - `src/proxy/reference_jsinfo.md` was removed because its useful material is now
   incorporated into the organized notes.
+- The next unchecked tracker entry is `src/proxy/handlers/get/get.js`, followed
+  by its paired `get.md` explanation.
+- The focused source note is
+  `src/proxy/organized-notes/04-get-trap.md`.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -54,6 +55,8 @@ Sources checked:
 ```text
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/get
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/get
 https://tc39.es/ecma262/multipage/reflection.html#sec-proxy-objects
 ```
 
@@ -70,6 +73,15 @@ Key facts:
   performs custom work.
 - Calling a `Reflect` method on the proxy from inside that proxy's own trap can
   re-enter the same trap and cause recursion.
+- The `get` trap intercepts the target's `[[Get]]` internal method.
+- Its parameters are `target`, `property`, and `receiver`; `property` is a
+  string or symbol, and `receiver` supplies `this` when a getter runs.
+- The trap may return any value, and that value becomes the result of the
+  property read.
+- `proxy.name`, `proxy[key]`, and `Reflect.get(proxy, key)` can trigger the
+  trap.
+- A `get` trap must preserve the value of a non-writable, non-configurable own
+  data property.
 
 ## Sprint 1: Recheck Proxy Basics
 
@@ -136,10 +148,34 @@ Review List:
 - [x] Confirm the split preserves all source content except the replaced
   document title and extra blank line.
 
+## Sprint 4: Create The `get` Trap Lesson
+
+Status: review-ready
+
+Checklist:
+
+- [x] Replace `src/proxy/handlers/get/.gitkeep` with `get.js` and `get.md`.
+- [x] Explain which operations trigger the `get` trap.
+- [x] Explain `target`, `property`, and `receiver` in beginner-friendly terms.
+- [x] Show normal forwarding with `Reflect.get()`.
+- [x] Show string, numeric-index, and symbol property keys.
+- [x] Show a missing-property fallback and a virtual property.
+- [x] Preview why `receiver` matters without duplicating its dedicated lesson.
+- [x] Explain the locked-property invariant with a runnable example.
+- [x] Add common mistakes, usage guidance, references, and the runnable command.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+
+Review List:
+
+- [x] Run `node src/proxy/handlers/get/get.js`.
+- [x] Run `node --check src/proxy/handlers/get/get.js`.
+- [x] Run `git diff --check`.
+- [x] Do a second note-format review for `get.md`.
+
 ## Stop Point
 
 This page is review-ready. The next unchecked section after this one is:
 
 ```text
-src/proxy/handlers/get/get.js
+src/proxy/concepts/receiver/receiver.js
 ```
