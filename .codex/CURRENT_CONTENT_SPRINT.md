@@ -2,23 +2,23 @@
 
 ## Active Story
 
-### JS-CONTENT-001BR: Create The Proxy `get` Trap Lesson
+### JS-CONTENT-001BS: Explain The Proxy `receiver`
 
-As a learner, I want to understand exactly when the Proxy `get` trap runs and
-what its parameters mean, so I can safely customize property reads without
-breaking normal object behavior.
+As a learner, I want to understand why Proxy traps receive both `target` and
+`receiver`, so getters, setters, and inherited proxy operations keep the
+correct object as `this`.
 
 ## Current Folder
 
 ```text
-src/proxy/handlers/get/
+src/proxy/concepts/receiver/
 ```
 
 ## Current Files
 
 ```text
-src/proxy/handlers/get/get.js
-src/proxy/handlers/get/get.md
+src/proxy/concepts/receiver/receiver.js
+src/proxy/concepts/receiver/receiver.md
 .codex/CONTENT_REVIEW_TRACKER.md
 .codex/CURRENT_CONTENT_SPRINT.md
 ```
@@ -45,6 +45,11 @@ src/proxy/handlers/get/get.md
   by its paired `get.md` explanation.
 - The focused source note is
   `src/proxy/organized-notes/04-get-trap.md`.
+- The `get` trap lesson was committed and pushed as `b556628`.
+- The next unchecked tracker entry is
+  `src/proxy/concepts/receiver/receiver.js`, followed by `receiver.md`.
+- The focused source note for this lesson is
+  `src/proxy/organized-notes/13-getter-inheritance-and-receiver.md`.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -57,6 +62,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/get
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/get
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/set
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/set
 https://tc39.es/ecma262/multipage/reflection.html#sec-proxy-objects
 ```
 
@@ -82,6 +89,15 @@ Key facts:
   trap.
 - A `get` trap must preserve the value of a non-writable, non-configurable own
   data property.
+- For `get`, `receiver` supplies the `this` value when a getter is evaluated.
+- For `set`, `receiver` supplies the `this` value for setters and may receive
+  the written property when it differs from `target`.
+- In a direct read through a proxy, `target` is the wrapped object while
+  `receiver` is usually the proxy.
+- When another object inherits from the proxy, that inheriting object can be
+  the receiver.
+- Omitting the optional receiver from `Reflect.get()` or `Reflect.set()` makes
+  it default to the target.
 
 ## Sprint 1: Recheck Proxy Basics
 
@@ -172,10 +188,36 @@ Review List:
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review for `get.md`.
 
+## Sprint 5: Explain `receiver`
+
+Status: review-ready
+
+Checklist:
+
+- [x] Replace `src/proxy/concepts/receiver/.gitkeep` with `receiver.js` and
+  `receiver.md`.
+- [x] Define `target`, `receiver`, trap `this`, and getter/setter `this`
+  separately.
+- [x] Establish normal getter inheritance before introducing a proxy.
+- [x] Show why `target[property]` returns the wrong inherited getter value.
+- [x] Show how `Reflect.get(target, property, receiver)` fixes it.
+- [x] Trace direct-proxy and inheriting-object receiver values.
+- [x] Show that a receiver matters to accessors but not a plain data read.
+- [x] Add a focused `Reflect.set()` receiver preview.
+- [x] Add common mistakes, usage guidance, references, and the runnable command.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+
+Review List:
+
+- [x] Run `node src/proxy/concepts/receiver/receiver.js`.
+- [x] Run `node --check src/proxy/concepts/receiver/receiver.js`.
+- [x] Run `git diff --check`.
+- [x] Do a second note-format review for `receiver.md`.
+
 ## Stop Point
 
 This page is review-ready. The next unchecked section after this one is:
 
 ```text
-src/proxy/concepts/receiver/receiver.js
+src/proxy/handlers/set/set.js
 ```
