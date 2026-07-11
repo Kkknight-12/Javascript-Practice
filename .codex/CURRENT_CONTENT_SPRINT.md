@@ -2,23 +2,23 @@
 
 ## Active Story
 
-### JS-CONTENT-001BS: Explain The Proxy `receiver`
+### JS-CONTENT-001BT: Create The Proxy `set` Trap Lesson
 
-As a learner, I want to understand why Proxy traps receive both `target` and
-`receiver`, so getters, setters, and inherited proxy operations keep the
-correct object as `this`.
+As a learner, I want to understand exactly how the Proxy `set` trap intercepts
+property writes, so I can validate or customize assignments while correctly
+performing the write and reporting success.
 
 ## Current Folder
 
 ```text
-src/proxy/concepts/receiver/
+src/proxy/handlers/set/
 ```
 
 ## Current Files
 
 ```text
-src/proxy/concepts/receiver/receiver.js
-src/proxy/concepts/receiver/receiver.md
+src/proxy/handlers/set/set.js
+src/proxy/handlers/set/set.md
 .codex/CONTENT_REVIEW_TRACKER.md
 .codex/CURRENT_CONTENT_SPRINT.md
 ```
@@ -50,6 +50,11 @@ src/proxy/concepts/receiver/receiver.md
   `src/proxy/concepts/receiver/receiver.js`, followed by `receiver.md`.
 - The focused source note for this lesson is
   `src/proxy/organized-notes/13-getter-inheritance-and-receiver.md`.
+- The receiver lesson was committed and pushed as `9651b2d`.
+- The next unchecked tracker entry is `src/proxy/handlers/set/set.js`, followed
+  by its paired `set.md` explanation.
+- The focused source note for this lesson is
+  `src/proxy/organized-notes/05-set-trap.md`.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -98,6 +103,17 @@ Key facts:
   the receiver.
 - Omitting the optional receiver from `Reflect.get()` or `Reflect.set()` makes
   it default to the target.
+- The `set` trap intercepts the target's `[[Set]]` internal method.
+- Its parameters are `target`, `property`, `value`, and `receiver`.
+- The trap result is coerced to a boolean and becomes the trap's declared
+  status; it does not independently verify whether stored data changed.
+- A falsy declared status causes strict-mode assignment to throw `TypeError`.
+- Returning `true` does not perform the write by itself.
+- `Reflect.set()` performs normal assignment behavior and returns a boolean.
+- Array methods such as `push()` can trigger `set` for indexes and `length`.
+- A `set` trap must not pretend that an incompatible write succeeded for a
+  non-writable, non-configurable own data property or a non-configurable own
+  accessor without a setter.
 
 ## Sprint 1: Recheck Proxy Basics
 
@@ -214,10 +230,36 @@ Review List:
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review for `receiver.md`.
 
+## Sprint 6: Create The `set` Trap Lesson
+
+Status: review-ready
+
+Checklist:
+
+- [x] Replace `src/proxy/handlers/set/.gitkeep` with `set.js` and `set.md`.
+- [x] Explain which operations trigger the `set` trap.
+- [x] Explain `target`, `property`, `value`, and `receiver`.
+- [x] Separate intercepting, performing, and reporting a write.
+- [x] Show validation with normal `Reflect.set()` forwarding.
+- [x] Explain truthy/falsy trap results and strict-mode failure.
+- [x] Show string, numeric-index, and symbol property keys.
+- [x] Show how array `push()` triggers index and `length` writes.
+- [x] Show an inherited receiver receiving the property.
+- [x] Explain the locked-property invariants with a runnable example.
+- [x] Add common mistakes, usage guidance, references, and the runnable command.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+
+Review List:
+
+- [x] Run `node src/proxy/handlers/set/set.js`.
+- [x] Run `node --check src/proxy/handlers/set/set.js`.
+- [x] Run `git diff --check`.
+- [x] Do a second note-format review for `set.md`.
+
 ## Stop Point
 
 This page is review-ready. The next unchecked section after this one is:
 
 ```text
-src/proxy/handlers/set/set.js
+src/proxy/handlers/has/has.js
 ```

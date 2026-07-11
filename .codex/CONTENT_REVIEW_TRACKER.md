@@ -291,8 +291,8 @@ Suggested order:
 - [x] `src/proxy/handlers/get/get.md`
 - [x] `src/proxy/concepts/receiver/receiver.js`
 - [x] `src/proxy/concepts/receiver/receiver.md`
-- [ ] `src/proxy/handlers/set/set.js`
-- [ ] `src/proxy/handlers/set/set.md`
+- [x] `src/proxy/handlers/set/set.js`
+- [x] `src/proxy/handlers/set/set.md`
 - [ ] `src/proxy/handlers/has/has.js`
 - [ ] `src/proxy/handlers/has/has.md`
 - [ ] `src/proxy/handlers/deleteProperty/deleteProperty.js`
