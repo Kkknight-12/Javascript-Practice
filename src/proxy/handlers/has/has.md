@@ -836,6 +836,7 @@ src/proxy/handlers/has/has.js
 
 - [Proxy Basics](../../concepts/proxy-basics/proxy-basics.md)
 - [Reflect Forwarding](../../concepts/reflect-forwarding/reflect-forwarding.md)
+- [Doubt: Do We Have To Use `Reflect` Inside A Proxy Trap?](../../concepts/reflect-forwarding/doubt/doubt.md)
 - [Proxy `get` Trap](../get/get.md)
 - [Object Key Existence](../../../object/concepts/key-existence/key-existence.md)
 - [Organized Note: `has` Trap](../../organized-notes/09-has-trap.md)

@@ -415,6 +415,8 @@ output comments for:
 
 ## Related Pages
 
+- Reflect forwarding doubt:
+  [Do We Have To Use `Reflect` Inside A Proxy Trap?](doubt/doubt.md)
 - Proxy basics:
   [`src/proxy/concepts/proxy-basics/proxy-basics.md`](../proxy-basics/proxy-basics.md)
 - Reflect overview:

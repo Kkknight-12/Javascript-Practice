@@ -2,23 +2,23 @@
 
 ## Active Story
 
-### JS-CONTENT-001BU: Create The Proxy `has` Trap Lesson
+### JS-CONTENT-001BV: Create The Proxy `deleteProperty` Trap Lesson
 
-As a learner, I want to understand how the Proxy `has` trap customizes property
-existence checks, so I can distinguish `in`, inherited properties, own-property
-checks, and virtual membership without confusing existence with value access.
+As a learner, I want to understand how the Proxy `deleteProperty` trap
+intercepts property deletion, so I can control deletions while keeping the
+actual operation, boolean result, strict-mode behavior, and invariants clear.
 
 ## Current Folder
 
 ```text
-src/proxy/handlers/has/
+src/proxy/handlers/deleteProperty/
 ```
 
 ## Current Files
 
 ```text
-src/proxy/handlers/has/has.js
-src/proxy/handlers/has/has.md
+src/proxy/handlers/deleteProperty/deleteProperty.js
+src/proxy/handlers/deleteProperty/deleteProperty.md
 .codex/CONTENT_REVIEW_TRACKER.md
 .codex/CURRENT_CONTENT_SPRINT.md
 ```
@@ -60,6 +60,13 @@ src/proxy/handlers/has/has.md
   by its paired `has.md` explanation.
 - The focused source note for this lesson is
   `src/proxy/organized-notes/09-has-trap.md`.
+- The `has` trap lesson and final `set` clarifications were committed and pushed
+  as `d5aed10`.
+- The next unchecked tracker entry is
+  `src/proxy/handlers/deleteProperty/deleteProperty.js`, followed by its paired
+  `deleteProperty.md` explanation.
+- Supporting source notes are `src/proxy/organized-notes/03-proxy-invariants.md`,
+  `12-proxy-and-reflect-together.md`, and `18-best-practices.md`.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -76,6 +83,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/set
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/has
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/has
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/deleteProperty
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/deleteProperty
 https://tc39.es/ecma262/multipage/reflection.html#sec-proxy-objects
 ```
 
@@ -133,6 +142,24 @@ Key facts:
 - A `has` trap cannot report a non-configurable own property as absent.
 - A `has` trap also cannot report any own property as absent when the target is
   non-extensible.
+- The `deleteProperty` trap intercepts the target's `[[Delete]]` internal
+  method.
+- Its parameters are `target` and `property`; the property key is a string or
+  symbol.
+- Its result is coerced to a boolean and becomes the deletion's declared
+  status.
+- Returning `true` does not delete a property by itself, and returning `false`
+  does not restore a property already deleted by custom trap code.
+- `Reflect.deleteProperty()` performs normal deletion and directly returns its
+  boolean result.
+- A falsy result from `[[Delete]]` makes strict-mode `delete` throw a
+  `TypeError`, while `Reflect.deleteProperty()` exposes the `false` result.
+- Normal deletion affects only own properties. Deleting a missing or inherited
+  property reports success without removing a prototype property.
+- A trap cannot report successful deletion while a non-configurable own
+  property still exists on the target.
+- A trap also cannot report successful deletion while an own property still
+  exists on a non-extensible target.
 
 ## Sprint 1: Recheck Proxy Basics
 
@@ -301,10 +328,37 @@ Review List:
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review for `has.md`.
 
+## Sprint 8: Create The `deleteProperty` Trap Lesson
+
+Status: review-ready
+
+Checklist:
+
+- [x] Replace `src/proxy/handlers/deleteProperty/.gitkeep` with
+  `deleteProperty.js` and `deleteProperty.md`.
+- [x] Explain which operations trigger the `deleteProperty` trap.
+- [x] Explain `target`, `property`, and the boolean result.
+- [x] Separate intercepting, performing, and reporting a deletion.
+- [x] Compare `delete` with `Reflect.deleteProperty()`.
+- [x] Show missing and inherited-property deletion behavior.
+- [x] Show string, numeric-index, and symbol property keys.
+- [x] Show that deleting an array index leaves an empty slot.
+- [x] Show a protected-property policy and strict-mode failure.
+- [x] Explain both `deleteProperty` invariants with runnable examples.
+- [x] Add common mistakes, usage guidance, references, and the runnable command.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+
+Review List:
+
+- [x] Run `node src/proxy/handlers/deleteProperty/deleteProperty.js`.
+- [x] Run `node --check src/proxy/handlers/deleteProperty/deleteProperty.js`.
+- [x] Run `git diff --check`.
+- [x] Do a second note-format review for `deleteProperty.md`.
+
 ## Stop Point
 
 The next page is:
 
 ```text
-src/proxy/handlers/deleteProperty/deleteProperty.js
+src/proxy/concepts/invariants/invariants.js
 ```

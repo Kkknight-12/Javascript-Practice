@@ -788,6 +788,7 @@ expected output comments for:
 
 - [Proxy Basics](../../concepts/proxy-basics/proxy-basics.md)
 - [Reflect Forwarding](../../concepts/reflect-forwarding/reflect-forwarding.md)
+- [Doubt: Do We Have To Use `Reflect` Inside A Proxy Trap?](../../concepts/reflect-forwarding/doubt/doubt.md)
 - [Part 4: The `get` Trap](../../organized-notes/04-get-trap.md)
 - [Proxy and Reflect Revision Sequence](../../proxy-reflect-revision-sequence.md)
 
