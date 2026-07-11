@@ -2,23 +2,23 @@
 
 ## Active Story
 
-### JS-CONTENT-001BT: Create The Proxy `set` Trap Lesson
+### JS-CONTENT-001BU: Create The Proxy `has` Trap Lesson
 
-As a learner, I want to understand exactly how the Proxy `set` trap intercepts
-property writes, so I can validate or customize assignments while correctly
-performing the write and reporting success.
+As a learner, I want to understand how the Proxy `has` trap customizes property
+existence checks, so I can distinguish `in`, inherited properties, own-property
+checks, and virtual membership without confusing existence with value access.
 
 ## Current Folder
 
 ```text
-src/proxy/handlers/set/
+src/proxy/handlers/has/
 ```
 
 ## Current Files
 
 ```text
-src/proxy/handlers/set/set.js
-src/proxy/handlers/set/set.md
+src/proxy/handlers/has/has.js
+src/proxy/handlers/has/has.md
 .codex/CONTENT_REVIEW_TRACKER.md
 .codex/CURRENT_CONTENT_SPRINT.md
 ```
@@ -55,6 +55,11 @@ src/proxy/handlers/set/set.md
   by its paired `set.md` explanation.
 - The focused source note for this lesson is
   `src/proxy/organized-notes/05-set-trap.md`.
+- The `set` trap lesson was committed and pushed as `3ca2e3e`.
+- The next unchecked tracker entry is `src/proxy/handlers/has/has.js`, followed
+  by its paired `has.md` explanation.
+- The focused source note for this lesson is
+  `src/proxy/organized-notes/09-has-trap.md`.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -69,6 +74,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/get
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/set
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/set
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/has
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/has
 https://tc39.es/ecma262/multipage/reflection.html#sec-proxy-objects
 ```
 
@@ -114,6 +121,18 @@ Key facts:
 - A `set` trap must not pretend that an incompatible write succeeded for a
   non-writable, non-configurable own data property or a non-configurable own
   accessor without a setter.
+- The `has` trap intercepts the target's `[[HasProperty]]` internal method.
+- Its parameters are `target` and `property`; the property key is a string or
+  symbol.
+- Its result is coerced to a boolean and becomes the answer returned by `in`
+  or `Reflect.has()`.
+- Normal forwarding with `Reflect.has()` includes inherited properties, just
+  like the `in` operator.
+- `Object.hasOwn()` does not use the `has` trap because it checks own-property
+  descriptors instead of `[[HasProperty]]`.
+- A `has` trap cannot report a non-configurable own property as absent.
+- A `has` trap also cannot report any own property as absent when the target is
+  non-extensible.
 
 ## Sprint 1: Recheck Proxy Basics
 
@@ -256,10 +275,36 @@ Review List:
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review for `set.md`.
 
+## Sprint 7: Create The `has` Trap Lesson
+
+Status: review-ready
+
+Checklist:
+
+- [x] Replace `src/proxy/handlers/has/.gitkeep` with `has.js` and `has.md`.
+- [x] Explain which operations trigger the `has` trap.
+- [x] Explain `target`, `property`, and the boolean result.
+- [x] Compare `in`, `Reflect.has()`, and `Object.hasOwn()`.
+- [x] Show inherited-property behavior during normal forwarding.
+- [x] Show string, numeric-index, and symbol property keys.
+- [x] Show configurable-property hiding without implying value protection.
+- [x] Show virtual existence without creating a property or value.
+- [x] Explain the range-membership example and string key conversion.
+- [x] Explain both `has` invariants with runnable examples.
+- [x] Add common mistakes, usage guidance, references, and the runnable command.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+
+Review List:
+
+- [x] Run `node src/proxy/handlers/has/has.js`.
+- [x] Run `node --check src/proxy/handlers/has/has.js`.
+- [x] Run `git diff --check`.
+- [x] Do a second note-format review for `has.md`.
+
 ## Stop Point
 
-This page is review-ready. The next unchecked section after this one is:
+The next page is:
 
 ```text
-src/proxy/handlers/has/has.js
+src/proxy/handlers/deleteProperty/deleteProperty.js
 ```

@@ -293,8 +293,8 @@ Suggested order:
 - [x] `src/proxy/concepts/receiver/receiver.md`
 - [x] `src/proxy/handlers/set/set.js`
 - [x] `src/proxy/handlers/set/set.md`
-- [ ] `src/proxy/handlers/has/has.js`
-- [ ] `src/proxy/handlers/has/has.md`
+- [x] `src/proxy/handlers/has/has.js`
+- [x] `src/proxy/handlers/has/has.md`
 - [ ] `src/proxy/handlers/deleteProperty/deleteProperty.js`
 - [ ] `src/proxy/handlers/deleteProperty/deleteProperty.md`
 - [ ] `src/proxy/concepts/invariants/invariants.js`

@@ -726,7 +726,7 @@ Reflect.set(proxy, 'version', '2.0');
 ```
 
 JavaScript compares the proposed value with the locked target descriptor. The
-trap returned a truthy result for an impossible change, so JavaScript throws.
+trap returned a truthy result for an impossible change, so JavaScript throws a `TypeError`.
 
 ### Locked Accessor Without A Setter
 
@@ -734,6 +734,8 @@ The same restriction applies to a non-configurable own accessor property that
 has no setter:
 
 ```js
+const target = {};
+
 Object.defineProperty(target, 'id', {
   get() {
     return 42;
@@ -743,7 +745,71 @@ Object.defineProperty(target, 'id', {
 });
 ```
 
-The `set` trap must not report that assigning `id` succeeded.
+This property can be read through its getter, but it cannot accept a new value
+because it has no setter. It also cannot be reconfigured because
+`configurable` is `false`.
+
+If a trap returns `true`, it declares that the assignment succeeded:
+
+```js
+const dishonestProxy = new Proxy(target, {
+  set() {
+    return true;
+  },
+});
+
+Reflect.set(dishonestProxy, 'id', 100);
+// TypeError
+```
+
+The assignment reaches the `set` trap, and the trap returns `true`. JavaScript
+then checks the target's locked accessor property. Because `id` has no setter,
+the declared success is impossible, so JavaScript throws a `TypeError`.
+
+```text
+Reflect.set(dishonestProxy, 'id', 100)
+  -> set trap runs
+  -> trap returns true and declares success
+  -> target.id is non-configurable and has no setter
+  -> the success claim violates a Proxy invariant
+  -> TypeError
+```
+
+The getter continues to return the original value:
+
+```js
+console.log(dishonestProxy.id);
+// 42
+```
+
+A forwarding trap reports the failed write correctly:
+
+```js
+const forwardingProxy = new Proxy(target, {
+  set(target, property, value, receiver) {
+    return Reflect.set(target, property, value, receiver);
+  },
+});
+
+console.log(Reflect.set(forwardingProxy, 'id', 100));
+// false
+
+console.log(forwardingProxy.id);
+// 42
+```
+
+Here the inner `Reflect.set()` attempts the normal write. It cannot assign the
+value because `id` has no setter, so it returns `false`. The trap returns that
+same result and correctly declares failure. No impossible success is reported,
+so this `Reflect.set()` call returns `false` instead of violating the Proxy
+invariant.
+
+The important difference is:
+
+```text
+trap returns true  -> impossible success claim -> TypeError
+trap returns false -> correct failure report   -> value remains 42
+```
 
 | Locked target property | Required behavior |
 |---|---|
@@ -753,17 +819,41 @@ The `set` trap must not report that assigning `id` succeeded.
 These invariants keep the proxy consistent with target properties JavaScript
 has made impossible to change.
 
-## What `set` Does Not Intercept
+## Which Operations Run The `set` Trap?
 
-The `set` trap handles ordinary property assignments.
+The `set` trap intercepts operations that request the proxy's internal
+`[[Set]]` operation.
+
+### Operations That Run `set`
+
+| Operation | Why `set` runs |
+|---|---|
+| `proxy.name = 'Mina'` | The assignment requests `[[Set]]` through the proxy |
+| `Reflect.set(proxy, 'name', 'Mina')` | `Reflect.set()` explicitly requests `[[Set]]` through the proxy |
+
+Both operations follow the same general path:
+
+```text
+property write through proxy
+  -> proxy [[Set]]
+  -> set trap
+```
+
+### Property Operations That Do Not Run `set`
+
+Other property operations request different internal object operations, so
+they use different Proxy traps:
 
 | Operation | Matching trap |
 |---|---|
-| `proxy.name = 'Mina'` | `set` |
-| `Reflect.set(proxy, 'name', 'Mina')` | `set` |
 | `Object.defineProperty(proxy, 'name', descriptor)` | `defineProperty` |
 | `delete proxy.name` | `deleteProperty` |
 | `proxy.name` | `get` |
+
+These operations may define, delete, or read a property, but none of them asks
+the proxy to perform `[[Set]]`. Therefore, they do not run the `set` trap.
+
+### Direct Target Writes Do Not Run `set`
 
 Writing directly to the target also bypasses the proxy:
 
@@ -771,7 +861,15 @@ Writing directly to the target also bypasses the proxy:
 target.name = 'Direct write';
 ```
 
-Only writes performed through the proxy can reach its `set` trap.
+The assignment uses the target's own `[[Set]]` operation because the proxy is
+not involved:
+
+```text
+proxy.name = value  -> proxy set trap runs
+target.name = value -> proxy is bypassed
+```
+
+Only writes requested through the proxy can reach its `set` trap.
 
 ## Important Notes
 
