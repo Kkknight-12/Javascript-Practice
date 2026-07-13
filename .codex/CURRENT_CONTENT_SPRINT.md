@@ -2,23 +2,23 @@
 
 ## Active Story
 
-### JS-CONTENT-001BW: Create The Proxy Invariants Lesson
+### JS-CONTENT-001BX: Create The Proxy `ownKeys` Trap Lesson
 
-As a learner, I want to understand why Proxy traps cannot contradict certain
-facts about their targets, so I can customize object behavior without causing
-unexpected invariant `TypeError` failures.
+As a learner, I want to understand how the Proxy `ownKeys` trap supplies an
+object's own-key list, so I can predict how different listing APIs filter that
+list and customize it without violating key-list invariants.
 
 ## Current Folder
 
 ```text
-src/proxy/concepts/invariants/
+src/proxy/handlers/ownKeys/
 ```
 
 ## Current Files
 
 ```text
-src/proxy/concepts/invariants/invariants.js
-src/proxy/concepts/invariants/invariants.md
+src/proxy/handlers/ownKeys/ownKeys.js
+src/proxy/handlers/ownKeys/ownKeys.md
 .codex/CONTENT_REVIEW_TRACKER.md
 .codex/CURRENT_CONTENT_SPRINT.md
 ```
@@ -74,6 +74,12 @@ src/proxy/concepts/invariants/invariants.md
   `invariants.md` explanation.
 - This consolidation lesson uses only the already-studied `get`, `set`, `has`,
   and `deleteProperty` traps for its detailed examples.
+- The invariants lesson and `deleteProperty` clarification were committed and
+  pushed as `d7ce65c`.
+- The next unchecked tracker entry is `src/proxy/handlers/ownKeys/ownKeys.js`,
+  followed by its paired `ownKeys.md` explanation.
+- Supporting source notes are `src/proxy/organized-notes/06-property-listing.md`
+  and `07-ownkeys-and-property-descriptors.md`.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -93,6 +99,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/deleteProperty
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/deleteProperty
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/ownKeys
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys
 https://tc39.es/ecma262/multipage/reflection.html#sec-proxy-objects
 ```
 
@@ -180,6 +188,21 @@ Key facts:
   the trap produces a contradictory result.
 - Matching `Reflect` methods are a strong forwarding default because their
   results normally remain consistent with the target operation.
+- The `ownKeys` trap intercepts the target's `[[OwnPropertyKeys]]` internal
+  method and receives only `target`.
+- `Reflect.ownKeys(proxy)`, `Object.keys(proxy)`,
+  `Object.getOwnPropertyNames(proxy)`, and
+  `Object.getOwnPropertySymbols(proxy)` can trigger the trap.
+- `Reflect.ownKeys(target)` is the normal forwarding operation and supplies all
+  own string and symbol keys, including non-enumerable keys.
+- APIs such as `Object.keys()` apply additional string and enumerability filters
+  after receiving the candidate list from `ownKeys`.
+- Virtual keys returned by `ownKeys` appear in `Reflect.ownKeys()`, but
+  `Object.keys()` also needs suitable enumerable property descriptors.
+- The result must be an object containing only unique string or symbol keys.
+- The result must include every non-configurable own key of the target.
+- For a non-extensible target, the result must contain exactly the target's own
+  keys, although their order may be customized.
 
 ## Sprint 1: Recheck Proxy Basics
 
@@ -405,10 +428,40 @@ Review List:
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review for `invariants.md`.
 
+## Sprint 10: Create The Proxy `ownKeys` Trap Lesson
+
+Status: review-ready
+
+Checklist:
+
+- [x] Replace `src/proxy/handlers/ownKeys/.gitkeep` with `ownKeys.js` and
+  `ownKeys.md`.
+- [x] Explain `[[OwnPropertyKeys]]`, `target`, and the returned key list.
+- [x] Show normal forwarding with `Reflect.ownKeys()`.
+- [x] Compare how listing APIs filter the candidate key list.
+- [x] Explain why `Object.keys()` may need property descriptors after
+  `ownKeys`.
+- [x] Show configurable-key filtering without implying value protection.
+- [x] Show virtual keys with and without matching descriptor behavior.
+- [x] Show string, symbol, enumerable, non-enumerable, and array keys.
+- [x] Show that key listing does not itself read values or run getters.
+- [x] Explain result type, key type, duplicate, non-configurable-key, and
+  non-extensible-target invariants.
+- [x] Show direct target listing bypassing the proxy.
+- [x] Add common mistakes, usage guidance, references, and runnable command.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+
+Review List:
+
+- [x] Run `node src/proxy/handlers/ownKeys/ownKeys.js`.
+- [x] Run `node --check src/proxy/handlers/ownKeys/ownKeys.js`.
+- [x] Run `git diff --check`.
+- [x] Do a second note-format review for `ownKeys.md`.
+
 ## Stop Point
 
 The next page is:
 
 ```text
-src/proxy/handlers/ownKeys/ownKeys.js
+src/proxy/handlers/getOwnPropertyDescriptor/getOwnPropertyDescriptor.js
 ```
