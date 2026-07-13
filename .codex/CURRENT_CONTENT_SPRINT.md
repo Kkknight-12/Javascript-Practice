@@ -2,23 +2,23 @@
 
 ## Active Story
 
-### JS-CONTENT-001BV: Create The Proxy `deleteProperty` Trap Lesson
+### JS-CONTENT-001BW: Create The Proxy Invariants Lesson
 
-As a learner, I want to understand how the Proxy `deleteProperty` trap
-intercepts property deletion, so I can control deletions while keeping the
-actual operation, boolean result, strict-mode behavior, and invariants clear.
+As a learner, I want to understand why Proxy traps cannot contradict certain
+facts about their targets, so I can customize object behavior without causing
+unexpected invariant `TypeError` failures.
 
 ## Current Folder
 
 ```text
-src/proxy/handlers/deleteProperty/
+src/proxy/concepts/invariants/
 ```
 
 ## Current Files
 
 ```text
-src/proxy/handlers/deleteProperty/deleteProperty.js
-src/proxy/handlers/deleteProperty/deleteProperty.md
+src/proxy/concepts/invariants/invariants.js
+src/proxy/concepts/invariants/invariants.md
 .codex/CONTENT_REVIEW_TRACKER.md
 .codex/CURRENT_CONTENT_SPRINT.md
 ```
@@ -67,6 +67,13 @@ src/proxy/handlers/deleteProperty/deleteProperty.md
   `deleteProperty.md` explanation.
 - Supporting source notes are `src/proxy/organized-notes/03-proxy-invariants.md`,
   `12-proxy-and-reflect-together.md`, and `18-best-practices.md`.
+- The `deleteProperty` lesson and Reflect-forwarding doubt were committed and
+  pushed as `c42255f`.
+- The next unchecked tracker entry is
+  `src/proxy/concepts/invariants/invariants.js`, followed by its paired
+  `invariants.md` explanation.
+- This consolidation lesson uses only the already-studied `get`, `set`, `has`,
+  and `deleteProperty` traps for its detailed examples.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -85,6 +92,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/has
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/deleteProperty
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/deleteProperty
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 https://tc39.es/ecma262/multipage/reflection.html#sec-proxy-objects
 ```
 
@@ -160,6 +168,18 @@ Key facts:
   property still exists on the target.
 - A trap also cannot report successful deletion while an own property still
   exists on a non-extensible target.
+- Proxy invariants are semantics that custom trap behavior must leave
+  unchanged.
+- JavaScript verifies invariants against the Proxy target, especially facts
+  created by non-configurable properties and non-extensible objects.
+- Custom behavior remains valid when it does not contradict the particular
+  trap's protected target facts.
+- The `get`, `set`, `has`, and `deleteProperty` traps enforce different rules;
+  there is no single invariant shared identically by every trap.
+- An invariant violation throws a `TypeError` from the proxy operation after
+  the trap produces a contradictory result.
+- Matching `Reflect` methods are a strong forwarding default because their
+  results normally remain consistent with the target operation.
 
 ## Sprint 1: Recheck Proxy Basics
 
@@ -355,10 +375,40 @@ Review List:
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review for `deleteProperty.md`.
 
+## Sprint 9: Create The Proxy Invariants Lesson
+
+Status: review-ready
+
+Checklist:
+
+- [x] Replace `src/proxy/concepts/invariants/.gitkeep` with `invariants.js` and
+  `invariants.md`.
+- [x] Define invariants as protected facts that custom trap results must not
+  contradict.
+- [x] Explain when JavaScript checks a trap result and why it throws
+  `TypeError`.
+- [x] Show that custom behavior is valid when no invariant is violated.
+- [x] Explain the studied `get` invariants with runnable examples.
+- [x] Explain the studied `set` invariants with runnable examples.
+- [x] Explain the studied `has` invariants with runnable examples.
+- [x] Explain the studied `deleteProperty` invariants with runnable examples.
+- [x] Explain how descriptors and target extensibility create protected facts.
+- [x] Preview that later traps have their own invariants without teaching them
+  prematurely.
+- [x] Add common mistakes, debugging guidance, references, and runnable command.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+
+Review List:
+
+- [x] Run `node src/proxy/concepts/invariants/invariants.js`.
+- [x] Run `node --check src/proxy/concepts/invariants/invariants.js`.
+- [x] Run `git diff --check`.
+- [x] Do a second note-format review for `invariants.md`.
+
 ## Stop Point
 
 The next page is:
 
 ```text
-src/proxy/concepts/invariants/invariants.js
+src/proxy/handlers/ownKeys/ownKeys.js
 ```

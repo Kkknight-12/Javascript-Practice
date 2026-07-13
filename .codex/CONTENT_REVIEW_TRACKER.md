@@ -297,8 +297,8 @@ Suggested order:
 - [x] `src/proxy/handlers/has/has.md`
 - [x] `src/proxy/handlers/deleteProperty/deleteProperty.js`
 - [x] `src/proxy/handlers/deleteProperty/deleteProperty.md`
-- [ ] `src/proxy/concepts/invariants/invariants.js`
-- [ ] `src/proxy/concepts/invariants/invariants.md`
+- [x] `src/proxy/concepts/invariants/invariants.js`
+- [x] `src/proxy/concepts/invariants/invariants.md`
 - [ ] `src/proxy/handlers/ownKeys/ownKeys.js`
 - [ ] `src/proxy/handlers/ownKeys/ownKeys.md`
 - [ ] `src/proxy/handlers/getOwnPropertyDescriptor/getOwnPropertyDescriptor.js`

@@ -645,14 +645,15 @@ console.log(Reflect.deleteProperty(proxy, 'id'));
 The property cannot be deleted, so the inner `Reflect.deleteProperty()`
 returns `false`, and the trap reports that failure.
 
-### Own Property On A Non-Extensible Target
+### Why Non-Extensibility Changes The Result
+
+For a configurable property on an extensible target, JavaScript may accept a
+truthy result even when the trap does not perform the deletion:
 
 ```js
 const target = {
   name: 'Asha',
 };
-
-Object.preventExtensions(target);
 
 const proxy = new Proxy(target, {
   deleteProperty() {
@@ -660,19 +661,48 @@ const proxy = new Proxy(target, {
   },
 });
 
+console.log(Reflect.deleteProperty(proxy, 'name'));
+// true
+
+console.log(target.name);
+// Asha
+```
+
+The trap reported success without deleting `name`, but no invariant rejects
+this particular result. The property is configurable and the target is still
+extensible.
+
+Now make the same target non-extensible and repeat the same operation through
+the same proxy:
+
+```js
+Object.preventExtensions(target);
+
 Reflect.deleteProperty(proxy, 'name');
 // TypeError
 ```
 
-The trap claims success but leaves `name` on the non-extensible target.
-JavaScript rejects that contradiction.
+The trap still returns `true` without deleting anything. This time JavaScript
+finds that the non-extensible target still owns `name`, so the result violates
+the second `deleteProperty` invariant.
 
-### A Non-Extensible Target Can Lose A Configurable Property
+```text
+same property + same trap + extensible target
+  -> true is accepted even though name remains
 
-`Object.preventExtensions()` prevents adding new properties. It does not make
-existing configurable properties non-configurable.
+same property + same trap + non-extensible target
+  -> name still remains
+  -> TypeError
+```
 
-Therefore, a forwarding trap may actually delete such a property:
+`Object.preventExtensions()` is therefore the fact that changes the result.
+
+### Actual Deletion From A Non-Extensible Target
+
+Non-extensible means that new own properties cannot be added. It does not mean
+that existing configurable properties cannot be deleted.
+
+A forwarding trap can perform the deletion before returning `true`:
 
 ```js
 const target = {
@@ -698,10 +728,14 @@ This does not violate the invariant because `Reflect.deleteProperty()` removes
 the configurable property before returning `true`. When JavaScript checks the
 target, `name` no longer exists.
 
-The two cases differ like this:
+The complete comparison is:
 
 ```text
-return true without deleting
+return true without deleting from an extensible target
+  -> configurable own property remains
+  -> accepted
+
+return true without deleting from a non-extensible target
   -> own property remains on non-extensible target
   -> TypeError
 
@@ -885,7 +919,8 @@ src/proxy/handlers/deleteProperty/deleteProperty.js
 - [Reflect Forwarding](../../concepts/reflect-forwarding/reflect-forwarding.md)
 - [Proxy `set` Trap](../set/set.md)
 - [Proxy `has` Trap](../has/has.md)
-- [Proxy Invariants](../../organized-notes/03-proxy-invariants.md)
+- [Proxy Invariants](../../concepts/invariants/invariants.md)
+- [Organized Note: Proxy Invariants](../../organized-notes/03-proxy-invariants.md)
 - [Proxy And Reflect Together](../../organized-notes/12-proxy-and-reflect-together.md)
 - [Proxy And Reflect Revision Sequence](../../proxy-reflect-revision-sequence.md)
 
