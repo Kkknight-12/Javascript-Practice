@@ -2,23 +2,23 @@
 
 ## Active Story
 
-### JS-CONTENT-001BX: Create The Proxy `ownKeys` Trap Lesson
+### JS-CONTENT-001BY: Create The Proxy `getOwnPropertyDescriptor` Trap Lesson
 
-As a learner, I want to understand how the Proxy `ownKeys` trap supplies an
-object's own-key list, so I can predict how different listing APIs filter that
-list and customize it without violating key-list invariants.
+As a learner, I want to understand how the Proxy `getOwnPropertyDescriptor`
+trap reports whether an own property exists and how it is configured, so I can
+customize descriptor-sensitive operations without contradicting target facts.
 
 ## Current Folder
 
 ```text
-src/proxy/handlers/ownKeys/
+src/proxy/handlers/getOwnPropertyDescriptor/
 ```
 
 ## Current Files
 
 ```text
-src/proxy/handlers/ownKeys/ownKeys.js
-src/proxy/handlers/ownKeys/ownKeys.md
+src/proxy/handlers/getOwnPropertyDescriptor/getOwnPropertyDescriptor.js
+src/proxy/handlers/getOwnPropertyDescriptor/getOwnPropertyDescriptor.md
 .codex/CONTENT_REVIEW_TRACKER.md
 .codex/CURRENT_CONTENT_SPRINT.md
 ```
@@ -80,6 +80,13 @@ src/proxy/handlers/ownKeys/ownKeys.md
   followed by its paired `ownKeys.md` explanation.
 - Supporting source notes are `src/proxy/organized-notes/06-property-listing.md`
   and `07-ownkeys-and-property-descriptors.md`.
+- The `ownKeys` lesson was committed and pushed as `a926f28`.
+- The next unchecked tracker entry is
+  `src/proxy/handlers/getOwnPropertyDescriptor/getOwnPropertyDescriptor.js`,
+  followed by its paired `getOwnPropertyDescriptor.md` explanation.
+- The existing Object method lesson at
+  `src/object/methods/static-methods/getOwnPropertyDescriptor/` supplies the
+  descriptor foundation; this page focuses on Proxy interception.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -101,6 +108,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/ownKeys
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/getOwnPropertyDescriptor
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/getOwnPropertyDescriptor
 https://tc39.es/ecma262/multipage/reflection.html#sec-proxy-objects
 ```
 
@@ -203,6 +212,24 @@ Key facts:
 - The result must include every non-configurable own key of the target.
 - For a non-extensible target, the result must contain exactly the target's own
   keys, although their order may be customized.
+- The `getOwnPropertyDescriptor` trap intercepts the target's
+  `[[GetOwnProperty]]` internal method and receives `target` plus a string or
+  symbol property key.
+- It must return a descriptor object or `undefined`; omitted descriptor fields
+  are normalized with the same defaults used by property-definition syntax.
+- `Object.getOwnPropertyDescriptor()`,
+  `Reflect.getOwnPropertyDescriptor()`, `Object.hasOwn()`,
+  `propertyIsEnumerable()`, and descriptor-filtering listing operations can
+  trigger the trap.
+- Returning a descriptor reports an own property to descriptor-sensitive
+  operations but does not create storage or change ordinary `get` behavior.
+- Returning `undefined` may hide a configurable property on an extensible
+  target, but cannot hide a non-configurable own property or any own property
+  on a non-extensible target.
+- A missing target property may be reported virtually only while the target is
+  extensible and only as configurable.
+- Reported descriptors must remain compatible with protected target
+  descriptors.
 
 ## Sprint 1: Recheck Proxy Basics
 
@@ -458,10 +485,44 @@ Review List:
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review for `ownKeys.md`.
 
+## Sprint 11: Create The Proxy `getOwnPropertyDescriptor` Trap Lesson
+
+Status: review-ready
+
+Checklist:
+
+- [x] Replace `src/proxy/handlers/getOwnPropertyDescriptor/.gitkeep` with the
+  runnable `.js` and paired `.md` lesson.
+- [x] Explain `[[GetOwnProperty]]`, `target`, `property`, and the descriptor or
+  `undefined` result.
+- [x] Show normal forwarding with `Reflect.getOwnPropertyDescriptor()`.
+- [x] Review data and accessor descriptor shapes without duplicating the Object
+  method lesson.
+- [x] Explain descriptor normalization and that reading descriptors does not
+  run getters.
+- [x] Show operations such as `Object.hasOwn()`, `propertyIsEnumerable()`, and
+  `Object.keys()` triggering descriptor checks.
+- [x] Show that reported descriptors do not create storage or control ordinary
+  value reads.
+- [x] Connect virtual enumerable keys with `ownKeys` and `get` behavior.
+- [x] Show string, numeric-index, and symbol property keys.
+- [x] Explain result-type, hidden-property, virtual-property,
+  non-configurability, and compatibility invariants.
+- [x] Show direct target inspection bypassing the proxy.
+- [x] Add common mistakes, usage guidance, references, and runnable command.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+
+Review List:
+
+- [x] Run the `getOwnPropertyDescriptor.js` practice file.
+- [x] Run `node --check` on the practice file.
+- [x] Run `git diff --check`.
+- [x] Do a second note-format review for `getOwnPropertyDescriptor.md`.
+
 ## Stop Point
 
 The next page is:
 
 ```text
-src/proxy/handlers/getOwnPropertyDescriptor/getOwnPropertyDescriptor.js
+src/proxy/handlers/defineProperty/defineProperty.js
 ```
