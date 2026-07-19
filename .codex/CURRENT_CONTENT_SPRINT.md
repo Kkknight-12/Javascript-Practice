@@ -2,23 +2,24 @@
 
 ## Active Story
 
-### JS-CONTENT-001BY: Create The Proxy `getOwnPropertyDescriptor` Trap Lesson
+### JS-CONTENT-001BZ: Create The Proxy `defineProperty` Trap Lesson
 
-As a learner, I want to understand how the Proxy `getOwnPropertyDescriptor`
-trap reports whether an own property exists and how it is configured, so I can
-customize descriptor-sensitive operations without contradicting target facts.
+As a learner, I want to understand how the Proxy `defineProperty` trap
+intercepts requests to create or reconfigure own properties, so I can validate,
+transform, or observe descriptor changes without reporting impossible target
+states.
 
 ## Current Folder
 
 ```text
-src/proxy/handlers/getOwnPropertyDescriptor/
+src/proxy/handlers/defineProperty/
 ```
 
 ## Current Files
 
 ```text
-src/proxy/handlers/getOwnPropertyDescriptor/getOwnPropertyDescriptor.js
-src/proxy/handlers/getOwnPropertyDescriptor/getOwnPropertyDescriptor.md
+src/proxy/handlers/defineProperty/defineProperty.js
+src/proxy/handlers/defineProperty/defineProperty.md
 .codex/CONTENT_REVIEW_TRACKER.md
 .codex/CURRENT_CONTENT_SPRINT.md
 ```
@@ -87,6 +88,14 @@ src/proxy/handlers/getOwnPropertyDescriptor/getOwnPropertyDescriptor.md
 - The existing Object method lesson at
   `src/object/methods/static-methods/getOwnPropertyDescriptor/` supplies the
   descriptor foundation; this page focuses on Proxy interception.
+- The `getOwnPropertyDescriptor` lesson was committed and pushed as `5daa09f`.
+- The next unchecked tracker entry is
+  `src/proxy/handlers/defineProperty/defineProperty.js`, followed by its paired
+  `defineProperty.md` explanation.
+- The existing Object method lesson at
+  `src/object/methods/static-methods/defineProperty/` supplies the descriptor
+  creation foundation; this page focuses on Proxy interception, forwarding,
+  declared status, and invariants.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -110,7 +119,10 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/getOwnPropertyDescriptor
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/getOwnPropertyDescriptor
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/defineProperty
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/defineProperty
 https://tc39.es/ecma262/multipage/reflection.html#sec-proxy-objects
+https://tc39.es/ecma262/multipage/ordinary-and-exotic-objects-behaviours.html#sec-proxy-object-internal-methods-and-internal-slots-defineownproperty-p-desc
 ```
 
 Key facts:
@@ -230,6 +242,27 @@ Key facts:
   extensible and only as configurable.
 - Reported descriptors must remain compatible with protected target
   descriptors.
+- The `defineProperty` trap intercepts the proxy's `[[DefineOwnProperty]]`
+  internal method and receives `target`, a string or symbol `property`, and a
+  descriptor object.
+- `Object.defineProperty()`, `Object.defineProperties()`, and
+  `Reflect.defineProperty()` can trigger the trap. Other operations may also
+  reach it when they invoke `[[DefineOwnProperty]]` internally.
+- The trap result is coerced to a boolean and declares whether the requested
+  definition was accepted; the returned value does not define a property by
+  itself.
+- `Reflect.defineProperty(target, property, descriptor)` performs normal
+  definition behavior and returns the matching boolean status.
+- `Object.defineProperty()` throws when the proxy reports failure, while
+  `Reflect.defineProperty()` exposes the `false` status.
+- Only standard descriptor fields reach the trap. Omitted fields remain absent
+  from the descriptor request and custom fields are ignored.
+- A truthy result cannot claim that a property was added to a non-extensible
+  target or that a descriptor change succeeded when it contradicts protected
+  target facts.
+- A trap cannot merely claim that a property became non-configurable or that a
+  non-configurable writable property became non-writable; the target must
+  actually have the matching protected state after the trap runs.
 
 ## Sprint 1: Recheck Proxy Basics
 
@@ -519,10 +552,44 @@ Review List:
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review for `getOwnPropertyDescriptor.md`.
 
+## Sprint 12: Create The Proxy `defineProperty` Trap Lesson
+
+Status: review-ready
+
+Checklist:
+
+- [x] Replace `src/proxy/handlers/defineProperty/.gitkeep` with the runnable
+  `.js` and paired `.md` lesson.
+- [x] Explain `[[DefineOwnProperty]]`, `target`, `property`, `descriptor`, and
+  the boolean trap result.
+- [x] Show normal forwarding with `Reflect.defineProperty()`.
+- [x] Compare `Object.defineProperty()` and `Reflect.defineProperty()` when the
+  trap reports failure.
+- [x] Separate intercepting, performing, and reporting a property definition.
+- [x] Explain recognized descriptor fields, omitted fields, defaults, and
+  accessor descriptors.
+- [x] Show `Object.defineProperties()` invoking the trap once per property.
+- [x] Explain why assignment can sometimes run both `set` and
+  `defineProperty`.
+- [x] Show validation, descriptor transformation, string, numeric, and symbol
+  keys.
+- [x] Explain non-extensible-target, non-configurability, compatibility, and
+  non-writable transition invariants.
+- [x] Show direct target definition bypassing the trap.
+- [x] Add common mistakes, usage guidance, references, and runnable command.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+
+Review List:
+
+- [x] Run the `defineProperty.js` practice file.
+- [x] Run `node --check` on the practice file.
+- [x] Run `git diff --check`.
+- [x] Do a second note-format review for `defineProperty.md`.
+
 ## Stop Point
 
 The next page is:
 
 ```text
-src/proxy/handlers/defineProperty/defineProperty.js
+src/proxy/concepts/protected-properties/protected-properties.js
 ```
