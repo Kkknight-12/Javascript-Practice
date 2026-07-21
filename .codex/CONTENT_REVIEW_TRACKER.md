@@ -307,8 +307,8 @@ Suggested order:
 - [x] `src/proxy/handlers/defineProperty/defineProperty.md`
 - [x] `src/proxy/concepts/protected-properties/protected-properties.js`
 - [x] `src/proxy/concepts/protected-properties/protected-properties.md`
-- [ ] `src/proxy/handlers/getPrototypeOf/getPrototypeOf.js`
-- [ ] `src/proxy/handlers/getPrototypeOf/getPrototypeOf.md`
+- [x] `src/proxy/handlers/getPrototypeOf/getPrototypeOf.js`
+- [x] `src/proxy/handlers/getPrototypeOf/getPrototypeOf.md`
 - [ ] `src/proxy/handlers/setPrototypeOf/setPrototypeOf.js`
 - [ ] `src/proxy/handlers/setPrototypeOf/setPrototypeOf.md`
 - [ ] `src/proxy/handlers/isExtensible/isExtensible.js`

@@ -2,24 +2,24 @@
 
 ## Active Story
 
-### JS-CONTENT-001CA: Create The Proxy Protected Properties Lesson
+### JS-CONTENT-001CB: Create The Proxy `getPrototypeOf` Trap Lesson
 
-As a learner, I want to combine the property-related Proxy traps into one
-consistent protected-property policy, so I can understand what each trap
-protects, which reflective operations can otherwise reveal internal keys, and
-where this pattern differs from real JavaScript privacy.
+As a learner, I want to understand how the Proxy `getPrototypeOf` trap reports
+an object's immediate prototype, so I can distinguish prototype inspection
+from property lookup, recognize indirect callers such as `isPrototypeOf()` and
+`instanceof`, and preserve required target facts.
 
 ## Current Folder
 
 ```text
-src/proxy/concepts/protected-properties/
+src/proxy/handlers/getPrototypeOf/
 ```
 
 ## Current Files
 
 ```text
-src/proxy/concepts/protected-properties/protected-properties.js
-src/proxy/concepts/protected-properties/protected-properties.md
+src/proxy/handlers/getPrototypeOf/getPrototypeOf.js
+src/proxy/handlers/getPrototypeOf/getPrototypeOf.md
 .codex/CONTENT_REVIEW_TRACKER.md
 .codex/CURRENT_CONTENT_SPRINT.md
 ```
@@ -105,6 +105,14 @@ src/proxy/concepts/protected-properties/protected-properties.md
   `defineProperty` traps into one underscore-key policy.
 - The focused source note is
   `src/proxy/organized-notes/08-protected-properties.md`.
+- The protected-properties lesson was committed and pushed as `95683d8`.
+- The next unchecked tracker entry is
+  `src/proxy/handlers/getPrototypeOf/getPrototypeOf.js`, followed by its paired
+  `getPrototypeOf.md` explanation.
+- The existing Object method lesson at
+  `src/object/methods/static-methods/getPrototypeOf/` supplies the prototype
+  foundation; this page focuses on Proxy interception, virtual reports, and
+  invariants.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -131,6 +139,9 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/defineProperty
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/defineProperty
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/getPrototypeOf
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/getPrototypeOf
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf
 https://tc39.es/ecma262/multipage/reflection.html#sec-proxy-objects
 https://tc39.es/ecma262/multipage/ordinary-and-exotic-objects-behaviours.html#sec-proxy-object-internal-methods-and-internal-slots-defineownproperty-p-desc
 ```
@@ -290,6 +301,23 @@ Key facts:
   facade, but a proxy policy is still not the same as native private elements.
 - Native `#` private elements are enforced by JavaScript and are not ordinary
   string- or symbol-keyed properties that Proxy traps can enumerate or hide.
+- The `getPrototypeOf` trap intercepts the proxy's `[[GetPrototypeOf]]`
+  internal method and receives only `target`.
+- It must return an object or `null`, representing the prototype reported for
+  the proxy.
+- `Object.getPrototypeOf()`, `Reflect.getPrototypeOf()`, the legacy
+  `__proto__` getter, `Object.prototype.isPrototypeOf()`, and standard
+  `instanceof` checks can invoke the trap.
+- `Reflect.getPrototypeOf(target)` is the normal forwarding operation and
+  returns the target's actual immediate prototype.
+- While the target is extensible, a trap may report a different object or
+  `null` as a virtual prototype.
+- Reporting a virtual prototype does not change the target's actual prototype
+  and does not automatically redirect ordinary property lookup.
+- If the target is non-extensible, the trap must return the target's actual
+  prototype exactly.
+- `Object.create(proxy)` uses the proxy itself as the new object's prototype;
+  it does not first request the proxy's own prototype.
 
 ## Sprint 1: Recheck Proxy Basics
 
@@ -649,10 +677,46 @@ Review List:
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review for `protected-properties.md`.
 
+## Sprint 14: Create The Proxy `getPrototypeOf` Trap Lesson
+
+Status: review-ready
+
+Checklist:
+
+- [x] Replace `src/proxy/handlers/getPrototypeOf/.gitkeep` with the runnable
+  `.js` and paired `.md` lesson.
+- [x] Explain `[[GetPrototypeOf]]`, the `target` parameter, trap `this`, and the
+  object-or-`null` return requirement.
+- [x] Show normal forwarding with `Reflect.getPrototypeOf()` and one immediate
+  prototype at a time.
+- [x] Show `Object.getPrototypeOf()`, `Reflect.getPrototypeOf()`, `__proto__`,
+  `isPrototypeOf()`, and `instanceof` invoking the trap.
+- [x] Explain why the legacy `__proto__` getter reaches `[[GetPrototypeOf]]`.
+- [x] Show a virtual prototype on an extensible target.
+- [x] Separate reported prototype identity from actual target prototype,
+  ordinary property lookup, and prototype mutation.
+- [x] Show how a matching `get` trap can coordinate value lookup when a virtual
+  prototype is intended to provide behavior.
+- [x] Explain `Object.create(proxy)` using the proxy itself without inspecting
+  the proxy's prototype.
+- [x] Show valid `null` results and invalid primitive results.
+- [x] Explain the exact non-extensible-target invariant and the effect of
+  making a previously extensible target non-extensible.
+- [x] Show direct target inspection bypassing the trap.
+- [x] Add common mistakes, usage guidance, references, and runnable command.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+
+Review List:
+
+- [x] Run the `getPrototypeOf.js` practice file.
+- [x] Run `node --check` on the practice file.
+- [x] Run `git diff --check`.
+- [x] Do a second note-format review for `getPrototypeOf.md`.
+
 ## Stop Point
 
 The next page is:
 
 ```text
-src/proxy/handlers/getPrototypeOf/getPrototypeOf.js
+src/proxy/handlers/setPrototypeOf/setPrototypeOf.js
 ```
