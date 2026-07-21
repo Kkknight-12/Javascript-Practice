@@ -2,24 +2,24 @@
 
 ## Active Story
 
-### JS-CONTENT-001BZ: Create The Proxy `defineProperty` Trap Lesson
+### JS-CONTENT-001CA: Create The Proxy Protected Properties Lesson
 
-As a learner, I want to understand how the Proxy `defineProperty` trap
-intercepts requests to create or reconfigure own properties, so I can validate,
-transform, or observe descriptor changes without reporting impossible target
-states.
+As a learner, I want to combine the property-related Proxy traps into one
+consistent protected-property policy, so I can understand what each trap
+protects, which reflective operations can otherwise reveal internal keys, and
+where this pattern differs from real JavaScript privacy.
 
 ## Current Folder
 
 ```text
-src/proxy/handlers/defineProperty/
+src/proxy/concepts/protected-properties/
 ```
 
 ## Current Files
 
 ```text
-src/proxy/handlers/defineProperty/defineProperty.js
-src/proxy/handlers/defineProperty/defineProperty.md
+src/proxy/concepts/protected-properties/protected-properties.js
+src/proxy/concepts/protected-properties/protected-properties.md
 .codex/CONTENT_REVIEW_TRACKER.md
 .codex/CURRENT_CONTENT_SPRINT.md
 ```
@@ -96,6 +96,15 @@ src/proxy/handlers/defineProperty/defineProperty.md
   `src/object/methods/static-methods/defineProperty/` supplies the descriptor
   creation foundation; this page focuses on Proxy interception, forwarding,
   declared status, and invariants.
+- The `defineProperty` lesson was committed and pushed as `f851886`.
+- The next unchecked tracker entry is
+  `src/proxy/concepts/protected-properties/protected-properties.js`, followed
+  by its paired `protected-properties.md` explanation.
+- This is a synthesis lesson that combines the already-studied `get`, `set`,
+  `has`, `deleteProperty`, `ownKeys`, `getOwnPropertyDescriptor`, and
+  `defineProperty` traps into one underscore-key policy.
+- The focused source note is
+  `src/proxy/organized-notes/08-protected-properties.md`.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -121,6 +130,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/getOwnPropertyDescriptor
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/defineProperty
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/defineProperty
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements
 https://tc39.es/ecma262/multipage/reflection.html#sec-proxy-objects
 https://tc39.es/ecma262/multipage/ordinary-and-exotic-objects-behaviours.html#sec-proxy-object-internal-methods-and-internal-slots-defineownproperty-p-desc
 ```
@@ -263,6 +273,23 @@ Key facts:
 - A trap cannot merely claim that a property became non-configurable or that a
   non-configurable writable property became non-writable; the target must
   actually have the matching protected state after the trap runs.
+- An underscore prefix is a naming convention, not language-enforced privacy.
+- A consistent protected-property facade needs multiple traps because reads,
+  writes, existence checks, deletions, key listings, descriptor reads, and
+  descriptor definitions request different internal object methods.
+- `ownKeys` filtering alone does not hide a property from direct reads, the
+  `in` operator, `Object.hasOwn()`, or descriptor inspection.
+- Hiding an own property from `ownKeys`, `has`, and
+  `getOwnPropertyDescriptor` is valid only while the target facts permit it.
+  Non-configurable properties and non-extensible targets restrict those
+  reports.
+- Binding methods to the target can let trusted methods access protected keys,
+  but all property operations performed with `this === target` bypass the
+  proxy's traps.
+- Keeping the target unreachable is necessary when callers must follow the
+  facade, but a proxy policy is still not the same as native private elements.
+- Native `#` private elements are enforced by JavaScript and are not ordinary
+  string- or symbol-keyed properties that Proxy traps can enumerate or hide.
 
 ## Sprint 1: Recheck Proxy Basics
 
@@ -586,10 +613,46 @@ Review List:
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review for `defineProperty.md`.
 
+## Sprint 13: Create The Proxy Protected Properties Lesson
+
+Status: review-ready
+
+Checklist:
+
+- [x] Replace `src/proxy/concepts/protected-properties/.gitkeep` with the
+  runnable `.js` and paired `.md` lesson.
+- [x] Explain that underscore-prefixed keys are conventional internal keys,
+  not native private data.
+- [x] Build one shared protected-key predicate and coordinated `get`, `set`,
+  `has`, `deleteProperty`, `ownKeys`, `getOwnPropertyDescriptor`, and
+  `defineProperty` traps.
+- [x] Map direct access, existence, deletion, listing, descriptor, and
+  definition operations to the trap that enforces each part of the policy.
+- [x] Show public reads, writes, deletions, and definitions continuing through
+  normal Reflect forwarding.
+- [x] Show protected reads, writes, deletions, existence checks, descriptor
+  reads, listings, spread, and descriptor definitions.
+- [x] Explain string-key scope and why symbols are not private automatically.
+- [x] Explain method receiver behavior, target binding, and the bypass tradeoff.
+- [x] Show why leaked target access bypasses every proxy rule.
+- [x] Explain configurable-property and extensible-target requirements for
+  hiding keys without violating invariants.
+- [x] Distinguish a Proxy facade from closures, WeakMaps, and native private
+  elements without teaching the later private-field Proxy page prematurely.
+- [x] Add common mistakes, usage guidance, references, and runnable command.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+
+Review List:
+
+- [x] Run the `protected-properties.js` practice file.
+- [x] Run `node --check` on the practice file.
+- [x] Run `git diff --check`.
+- [x] Do a second note-format review for `protected-properties.md`.
+
 ## Stop Point
 
 The next page is:
 
 ```text
-src/proxy/concepts/protected-properties/protected-properties.js
+src/proxy/handlers/getPrototypeOf/getPrototypeOf.js
 ```
