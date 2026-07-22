@@ -311,8 +311,8 @@ Suggested order:
 - [x] `src/proxy/handlers/getPrototypeOf/getPrototypeOf.md`
 - [x] `src/proxy/handlers/setPrototypeOf/setPrototypeOf.js`
 - [x] `src/proxy/handlers/setPrototypeOf/setPrototypeOf.md`
-- [ ] `src/proxy/handlers/isExtensible/isExtensible.js`
-- [ ] `src/proxy/handlers/isExtensible/isExtensible.md`
+- [x] `src/proxy/handlers/isExtensible/isExtensible.js`
+- [x] `src/proxy/handlers/isExtensible/isExtensible.md`
 - [ ] `src/proxy/handlers/preventExtensions/preventExtensions.js`
 - [ ] `src/proxy/handlers/preventExtensions/preventExtensions.md`
 - [ ] `src/proxy/handlers/apply/apply.js`

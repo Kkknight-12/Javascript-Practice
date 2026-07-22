@@ -2,24 +2,24 @@
 
 ## Active Story
 
-### JS-CONTENT-001CC: Create The Proxy `setPrototypeOf` Trap Lesson
+### JS-CONTENT-001CD: Create The Proxy `isExtensible` Trap Lesson
 
-As a learner, I want to understand how the Proxy `setPrototypeOf` trap handles
-a requested prototype change, so I can separate intercepting, performing, and
-reporting that change, reject requests deliberately, and preserve required
-target facts.
+As a learner, I want to understand how the Proxy `isExtensible` trap reports
+whether new own properties may be added, so I can distinguish checking from
+changing object state, recognize indirect callers, and preserve the target's
+exact extensibility fact.
 
 ## Current Folder
 
 ```text
-src/proxy/handlers/setPrototypeOf/
+src/proxy/handlers/isExtensible/
 ```
 
 ## Current Files
 
 ```text
-src/proxy/handlers/setPrototypeOf/setPrototypeOf.js
-src/proxy/handlers/setPrototypeOf/setPrototypeOf.md
+src/proxy/handlers/isExtensible/isExtensible.js
+src/proxy/handlers/isExtensible/isExtensible.md
 .codex/CONTENT_REVIEW_TRACKER.md
 .codex/CURRENT_CONTENT_SPRINT.md
 ```
@@ -121,6 +121,14 @@ src/proxy/handlers/setPrototypeOf/setPrototypeOf.md
   `src/object/methods/static-methods/setPrototypeOf/` supplies the prototype
   mutation foundation; this page focuses on Proxy interception, forwarding,
   declared status, rejection, and invariants.
+- The `setPrototypeOf` lesson was committed and pushed as `3c283c1`.
+- The next unchecked tracker entry is
+  `src/proxy/handlers/isExtensible/isExtensible.js`, followed by its paired
+  `isExtensible.md` explanation.
+- The existing Object method lesson at
+  `src/object/methods/static-methods/isExtensible/` supplies the extensibility
+  foundation; this page focuses on Proxy interception, indirect callers,
+  truthful forwarding, and the exact-result invariant.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -153,9 +161,13 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/setPrototypeOf
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/setPrototypeOf
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/isExtensible
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/isExtensible
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible
 https://tc39.es/ecma262/multipage/reflection.html#sec-proxy-objects
 https://tc39.es/ecma262/multipage/ordinary-and-exotic-objects-behaviours.html#sec-proxy-object-internal-methods-and-internal-slots-defineownproperty-p-desc
 https://tc39.es/ecma262/multipage/ordinary-and-exotic-objects-behaviours.html#sec-proxy-object-internal-methods-and-internal-slots-setprototypeof-v
+https://tc39.es/ecma262/multipage/ordinary-and-exotic-objects-behaviours.html#sec-proxy-object-internal-methods-and-internal-slots-isextensible
 ```
 
 Key facts:
@@ -348,6 +360,21 @@ Key facts:
   prototype remains valid.
 - Invalid primitive prototype arguments are rejected by the calling API before
   the trap receives them.
+- The `isExtensible` trap intercepts the proxy's `[[IsExtensible]]` internal
+  method and receives only `target`.
+- `Object.isExtensible()`, `Reflect.isExtensible()`, and integrity checks such
+  as `Object.isSealed()` and `Object.isFrozen()` can invoke the trap.
+- The trap result is coerced to a boolean, then must exactly match the target's
+  actual extensibility state.
+- `Reflect.isExtensible(target)` is the normal forwarding operation and
+  produces the boolean required by the invariant.
+- A mismatched truthy or falsy report throws `TypeError`; the trap cannot
+  virtualize extensibility for either an extensible or non-extensible target.
+- Returning a value from `isExtensible` only reports state. It does not make
+  the target extensible or non-extensible.
+- `Object.preventExtensions()`, `Object.seal()`, and `Object.freeze()` change
+  object state through prevention/integrity operations rather than through the
+  `isExtensible` trap.
 
 ## Sprint 1: Recheck Proxy Basics
 
@@ -780,10 +807,45 @@ Review List:
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review for `setPrototypeOf.md`.
 
+## Sprint 16: Create The Proxy `isExtensible` Trap Lesson
+
+Status: review-ready
+
+Checklist:
+
+- [x] Replace `src/proxy/handlers/isExtensible/.gitkeep` with the runnable
+  `.js` and paired `.md` lesson.
+- [x] Explain extensibility, `[[IsExtensible]]`, the `target` parameter, trap
+  `this`, and boolean coercion.
+- [x] Show normal forwarding with `Reflect.isExtensible()` for extensible and
+  non-extensible targets.
+- [x] Show `Object.isExtensible()` and `Reflect.isExtensible()` invoking the
+  trap and explain their primitive-input difference outside Proxy use.
+- [x] Show `Object.isSealed()` and `Object.isFrozen()` invoking the trap as part
+  of their integrity checks.
+- [x] Separate checking extensibility from changing it with
+  `preventExtensions`, `seal`, or `freeze`.
+- [x] Explain that the trap result reports state but cannot virtualize or
+  change the target's extensibility.
+- [x] Explain and demonstrate both directions of the exact-result invariant.
+- [x] Show why hardcoded answers and a missing return are fragile or invalid.
+- [x] Connect non-extensibility to adding properties and changing prototypes
+  without duplicating the full Object lesson.
+- [x] Show direct target inspection bypassing the trap.
+- [x] Add common mistakes, usage guidance, references, and runnable command.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+
+Review List:
+
+- [x] Run the `isExtensible.js` practice file.
+- [x] Run `node --check` on the practice file.
+- [x] Run `git diff --check`.
+- [x] Do a second note-format review for `isExtensible.md`.
+
 ## Stop Point
 
 The next page is:
 
 ```text
-src/proxy/handlers/isExtensible/isExtensible.js
+src/proxy/handlers/preventExtensions/preventExtensions.js
 ```
