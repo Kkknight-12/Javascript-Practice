@@ -2,24 +2,24 @@
 
 ## Active Story
 
-### JS-CONTENT-001CB: Create The Proxy `getPrototypeOf` Trap Lesson
+### JS-CONTENT-001CC: Create The Proxy `setPrototypeOf` Trap Lesson
 
-As a learner, I want to understand how the Proxy `getPrototypeOf` trap reports
-an object's immediate prototype, so I can distinguish prototype inspection
-from property lookup, recognize indirect callers such as `isPrototypeOf()` and
-`instanceof`, and preserve required target facts.
+As a learner, I want to understand how the Proxy `setPrototypeOf` trap handles
+a requested prototype change, so I can separate intercepting, performing, and
+reporting that change, reject requests deliberately, and preserve required
+target facts.
 
 ## Current Folder
 
 ```text
-src/proxy/handlers/getPrototypeOf/
+src/proxy/handlers/setPrototypeOf/
 ```
 
 ## Current Files
 
 ```text
-src/proxy/handlers/getPrototypeOf/getPrototypeOf.js
-src/proxy/handlers/getPrototypeOf/getPrototypeOf.md
+src/proxy/handlers/setPrototypeOf/setPrototypeOf.js
+src/proxy/handlers/setPrototypeOf/setPrototypeOf.md
 .codex/CONTENT_REVIEW_TRACKER.md
 .codex/CURRENT_CONTENT_SPRINT.md
 ```
@@ -113,6 +113,14 @@ src/proxy/handlers/getPrototypeOf/getPrototypeOf.md
   `src/object/methods/static-methods/getPrototypeOf/` supplies the prototype
   foundation; this page focuses on Proxy interception, virtual reports, and
   invariants.
+- The `getPrototypeOf` lesson was committed and pushed as `512957c`.
+- The next unchecked tracker entry is
+  `src/proxy/handlers/setPrototypeOf/setPrototypeOf.js`, followed by its paired
+  `setPrototypeOf.md` explanation.
+- The existing Object method lesson at
+  `src/object/methods/static-methods/setPrototypeOf/` supplies the prototype
+  mutation foundation; this page focuses on Proxy interception, forwarding,
+  declared status, rejection, and invariants.
 - Existing unrelated dirty file remains outside this sprint:
   `src/playground/del.js`.
 
@@ -142,8 +150,12 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Privat
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/getPrototypeOf
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/getPrototypeOf
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/setPrototypeOf
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/setPrototypeOf
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf
 https://tc39.es/ecma262/multipage/reflection.html#sec-proxy-objects
 https://tc39.es/ecma262/multipage/ordinary-and-exotic-objects-behaviours.html#sec-proxy-object-internal-methods-and-internal-slots-defineownproperty-p-desc
+https://tc39.es/ecma262/multipage/ordinary-and-exotic-objects-behaviours.html#sec-proxy-object-internal-methods-and-internal-slots-setprototypeof-v
 ```
 
 Key facts:
@@ -318,6 +330,24 @@ Key facts:
   prototype exactly.
 - `Object.create(proxy)` uses the proxy itself as the new object's prototype;
   it does not first request the proxy's own prototype.
+- The `setPrototypeOf` trap intercepts the proxy's `[[SetPrototypeOf]]`
+  internal method and receives `target` plus the requested object-or-`null`
+  `prototype`.
+- `Object.setPrototypeOf()`, `Reflect.setPrototypeOf()`, and the legacy
+  `__proto__` setter can invoke the trap.
+- The trap result is coerced to a boolean and declares whether the request was
+  accepted; returning `true` does not change the target's prototype by itself.
+- `Reflect.setPrototypeOf(target, prototype)` performs the normal change and
+  returns the matching boolean status.
+- `Object.setPrototypeOf()` throws when the trap reports failure, while
+  `Reflect.setPrototypeOf()` exposes the `false` result.
+- A trap may reject a change by returning `false`, or it may throw when both
+  Object and Reflect callers should receive an exception.
+- If a non-extensible target is asked to use a different prototype, the trap
+  cannot report success. Reporting success for the target's existing
+  prototype remains valid.
+- Invalid primitive prototype arguments are rejected by the calling API before
+  the trap receives them.
 
 ## Sprint 1: Recheck Proxy Basics
 
@@ -713,10 +743,47 @@ Review List:
 - [x] Run `git diff --check`.
 - [x] Do a second note-format review for `getPrototypeOf.md`.
 
+## Sprint 15: Create The Proxy `setPrototypeOf` Trap Lesson
+
+Status: review-ready
+
+Checklist:
+
+- [x] Replace `src/proxy/handlers/setPrototypeOf/.gitkeep` with the runnable
+  `.js` and paired `.md` lesson.
+- [x] Explain `[[SetPrototypeOf]]`, `target`, the exact requested `prototype`,
+  trap `this`, and the boolean-like return status.
+- [x] Show normal forwarding with `Reflect.setPrototypeOf()` and verify the
+  target's changed prototype and inherited behavior.
+- [x] Show `Object.setPrototypeOf()`, `Reflect.setPrototypeOf()`, and the legacy
+  `__proto__` setter invoking the trap.
+- [x] Separate intercepting, performing, and reporting the prototype change.
+- [x] Compare `Object.setPrototypeOf()` throwing for failure with
+  `Reflect.setPrototypeOf()` returning `false`.
+- [x] Show rejection by returning `false` and rejection by throwing a custom
+  error.
+- [x] Show valid object and `null` prototype requests and explain that invalid
+  primitive prototypes are rejected before the trap runs.
+- [x] Explain normal failures such as prototype cycles.
+- [x] Explain the exact non-extensible-target invariant, including different
+  and same-prototype requests.
+- [x] Distinguish changing the proxy's prototype from using the proxy as
+  another object's prototype with `Object.create()` or `Object.setPrototypeOf()`.
+- [x] Show direct target mutation bypassing the trap.
+- [x] Add common mistakes, usage guidance, references, and runnable command.
+- [x] Update `.codex/CONTENT_REVIEW_TRACKER.md`.
+
+Review List:
+
+- [x] Run the `setPrototypeOf.js` practice file.
+- [x] Run `node --check` on the practice file.
+- [x] Run `git diff --check`.
+- [x] Do a second note-format review for `setPrototypeOf.md`.
+
 ## Stop Point
 
 The next page is:
 
 ```text
-src/proxy/handlers/setPrototypeOf/setPrototypeOf.js
+src/proxy/handlers/isExtensible/isExtensible.js
 ```
