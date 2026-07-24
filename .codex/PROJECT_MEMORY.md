@@ -2,7 +2,14 @@
 
 ## Project Shape
 
-This repository is a public JavaScript practice and revision workspace. It should stay terminal-first: runnable `.js` examples in `src/`, with explanations as nearby `.md` notes when useful.
+This repository is a public JavaScript practice and revision workspace.
+
+Keep two responsibilities separate:
+
+```text
+src/       -> terminal-first runnable examples with nearby `.md` notes
+projects/  -> compact vanilla TypeScript projects with JavaScript-first reasoning
+```
 
 ## Structure Decisions
 
@@ -141,7 +148,8 @@ src/object/
 - Larger topic moves should stay reviewable and happen in a separate sprint.
 - Some older camelCase method filenames still exist, but the most obvious typo/punctuation names were cleaned in Sprint 2.
 - Scratch files were moved into `src/playground/` during Sprint 1.
-- Site-generation or browser-preview work does not belong in this repo unless the user explicitly changes direction.
+- Browser project work now belongs under `projects/`. Do not turn the
+  learner-note files in `src/` into a generated site.
 
 ## Sprint 2 Naming Cleanup
 
@@ -328,10 +336,12 @@ to future work in this repo:
 - Do not commit, push, merge, rewrite history, or remove public files unless the
   user explicitly asks.
 - Do not revert unrelated dirty files.
-- For this repo, preserve the terminal-first practice workflow unless the user
-  explicitly chooses another direction. Keep `npm run dev` focused on running a
-  JavaScript file with `nodemon`.
-- Do not add site-generation or browser-preview work without explicit approval.
+- Preserve the terminal-first note workflow inside `src/`. Keep the root
+  `npm run dev` focused on running a JavaScript file with `nodemon`.
+- A project under `projects/` may use its own Vite `package.json` and browser
+  dev server.
+- Do not add a framework or convert the `src/` note collection into a website
+  without explicit approval.
 
 ## Public Repo Scope Correction
 
@@ -346,3 +356,21 @@ src/array/methods/instance/reduce.md
 src/fundamentals/scope/var.js
 src/fundamentals/scope/var.md
 ```
+
+## Practical Project Mode And Note Preservation
+
+Project-based JavaScript practice is defined in
+`PRACTICAL_PROJECT_MEMORY.md`.
+
+That mode does not replace this note-authoring memory.
+
+When a project feature reveals that a topic has no suitable `.js` and `.md`
+lesson, pause at the exact feature ticket, create or repair the focused note
+pair with the established workflow in this file, and then resume that ticket.
+
+Keep learner notes limited to teaching content. Do not put repo-planning
+commentary, page-placement decisions, or statements about whether the repo
+needs another lesson inside a learner-facing `.md` file.
+
+The project coverage audit should link to any note created during this process
+so the explanation remains reusable after the project continues.
